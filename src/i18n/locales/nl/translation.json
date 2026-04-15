@@ -1,0 +1,271 @@
+{
+  "nav": {
+    "download": "Downloaden",
+    "homeAriaLabel": "Play4Change startpagina"
+  },
+  "footer": {
+    "partnerWith": "In samenwerking met",
+    "copyright": "© 2025 Play4Change — ISEL & U!REKA",
+    "administration": "Administratie",
+    "iselAlt": "ISEL — Instituto Superior de Engenharia de Lisboa",
+    "urekaAlt": "U!REKA Europese Universiteit"
+  },
+  "hero": {
+    "tagline": "Adaptief leren aangedreven door AI.",
+    "taglineStrong": "Dagelijkse gamified uitdagingen voor duurzaamheid en digitale geletterdheid.",
+    "ctaDownload": "Downloaden",
+    "ctaLearnMore": "Meer weten",
+    "features": {
+      "aiContent": {
+        "label": "AI-gegenereerde inhoud",
+        "description": "Upload een PDF of URL en onze AI bouwt direct gestructureerde dagelijkse uitdagingen op maat van uw onderwerp."
+      },
+      "adaptiveLearning": {
+        "label": "Adaptief leren",
+        "description": "De moeilijkheidsgraad past zich in realtime aan op basis van prestaties, zodat elke leerling in zijn optimale leerzone blijft."
+      },
+      "gamification": {
+        "label": "Gamification & Peer review",
+        "description": "Reeksen, badges en ranglijsten stimuleren motivatie, terwijl peer review dieper collaboratief begrip bevordert."
+      },
+      "sustainability": {
+        "label": "Focus op duurzaamheid",
+        "description": "Gebouwd voor duurzaamheid en digitale geletterdheid — dagelijks microleren omzetten in blijvende gedragsverandering."
+      }
+    },
+    "carousel": {
+      "goTo": "Ga naar {{feature}}"
+    }
+  },
+  "mission": {
+    "label": "Onze missie",
+    "heading": "Leren dat",
+    "headingHighlight": "echte verandering creëert",
+    "description": "Play4Change transformeert passieve kennis in actieve betrokkenheid. Ons platform maakt duurzaamheidseducatie en digitale geletterdheid toegankelijk, verslavend en impactvol — één dagelijkse uitdaging tegelijk.",
+    "features": {
+      "aiContent": {
+        "title": "AI-gegenereerde inhoud",
+        "description": "Onderwerpen worden door docenten gemaakt en verrijkt door AI — automatisch quizzen, uitdagingen en dagelijkse taken genereren afgestemd op het onderwerp."
+      },
+      "adaptiveLearning": {
+        "title": "Adaptief leren",
+        "description": "Het platform past zich aan aan het tempo en de prestaties van elke leerling, zodat iedereen op het juiste niveau wordt uitgedaagd."
+      },
+      "gamification": {
+        "title": "Gamification & Peer review",
+        "description": "Dagelijkse reeksen, ranglijsten en badges houden leerlingen gemotiveerd. Peer review-taken ontwikkelen kritisch denken en gemeenschapskennis."
+      },
+      "sustainability": {
+        "title": "Focus op duurzaamheid",
+        "description": "Onderwerpen zijn samengesteld rond de VN-duurzaamheidsdoelen en digitaal burgerschap — voor de volgende generatie verantwoordelijke veranderaars."
+      }
+    }
+  },
+  "stats": {
+    "label": "Live statistieken",
+    "heading": "Word lid van een groeiende gemeenschap",
+    "learnersWorldwide": "Leerlingen wereldwijd",
+    "activeTopics": "Actieve onderwerpen",
+    "tasksCompleted": "Voltooide taken"
+  },
+  "product": {
+    "label": "Hoe het werkt",
+    "heading": "Van inhoud naar kennis in",
+    "headingHighlight": "4 stappen",
+    "description": "Play4Change overbrugt de kloof tussen educatieve inhoud en echte gedragsverandering — elke resource omzetten in een boeiende, adaptieve leerreis.",
+    "cta": "Begin vandaag nog met leren",
+    "steps": {
+      "step1": {
+        "title": "Docenten maken onderwerpen",
+        "description": "Admins laden PDF-materialen up of geven URL's op. Onze AI verwerkt de inhoud en genereert een gestructureerd leerpad met dagelijkse uitdagingen."
+      },
+      "step2": {
+        "title": "Leerlingen schrijven zich in",
+        "description": "Studenten ontdekken onderwerpen, schrijven zich in seconden in en beginnen dagelijks één uitdaging te ontvangen — compacte taken voor elk schema."
+      },
+      "step3": {
+        "title": "Voortgang door uitdagingen",
+        "description": "Elke dag brengt nieuwe quizzen, reflectievragen en peer-taken. De AI past de moeilijkheidsgraad aan om leerlingen in de flow-staat te houden."
+      },
+      "step4": {
+        "title": "Prestaties behalen & groeien",
+        "description": "Reeksen voltooien, badges verdienen en ranglijsten beklimmen. Peer reviews van de community bevorderen dieper begrip en collaboratief leren."
+      }
+    }
+  },
+  "download": {
+    "label": "Download de app",
+    "heading": "Play4Change komt",
+    "headingHighlight": "naar mobiel",
+    "description": "We leggen de laatste hand aan onze mobiele apps. Wees de eerste die weet wanneer ze worden gelanceerd — meld je aan voor vroege toegang.",
+    "android": {
+      "platform": "Android",
+      "store": "Google Play Store",
+      "storeDescription": "Beschikbaar voor Android 8.0 en hoger. Download van de Google Play Store bij lancering.",
+      "notifyAriaLabel": "Meld me bij lancering van de Android-app"
+    },
+    "ios": {
+      "platform": "iOS",
+      "store": "Apple App Store",
+      "storeDescription": "Beschikbaar voor iOS 15 en hoger. Vind het in de App Store bij lancering.",
+      "notifyAriaLabel": "Meld me bij lancering van de iOS-app"
+    },
+    "comingSoon": "Binnenkort beschikbaar",
+    "notifyButton": "Meld me bij lancering",
+    "waitlist": {
+      "heading": "Word lid van de wachtlijst",
+      "description": "Wees een van de eersten die Play4Change op je mobiele apparaat ervaart.",
+      "status": "Aanmelding voor wachtlijst binnenkort beschikbaar"
+    }
+  },
+  "admin": {
+    "login": {
+      "portalLabel": "Beheerportaal",
+      "heading": "Inloggen",
+      "emailLabel": "E-mailadres",
+      "emailPlaceholder": "admin@play4change.org",
+      "emailError": "Voer een geldig e-mailadres in",
+      "magicLinkError": "Kan magic link niet verzenden. Probeer het opnieuw.",
+      "sending": "Verzenden…",
+      "sendButton": "Stuur magic link",
+      "orContinueWith": "of doorgaan met",
+      "continueGoogle": "Doorgaan met Google",
+      "continueFacebook": "Doorgaan met Facebook",
+      "checkEmail": {
+        "heading": "Controleer je e-mail",
+        "description": "We hebben een magic link gestuurd naar {{email}}. Klik op de link in de e-mail om in te loggen.",
+        "useDifferent": "Gebruik een ander e-mailadres"
+      },
+      "backToApp": "← Terug naar Play4Change"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "myTopics": "Mijn onderwerpen",
+      "createTopic": "Onderwerp aanmaken",
+      "openSidebar": "Zijbalk openen",
+      "navAriaLabel": "Beheernavigatie",
+      "signingOut": "Uitloggen…",
+      "signOut": "Uitloggen"
+    },
+    "dashboard": {
+      "welcomeBack": "Welkom terug{{name}}!",
+      "subtitle": "Hier is een overzicht van uw Play4Change-inhoud.",
+      "totalTopics": "Totaal onderwerpen",
+      "activeTopics": "Actieve onderwerpen",
+      "otherStates": "{{count}} in andere staten",
+      "totalEnrolled": "Totaal ingeschreven",
+      "acrossAllTopics": "over alle onderwerpen",
+      "quickActions": "Snelle acties",
+      "createNewTopic": "Nieuw onderwerp aanmaken",
+      "viewAllTopics": "Alle onderwerpen bekijken",
+      "recentTopics": "Recente onderwerpen",
+      "viewAll": "Alle bekijken →",
+      "noTopics": "Nog geen onderwerpen.",
+      "createFirst": "Maak je eerste onderwerp aan →"
+    },
+    "topicList": {
+      "heading": "Mijn onderwerpen",
+      "topicsTotal_one": "{{count}} onderwerp totaal",
+      "topicsTotal_other": "{{count}} onderwerpen totaal",
+      "newTopic": "Nieuw onderwerp",
+      "filterAriaLabel": "Filteren op status",
+      "noTopicsFound": "Geen {{filter}}onderwerpen gevonden.",
+      "createFirst": "Maak je eerste onderwerp aan →",
+      "filters": {
+        "all": "Alle",
+        "active": "Actief",
+        "generating": "Wordt gegenereerd",
+        "pending": "In afwachting",
+        "failed": "Mislukt"
+      }
+    },
+    "topicDetail": {
+      "breadcrumbTopics": "Onderwerpen",
+      "regenerate": "Opnieuw genereren",
+      "regenerating": "Wordt opnieuw gegenereerd…",
+      "daysUnit": "dagen",
+      "statsHeading": "Statistieken",
+      "enrolledUsers": "Ingeschreven gebruikers",
+      "completionRate": "Voltooiingspercentage",
+      "ofEnrolledUsers": "van ingeschreven gebruikers",
+      "averageScore": "Gemiddelde score",
+      "activeUsers": "Actieve gebruikers",
+      "currentlyLearning": "leren momenteel",
+      "statsNotAvailable": "Statistieken zijn beschikbaar zodra het onderwerp actief is.",
+      "notFound": "Onderwerp niet gevonden.",
+      "backToTopics": "← Terug naar onderwerpen"
+    },
+    "createTopic": {
+      "heading": "Nieuw onderwerp aanmaken",
+      "subtitle": "Upload een PDF of geef URL's op — onze AI genereert de leerinhoud.",
+      "titleLabel": "Onderwerptitel",
+      "titlePlaceholder": "bijv. Inleiding tot de Duurzame Ontwikkelingsdoelen",
+      "titleRequired": "Titel is verplicht",
+      "descriptionLabel": "Beschrijving",
+      "descriptionPlaceholder": "Beschrijf kort wat leerlingen van dit onderwerp meenemen…",
+      "descriptionRequired": "Beschrijving is verplicht",
+      "categoryLabel": "Categorie",
+      "categoryPlaceholder": "bijv. Duurzaamheid, Digitale geletterdheid, Klimaat…",
+      "categoryRequired": "Categorie is verplicht",
+      "contentSource": "Inhoudsbron",
+      "sourceUrl": "URL('s)",
+      "sourcePdf": "PDF uploaden",
+      "pdfRequired": "Upload een PDF-bestand",
+      "durationLabel": "Duur (dagen)",
+      "difficultyLabel": "Moeilijkheidsgraad",
+      "creating": "Aanmaken…",
+      "createButton": "Onderwerp aanmaken",
+      "cancel": "Annuleren",
+      "createError": "Kan onderwerp niet aanmaken. Probeer het opnieuw.",
+      "selectSourceAriaLabel": "Inhoudsbron selecteren"
+    }
+  },
+  "components": {
+    "difficulty": {
+      "beginner": {
+        "label": "Beginner",
+        "description": "Geen voorkennis vereist"
+      },
+      "intermediate": {
+        "label": "Gemiddeld",
+        "description": "Enige achtergrond is nuttig"
+      },
+      "advanced": {
+        "label": "Gevorderd",
+        "description": "Voorkennis vereist"
+      },
+      "ariaLabel": "Selecteer moeilijkheidsgraad"
+    },
+    "duration": {
+      "ariaLabel": "Selecteer duur in dagen",
+      "dayUnit": "d"
+    },
+    "fileUpload": {
+      "ariaLabel": "PDF-bestand uploaden, max {{maxSize}} MB",
+      "remove": "Verwijderen",
+      "dragDrop": "Sleep je PDF hier, of",
+      "browse": "bladeren",
+      "pdfOnly": "Alleen PDF · max {{maxSize}} MB"
+    },
+    "urlInput": {
+      "placeholder": "https://voorbeeld.com/artikel",
+      "urlAriaLabel": "URL {{index}}",
+      "removeAriaLabel": "URL {{index}} verwijderen",
+      "addAnother": "Nog een URL toevoegen ({{current}}/{{max}})"
+    },
+    "topicCard": {
+      "enrolled": "Ingeschreven",
+      "completion": "Voltooiing",
+      "avgScore": "Gem. score",
+      "activeNow": "Nu actief",
+      "created": "Aangemaakt {{date}}"
+    },
+    "statCard": {
+      "trendPositive": "+{{value}}% deze maand",
+      "trendNegative": "{{value}}% deze maand"
+    },
+    "languageSwitcher": {
+      "ariaLabel": "Selecteer taal"
+    }
+  }
+}

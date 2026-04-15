@@ -1,0 +1,271 @@
+{
+  "nav": {
+    "download": "Ladda ner",
+    "homeAriaLabel": "Play4Change startsida"
+  },
+  "footer": {
+    "partnerWith": "I partnerskap med",
+    "copyright": "© 2025 Play4Change — ISEL & U!REKA",
+    "administration": "Administration",
+    "iselAlt": "ISEL — Instituto Superior de Engenharia de Lisboa",
+    "urekaAlt": "U!REKA Europeiskt Universitet"
+  },
+  "hero": {
+    "tagline": "Adaptivt lärande drivet av AI.",
+    "taglineStrong": "Gamifierade dagliga utmaningar för hållbarhet och digital kompetens.",
+    "ctaDownload": "Ladda ner",
+    "ctaLearnMore": "Läs mer",
+    "features": {
+      "aiContent": {
+        "label": "AI-genererat innehåll",
+        "description": "Ladda upp en PDF eller URL och vår AI skapar omedelbart strukturerade dagliga utmaningar anpassade till ditt ämne."
+      },
+      "adaptiveLearning": {
+        "label": "Adaptivt lärande",
+        "description": "Svårigheten anpassas i realtid baserat på prestationer, vilket håller varje elev i sin optimala lärandezon."
+      },
+      "gamification": {
+        "label": "Gamification och peer review",
+        "description": "Serier, märken och rankningslistor driver motivation medan peer review bygger djupare samarbetsförståelse."
+      },
+      "sustainability": {
+        "label": "Hållbarhetsfokus",
+        "description": "Byggt för hållbarhet och digital kompetens — dagligt mikrolärande som skapar varaktig beteendeförändring."
+      }
+    },
+    "carousel": {
+      "goTo": "Gå till {{feature}}"
+    }
+  },
+  "mission": {
+    "label": "Vårt uppdrag",
+    "heading": "Lärande som skapar",
+    "headingHighlight": "verklig förändring",
+    "description": "Play4Change förvandlar passiv kunskap till aktivt engagemang. Vår plattform gör hållbarhetsutbildning och digital kompetens tillgänglig, engagerande och verkningsfull — en daglig utmaning i taget.",
+    "features": {
+      "aiContent": {
+        "title": "AI-genererat innehåll",
+        "description": "Ämnen skapas av lärare och berikas av AI — genererar automatiskt quiz, utmaningar och dagliga uppgifter anpassade till ämnet."
+      },
+      "adaptiveLearning": {
+        "title": "Adaptivt lärande",
+        "description": "Plattformen anpassar sig till varje elevs tempo och prestationer och säkerställer att alla utmanas på rätt nivå."
+      },
+      "gamification": {
+        "title": "Gamification och peer review",
+        "description": "Dagliga serier, rankningslistor och märken håller elever motiverade. Peer review-uppgifter utvecklar kritiskt tänkande och gemenskapskunskap."
+      },
+      "sustainability": {
+        "title": "Hållbarhetsfokus",
+        "description": "Ämnen väljs ut kring FN:s hållbarhetsmål och digitalt medborgarskap — för nästa generation av ansvarsfulla förändringsskapare."
+      }
+    }
+  },
+  "stats": {
+    "label": "Live-statistik",
+    "heading": "Gå med i ett växande samfund",
+    "learnersWorldwide": "Elever världen över",
+    "activeTopics": "Aktiva ämnen",
+    "tasksCompleted": "Avklarade uppgifter"
+  },
+  "product": {
+    "label": "Hur det fungerar",
+    "heading": "Från innehåll till kunskap på",
+    "headingHighlight": "4 steg",
+    "description": "Play4Change överbryggar klyftan mellan utbildningsinnehåll och verklig beteendeförändring — förvandlar alla resurser till en engagerande, adaptiv läranderesa.",
+    "cta": "Börja lära dig idag",
+    "steps": {
+      "step1": {
+        "title": "Lärare skapar ämnen",
+        "description": "Administratörer laddar upp PDF-material eller anger URL:er. Vår AI bearbetar innehållet och genererar en strukturerad inlärningsväg med dagliga utmaningar."
+      },
+      "step2": {
+        "title": "Elever registrerar sig och börjar",
+        "description": "Studenter upptäcker ämnen, registrerar sig på sekunder och börjar ta emot en utmaning per dag — kompakta uppgifter som passar alla scheman."
+      },
+      "step3": {
+        "title": "Framsteg genom utmaningar",
+        "description": "Varje dag ger nya quiz, reflektionsfrågor och peer-uppgifter. AI:n anpassar svårigheten baserat på prestationer för att hålla eleverna i flödestillståndet."
+      },
+      "step4": {
+        "title": "Tjäna prestationer och växa",
+        "description": "Avsluta serier, tjäna märken och klättra i rankningslistorna. Gemenskapens peer reviews bygger djupare förståelse och samarbetsinlärning."
+      }
+    }
+  },
+  "download": {
+    "label": "Hämta appen",
+    "heading": "Play4Change kommer",
+    "headingHighlight": "till mobil",
+    "description": "Vi lägger sista handen på våra mobilappar. Bli den första att veta när de lanseras — registrera dig för tidig åtkomst.",
+    "android": {
+      "platform": "Android",
+      "store": "Google Play Store",
+      "storeDescription": "Tillgänglig för Android 8.0 och senare. Ladda ner från Google Play Store vid lansering.",
+      "notifyAriaLabel": "Meddela mig när Android-appen lanseras"
+    },
+    "ios": {
+      "platform": "iOS",
+      "store": "Apple App Store",
+      "storeDescription": "Tillgänglig för iOS 15 och senare. Hitta den i App Store vid lansering.",
+      "notifyAriaLabel": "Meddela mig när iOS-appen lanseras"
+    },
+    "comingSoon": "Kommer snart",
+    "notifyButton": "Meddela mig vid lansering",
+    "waitlist": {
+      "heading": "Gå med i väntelistan",
+      "description": "Var bland de första att uppleva Play4Change på din mobila enhet.",
+      "status": "Registrering till väntelistan öppnar snart"
+    }
+  },
+  "admin": {
+    "login": {
+      "portalLabel": "Administrationsportal",
+      "heading": "Logga in",
+      "emailLabel": "E-postadress",
+      "emailPlaceholder": "admin@play4change.org",
+      "emailError": "Ange en giltig e-postadress",
+      "magicLinkError": "Det gick inte att skicka magic-länken. Försök igen.",
+      "sending": "Skickar…",
+      "sendButton": "Skicka magic-länk",
+      "orContinueWith": "eller fortsätt med",
+      "continueGoogle": "Fortsätt med Google",
+      "continueFacebook": "Fortsätt med Facebook",
+      "checkEmail": {
+        "heading": "Kontrollera din e-post",
+        "description": "Vi skickade en magic-länk till {{email}}. Klicka på länken i e-postmeddelandet för att logga in.",
+        "useDifferent": "Använd en annan e-postadress"
+      },
+      "backToApp": "← Tillbaka till Play4Change"
+    },
+    "nav": {
+      "dashboard": "Instrumentpanel",
+      "myTopics": "Mina ämnen",
+      "createTopic": "Skapa ämne",
+      "openSidebar": "Öppna sidofält",
+      "navAriaLabel": "Administrationsnavigering",
+      "signingOut": "Loggar ut…",
+      "signOut": "Logga ut"
+    },
+    "dashboard": {
+      "welcomeBack": "Välkommen tillbaka{{name}}!",
+      "subtitle": "Här är en översikt av ditt Play4Change-innehåll.",
+      "totalTopics": "Totalt antal ämnen",
+      "activeTopics": "Aktiva ämnen",
+      "otherStates": "{{count}} i andra tillstånd",
+      "totalEnrolled": "Totalt registrerade",
+      "acrossAllTopics": "över alla ämnen",
+      "quickActions": "Snabbåtgärder",
+      "createNewTopic": "Skapa nytt ämne",
+      "viewAllTopics": "Visa alla ämnen",
+      "recentTopics": "Senaste ämnen",
+      "viewAll": "Visa alla →",
+      "noTopics": "Inga ämnen ännu.",
+      "createFirst": "Skapa ditt första ämne →"
+    },
+    "topicList": {
+      "heading": "Mina ämnen",
+      "topicsTotal_one": "{{count}} ämne totalt",
+      "topicsTotal_other": "{{count}} ämnen totalt",
+      "newTopic": "Nytt ämne",
+      "filterAriaLabel": "Filtrera efter status",
+      "noTopicsFound": "Inga {{filter}}ämnen hittades.",
+      "createFirst": "Skapa ditt första ämne →",
+      "filters": {
+        "all": "Alla",
+        "active": "Aktiv",
+        "generating": "Genererar",
+        "pending": "Väntande",
+        "failed": "Misslyckad"
+      }
+    },
+    "topicDetail": {
+      "breadcrumbTopics": "Ämnen",
+      "regenerate": "Återskapa",
+      "regenerating": "Återskapar…",
+      "daysUnit": "dagar",
+      "statsHeading": "Statistik",
+      "enrolledUsers": "Registrerade användare",
+      "completionRate": "Slutförandegrad",
+      "ofEnrolledUsers": "av registrerade användare",
+      "averageScore": "Genomsnittligt poäng",
+      "activeUsers": "Aktiva användare",
+      "currentlyLearning": "lär sig just nu",
+      "statsNotAvailable": "Statistik kommer att vara tillgänglig när ämnet är aktivt.",
+      "notFound": "Ämnet hittades inte.",
+      "backToTopics": "← Tillbaka till ämnen"
+    },
+    "createTopic": {
+      "heading": "Skapa nytt ämne",
+      "subtitle": "Ladda upp en PDF eller ange URL:er — vår AI genererar utbildningsinnehållet.",
+      "titleLabel": "Ämnestitel",
+      "titlePlaceholder": "t.ex. Introduktion till hållbarhetsmålen",
+      "titleRequired": "Titel krävs",
+      "descriptionLabel": "Beskrivning",
+      "descriptionPlaceholder": "Beskriv kort vad elever kommer att lära sig av detta ämne…",
+      "descriptionRequired": "Beskrivning krävs",
+      "categoryLabel": "Kategori",
+      "categoryPlaceholder": "t.ex. Hållbarhet, Digital kompetens, Klimat…",
+      "categoryRequired": "Kategori krävs",
+      "contentSource": "Innehållskälla",
+      "sourceUrl": "URL:er",
+      "sourcePdf": "Ladda upp PDF",
+      "pdfRequired": "Ladda upp en PDF-fil",
+      "durationLabel": "Varaktighet (dagar)",
+      "difficultyLabel": "Svårighetsgrad",
+      "creating": "Skapar…",
+      "createButton": "Skapa ämne",
+      "cancel": "Avbryt",
+      "createError": "Det gick inte att skapa ämnet. Försök igen.",
+      "selectSourceAriaLabel": "Välj innehållskälla"
+    }
+  },
+  "components": {
+    "difficulty": {
+      "beginner": {
+        "label": "Nybörjare",
+        "description": "Inga förkunskaper krävs"
+      },
+      "intermediate": {
+        "label": "Mellannivå",
+        "description": "Viss bakgrund är hjälpsam"
+      },
+      "advanced": {
+        "label": "Avancerad",
+        "description": "Förkunskaper krävs"
+      },
+      "ariaLabel": "Välj svårighetsgrad"
+    },
+    "duration": {
+      "ariaLabel": "Välj varaktighet i dagar",
+      "dayUnit": "d"
+    },
+    "fileUpload": {
+      "ariaLabel": "Ladda upp PDF-fil, max {{maxSize}} MB",
+      "remove": "Ta bort",
+      "dragDrop": "Dra din PDF hit, eller",
+      "browse": "bläddra",
+      "pdfOnly": "Endast PDF · max {{maxSize}} MB"
+    },
+    "urlInput": {
+      "placeholder": "https://exempel.com/artikel",
+      "urlAriaLabel": "URL {{index}}",
+      "removeAriaLabel": "Ta bort URL {{index}}",
+      "addAnother": "Lägg till en till URL ({{current}}/{{max}})"
+    },
+    "topicCard": {
+      "enrolled": "Registrerade",
+      "completion": "Slutförande",
+      "avgScore": "Genomsn. poäng",
+      "activeNow": "Aktiva nu",
+      "created": "Skapad {{date}}"
+    },
+    "statCard": {
+      "trendPositive": "+{{value}}% denna månad",
+      "trendNegative": "{{value}}% denna månad"
+    },
+    "languageSwitcher": {
+      "ariaLabel": "Välj språk"
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useIntersectionObserver } from '@/ui/hooks/useIntersectionObserver'
 
 const AndroidIcon = () => (
@@ -24,13 +25,10 @@ function PhoneMockup({ platform }: { platform: 'android' | 'ios' }) {
         height: '380px',
       }}
     >
-      {/* Notch / camera area */}
       <div
         className={`absolute left-1/2 top-3 -translate-x-1/2 ${isAndroid ? 'h-2 w-8 rounded-full bg-gray-700' : 'h-6 w-20 rounded-b-2xl bg-gray-800'}`}
         aria-hidden="true"
       />
-
-      {/* Screen content */}
       <div className="flex h-full flex-col items-center justify-center gap-3 px-4 pt-6">
         <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-500 to-green-500" />
         <div className="h-2 w-24 rounded-full bg-gray-700" />
@@ -39,8 +37,6 @@ function PhoneMockup({ platform }: { platform: 'android' | 'ios' }) {
         <div className="h-8 w-full rounded-lg bg-blue-600/40" />
         <div className="h-8 w-full rounded-lg bg-gray-800" />
       </div>
-
-      {/* Home indicator */}
       {!isAndroid && (
         <div
           className="absolute bottom-2 left-1/2 h-1 w-24 -translate-x-1/2 rounded-full bg-gray-600"
@@ -60,8 +56,10 @@ function PlatformCard({
   delay: number
   isVisible: boolean
 }) {
+  const { t } = useTranslation()
   const isAndroid = platform === 'android'
   const accentColor = isAndroid ? 'green' : 'blue'
+  const platformKey = isAndroid ? 'android' : 'ios'
 
   return (
     <div
@@ -79,7 +77,7 @@ function PlatformCard({
           className={`mb-3 inline-flex items-center gap-2 rounded-full ${isAndroid ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'} px-4 py-2 text-sm font-semibold`}
         >
           {isAndroid ? <AndroidIcon /> : <AppleIcon />}
-          <span>{isAndroid ? 'Android' : 'iOS'}</span>
+          <span>{t(`download.${platformKey}.platform`)}</span>
         </div>
 
         <div
@@ -88,21 +86,19 @@ function PlatformCard({
           <span
             className={`h-1.5 w-1.5 rounded-full ${isAndroid ? 'bg-green-500' : 'bg-blue-500'} animate-pulse`}
           />
-          Coming Soon
+          {t('download.comingSoon')}
         </div>
 
         <h3 className="mb-2 font-display text-xl font-bold text-gray-900">
-          {isAndroid ? 'Google Play Store' : 'Apple App Store'}
+          {t(`download.${platformKey}.store`)}
         </h3>
         <p className="max-w-xs text-sm text-gray-500">
-          {isAndroid
-            ? 'Available for Android 8.0 and above. Download from the Google Play Store when it launches.'
-            : 'Available for iOS 15 and above. Find it on the App Store when it launches.'}
+          {t(`download.${platformKey}.storeDescription`)}
         </p>
 
         <button
           disabled
-          aria-label={`Notify me when ${isAndroid ? 'Android' : 'iOS'} app launches`}
+          aria-label={t(`download.${platformKey}.notifyAriaLabel`)}
           className={`mt-5 flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full border-2 ${accentColor === 'green' ? 'border-green-200 bg-green-50 text-green-600' : 'border-blue-200 bg-blue-50 text-blue-600'} px-6 py-3 text-sm font-semibold opacity-60`}
         >
           <svg
@@ -119,7 +115,7 @@ function PlatformCard({
               d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
             />
           </svg>
-          Notify me at launch
+          {t('download.notifyButton')}
         </button>
       </div>
     </div>
@@ -127,6 +123,7 @@ function PlatformCard({
 }
 
 export default function DownloadPage() {
+  const { t } = useTranslation()
   const ref = useRef<HTMLElement>(null)
   const isVisible = useIntersectionObserver(ref, { threshold: 0.05 })
 
@@ -135,14 +132,12 @@ export default function DownloadPage() {
       ref={ref}
       className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-white"
     >
-      {/* Background decoration */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-100/30 blur-3xl" />
         <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-green-100/30 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 py-24">
-        {/* Header */}
         <div
           className="mb-20 text-center transition-all duration-700"
           style={{
@@ -151,18 +146,15 @@ export default function DownloadPage() {
           }}
         >
           <span className="mb-4 inline-block rounded-full bg-blue-100 px-4 py-1.5 text-sm font-semibold text-blue-700">
-            Get the App
+            {t('download.label')}
           </span>
           <h1 className="mb-6 font-display text-5xl font-bold text-gray-900 sm:text-6xl">
-            Play4Change is <span className="text-blue-600">coming to mobile</span>
+            {t('download.heading')}{' '}
+            <span className="text-blue-600">{t('download.headingHighlight')}</span>
           </h1>
-          <p className="mx-auto max-w-xl text-xl text-gray-600">
-            We&apos;re putting the finishing touches on our mobile apps. Be the first to know when
-            they launch — sign up for early access below.
-          </p>
+          <p className="mx-auto max-w-xl text-xl text-gray-600">{t('download.description')}</p>
         </div>
 
-        {/* Platform cards */}
         <div
           className="mx-auto grid max-w-4xl gap-16 sm:grid-cols-2"
           aria-label="App download options"
@@ -171,7 +163,6 @@ export default function DownloadPage() {
           <PlatformCard platform="ios" delay={150} isVisible={isVisible} />
         </div>
 
-        {/* Waitlist callout */}
         <div
           className="mx-auto mt-20 max-w-lg transition-all duration-700"
           style={{
@@ -184,11 +175,11 @@ export default function DownloadPage() {
             <div className="mb-3 text-4xl" aria-hidden="true">
               🚀
             </div>
-            <h2 className="mb-2 font-display text-xl font-bold text-gray-900">Join the waitlist</h2>
-            <p className="mb-5 text-sm text-gray-500">
-              Be among the first to experience Play4Change on your mobile device.
-            </p>
-            <p className="text-xs font-medium text-blue-600">Waitlist registration opening soon</p>
+            <h2 className="mb-2 font-display text-xl font-bold text-gray-900">
+              {t('download.waitlist.heading')}
+            </h2>
+            <p className="mb-5 text-sm text-gray-500">{t('download.waitlist.description')}</p>
+            <p className="text-xs font-medium text-blue-600">{t('download.waitlist.status')}</p>
           </div>
         </div>
       </div>

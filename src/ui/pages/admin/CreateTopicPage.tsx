@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useCreateTopicFromUrl, useCreateTopicFromPdf } from '@/application/hooks/useTopics'
 import type { TopicDifficulty } from '@/domain/models/Topic'
 import FileUpload from '@/ui/components/FileUpload'
@@ -20,6 +21,7 @@ interface FormErrors {
 }
 
 export default function CreateTopicPage() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const createFromUrl = useCreateTopicFromUrl()
   const createFromPdf = useCreateTopicFromPdf()
@@ -38,15 +40,15 @@ export default function CreateTopicPage() {
 
   function validate(): FormErrors {
     const e: FormErrors = {}
-    if (!title.trim()) e.title = 'Title is required'
-    if (!description.trim()) e.description = 'Description is required'
-    if (!category.trim()) e.category = 'Category is required'
+    if (!title.trim()) e.title = t('admin.createTopic.titleRequired')
+    if (!description.trim()) e.description = t('admin.createTopic.descriptionRequired')
+    if (!category.trim()) e.category = t('admin.createTopic.categoryRequired')
     if (sourceType === 'url') {
       const validUrls = urls.filter(Boolean)
       const urlErr = validateUrls(validUrls)
       if (urlErr) e.urls = urlErr
     } else if (!pdfFile) {
-      e.pdf = 'Please upload a PDF file'
+      e.pdf = t('admin.createTopic.pdfRequired')
     }
     return e
   }
@@ -95,19 +97,18 @@ export default function CreateTopicPage() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-8">
-      {/* Header */}
       <div>
-        <h1 className="font-display text-2xl font-bold text-gray-900">Create New Topic</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          Upload a PDF or provide URLs — our AI will generate the learning content.
-        </p>
+        <h1 className="font-display text-2xl font-bold text-gray-900">
+          {t('admin.createTopic.heading')}
+        </h1>
+        <p className="mt-1 text-sm text-gray-500">{t('admin.createTopic.subtitle')}</p>
       </div>
 
       <form onSubmit={handleSubmit} noValidate className="space-y-6">
         {/* Title */}
         <div>
           <label htmlFor="title" className="mb-1.5 block text-sm font-medium text-gray-700">
-            Topic title{' '}
+            {t('admin.createTopic.titleLabel')}{' '}
             <span className="text-red-500" aria-hidden="true">
               *
             </span>
@@ -120,7 +121,7 @@ export default function CreateTopicPage() {
               setTitle(e.target.value)
               setErrors(p => ({ ...p, title: undefined }))
             }}
-            placeholder="e.g. Introduction to Sustainable Development Goals"
+            placeholder={t('admin.createTopic.titlePlaceholder')}
             aria-invalid={Boolean(errors.title)}
             className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all focus:ring-2 focus:ring-blue-500 ${errors.title ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white focus:border-blue-400'}`}
           />
@@ -134,7 +135,7 @@ export default function CreateTopicPage() {
         {/* Description */}
         <div>
           <label htmlFor="description" className="mb-1.5 block text-sm font-medium text-gray-700">
-            Description{' '}
+            {t('admin.createTopic.descriptionLabel')}{' '}
             <span className="text-red-500" aria-hidden="true">
               *
             </span>
@@ -146,7 +147,7 @@ export default function CreateTopicPage() {
               setDescription(e.target.value)
               setErrors(p => ({ ...p, description: undefined }))
             }}
-            placeholder="Briefly describe what learners will gain from this topic…"
+            placeholder={t('admin.createTopic.descriptionPlaceholder')}
             rows={3}
             aria-invalid={Boolean(errors.description)}
             className={`w-full resize-none rounded-xl border px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all focus:ring-2 focus:ring-blue-500 ${errors.description ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white focus:border-blue-400'}`}
@@ -161,7 +162,7 @@ export default function CreateTopicPage() {
         {/* Category */}
         <div>
           <label htmlFor="category" className="mb-1.5 block text-sm font-medium text-gray-700">
-            Category{' '}
+            {t('admin.createTopic.categoryLabel')}{' '}
             <span className="text-red-500" aria-hidden="true">
               *
             </span>
@@ -174,7 +175,7 @@ export default function CreateTopicPage() {
               setCategory(e.target.value)
               setErrors(p => ({ ...p, category: undefined }))
             }}
-            placeholder="e.g. Sustainability, Digital Literacy, Climate…"
+            placeholder={t('admin.createTopic.categoryPlaceholder')}
             aria-invalid={Boolean(errors.category)}
             className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all focus:ring-2 focus:ring-blue-500 ${errors.category ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white focus:border-blue-400'}`}
           />
@@ -188,7 +189,7 @@ export default function CreateTopicPage() {
         {/* Source type toggle */}
         <div>
           <p className="mb-3 text-sm font-medium text-gray-700">
-            Content source{' '}
+            {t('admin.createTopic.contentSource')}{' '}
             <span className="text-red-500" aria-hidden="true">
               *
             </span>
@@ -196,7 +197,7 @@ export default function CreateTopicPage() {
           <div
             className="mb-4 inline-flex rounded-xl border border-gray-200 bg-gray-50 p-1"
             role="group"
-            aria-label="Select content source"
+            aria-label={t('admin.createTopic.selectSourceAriaLabel')}
           >
             <button
               type="button"
@@ -206,7 +207,7 @@ export default function CreateTopicPage() {
               aria-pressed={sourceType === 'url'}
               className={`rounded-lg px-5 py-2 text-sm font-semibold transition-all ${sourceType === 'url' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
             >
-              URL(s)
+              {t('admin.createTopic.sourceUrl')}
             </button>
             <button
               type="button"
@@ -216,7 +217,7 @@ export default function CreateTopicPage() {
               aria-pressed={sourceType === 'pdf'}
               className={`rounded-lg px-5 py-2 text-sm font-semibold transition-all ${sourceType === 'pdf' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
             >
-              PDF Upload
+              {t('admin.createTopic.sourcePdf')}
             </button>
           </div>
 
@@ -243,13 +244,17 @@ export default function CreateTopicPage() {
 
         {/* Duration */}
         <div>
-          <label className="mb-3 block text-sm font-medium text-gray-700">Duration (days)</label>
+          <label className="mb-3 block text-sm font-medium text-gray-700">
+            {t('admin.createTopic.durationLabel')}
+          </label>
           <DurationSelector value={durationDays} onChange={setDurationDays} />
         </div>
 
         {/* Difficulty */}
         <div>
-          <label className="mb-3 block text-sm font-medium text-gray-700">Difficulty</label>
+          <label className="mb-3 block text-sm font-medium text-gray-700">
+            {t('admin.createTopic.difficultyLabel')}
+          </label>
           <DifficultySelector value={difficulty} onChange={setDifficulty} />
         </div>
 
@@ -266,10 +271,10 @@ export default function CreateTopicPage() {
                   className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"
                   aria-hidden="true"
                 />
-                Creating…
+                {t('admin.createTopic.creating')}
               </>
             ) : (
-              'Create Topic'
+              t('admin.createTopic.createButton')
             )}
           </button>
           <button
@@ -280,13 +285,13 @@ export default function CreateTopicPage() {
             disabled={isPending}
             className="rounded-xl border border-gray-200 px-6 py-3 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-50"
           >
-            Cancel
+            {t('admin.createTopic.cancel')}
           </button>
         </div>
 
         {(createFromUrl.isError || createFromPdf.isError) && (
           <p className="text-sm text-red-600" role="alert">
-            Failed to create topic. Please try again.
+            {t('admin.createTopic.createError')}
           </p>
         )}
       </form>

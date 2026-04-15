@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { isValidUrl } from '@/lib/validators'
 import { MAX_URLS } from '@/lib/constants'
 
@@ -8,6 +9,7 @@ interface UrlInputProps {
 }
 
 export default function UrlInput({ urls, onChange, error }: UrlInputProps) {
+  const { t } = useTranslation()
   const list = urls.length === 0 ? [''] : urls
 
   function updateUrl(index: number, value: string) {
@@ -37,8 +39,8 @@ export default function UrlInput({ urls, onChange, error }: UrlInputProps) {
               onChange={e => {
                 updateUrl(i, e.target.value)
               }}
-              placeholder="https://example.com/article"
-              aria-label={`URL ${i + 1}`}
+              placeholder={t('components.urlInput.placeholder')}
+              aria-label={t('components.urlInput.urlAriaLabel', { index: i + 1 })}
               className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all focus:ring-2 focus:ring-blue-500 ${
                 url && !isValidUrl(url)
                   ? 'border-red-300 bg-red-50'
@@ -64,7 +66,7 @@ export default function UrlInput({ urls, onChange, error }: UrlInputProps) {
               onClick={() => {
                 removeUrl(i)
               }}
-              aria-label={`Remove URL ${i + 1}`}
+              aria-label={t('components.urlInput.removeAriaLabel', { index: i + 1 })}
               className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-gray-200 text-gray-400 transition-colors hover:border-red-300 hover:bg-red-50 hover:text-red-500"
             >
               <svg
@@ -98,7 +100,7 @@ export default function UrlInput({ urls, onChange, error }: UrlInputProps) {
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
-          Add another URL ({list.length}/{MAX_URLS})
+          {t('components.urlInput.addAnother', { current: list.length, max: MAX_URLS })}
         </button>
       )}
 

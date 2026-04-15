@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Logo from '@/ui/components/Logo'
+import LanguageSwitcher from '@/ui/components/LanguageSwitcher'
 import { useCurrentUser, useLogout } from '@/application/hooks/useAuth'
 import { getAccessToken } from '@/infrastructure/api/apiClient'
 import { ROUTES } from '@/lib/constants'
 
-const NAV_ITEMS = [
+const NAV_ITEM_DEFS = [
   {
     to: ROUTES.ADMIN_DASHBOARD,
-    label: 'Dashboard',
+    labelKey: 'admin.nav.dashboard' as const,
     icon: (
       <svg
         className="h-5 w-5"
@@ -28,7 +30,7 @@ const NAV_ITEMS = [
   },
   {
     to: ROUTES.ADMIN_TOPICS,
-    label: 'My Topics',
+    labelKey: 'admin.nav.myTopics' as const,
     icon: (
       <svg
         className="h-5 w-5"
@@ -48,7 +50,7 @@ const NAV_ITEMS = [
   },
   {
     to: ROUTES.ADMIN_CREATE_TOPIC,
-    label: 'Create Topic',
+    labelKey: 'admin.nav.createTopic' as const,
     icon: (
       <svg
         className="h-5 w-5"
@@ -65,6 +67,7 @@ const NAV_ITEMS = [
 ]
 
 export default function AdminLayout() {
+  const { t } = useTranslation()
   const { data: user } = useCurrentUser()
   const navigate = useNavigate()
   const logout = useLogout()
@@ -80,7 +83,10 @@ export default function AdminLayout() {
   }
 
   const Sidebar = ({ mobile = false }: { mobile?: boolean }) => (
-    <nav className={`flex h-full flex-col ${mobile ? '' : 'w-64'}`} aria-label="Admin navigation">
+    <nav
+      className={`flex h-full flex-col ${mobile ? '' : 'w-64'}`}
+      aria-label={t('admin.nav.navAriaLabel')}
+    >
       {/* Logo */}
       <div className="border-b border-gray-100 p-6">
         <Link to={ROUTES.HOME}>
@@ -90,7 +96,7 @@ export default function AdminLayout() {
 
       {/* Nav links */}
       <div className="flex-1 space-y-1 p-4">
-        {NAV_ITEMS.map(item => (
+        {NAV_ITEM_DEFS.map(item => (
           <NavLink
             key={item.to}
             to={item.to}
@@ -107,7 +113,7 @@ export default function AdminLayout() {
             }
           >
             {item.icon}
-            {item.label}
+            {t(item.labelKey)}
           </NavLink>
         ))}
       </div>
@@ -146,7 +152,7 @@ export default function AdminLayout() {
               d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
             />
           </svg>
-          {logout.isPending ? 'Signing out…' : 'Sign out'}
+          {logout.isPending ? t('admin.nav.signingOut') : t('admin.nav.signOut')}
         </button>
       </div>
     </nav>
@@ -185,7 +191,7 @@ export default function AdminLayout() {
             onClick={() => {
               setSidebarOpen(true)
             }}
-            aria-label="Open sidebar"
+            aria-label={t('admin.nav.openSidebar')}
             className="rounded-lg p-2 text-gray-500 hover:bg-gray-100"
           >
             <svg
@@ -204,7 +210,7 @@ export default function AdminLayout() {
             </svg>
           </button>
           <Logo size="sm" />
-          <div className="w-8" aria-hidden="true" />
+          <LanguageSwitcher />
         </header>
 
         <main className="flex-1 p-6">
