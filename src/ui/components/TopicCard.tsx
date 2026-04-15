@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import type { Topic } from '@/domain/models/Topic'
 import { formatDate, formatPercentage, formatScore } from '@/lib/formatters'
 import { ROUTES } from '@/lib/constants'
@@ -21,6 +22,7 @@ interface TopicCardProps {
 }
 
 export default function TopicCard({ topic }: TopicCardProps) {
+  const { t } = useTranslation()
   const detailPath = ROUTES.ADMIN_TOPIC_DETAIL.replace(':id', topic.id)
 
   return (
@@ -28,7 +30,6 @@ export default function TopicCard({ topic }: TopicCardProps) {
       to={detailPath}
       className="glass-card group block rounded-2xl p-6 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
     >
-      {/* Header row */}
       <div className="mb-3 flex items-start justify-between gap-3">
         <h3 className="font-display font-bold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
           {topic.title}
@@ -40,10 +41,8 @@ export default function TopicCard({ topic }: TopicCardProps) {
         </span>
       </div>
 
-      {/* Description */}
       <p className="mb-4 text-sm text-gray-500 line-clamp-2">{topic.description}</p>
 
-      {/* Tags */}
       <div className="mb-4 flex flex-wrap gap-2">
         <span
           className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${DIFFICULTY_STYLES[topic.difficulty]}`}
@@ -58,32 +57,32 @@ export default function TopicCard({ topic }: TopicCardProps) {
         </span>
       </div>
 
-      {/* Stats row */}
       {topic.status === 'ACTIVE' && (
         <div className="grid grid-cols-2 gap-3 border-t border-gray-100 pt-4">
           <div>
-            <p className="text-xs text-gray-400">Enrolled</p>
+            <p className="text-xs text-gray-400">{t('components.topicCard.enrolled')}</p>
             <p className="font-semibold text-gray-900">{topic.stats.enrolledUsers}</p>
           </div>
           <div>
-            <p className="text-xs text-gray-400">Completion</p>
+            <p className="text-xs text-gray-400">{t('components.topicCard.completion')}</p>
             <p className="font-semibold text-gray-900">
               {formatPercentage(topic.stats.completionRate, 0)}
             </p>
           </div>
           <div>
-            <p className="text-xs text-gray-400">Avg Score</p>
+            <p className="text-xs text-gray-400">{t('components.topicCard.avgScore')}</p>
             <p className="font-semibold text-gray-900">{formatScore(topic.stats.averageScore)}</p>
           </div>
           <div>
-            <p className="text-xs text-gray-400">Active now</p>
+            <p className="text-xs text-gray-400">{t('components.topicCard.activeNow')}</p>
             <p className="font-semibold text-gray-900">{topic.stats.activeUsers}</p>
           </div>
         </div>
       )}
 
-      {/* Footer */}
-      <p className="mt-3 text-xs text-gray-400">Created {formatDate(topic.createdAt)}</p>
+      <p className="mt-3 text-xs text-gray-400">
+        {t('components.topicCard.created', { date: formatDate(topic.createdAt) })}
+      </p>
     </Link>
   )
 }

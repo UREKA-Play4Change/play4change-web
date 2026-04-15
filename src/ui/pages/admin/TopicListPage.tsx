@@ -1,34 +1,36 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useTopics } from '@/application/hooks/useTopics'
 import type { TopicStatus } from '@/domain/models/Topic'
 import TopicCard from '@/ui/components/TopicCard'
 import { ROUTES } from '@/lib/constants'
 
-const STATUS_FILTERS: { label: string; value: TopicStatus | 'ALL' }[] = [
-  { label: 'All', value: 'ALL' },
-  { label: 'Active', value: 'ACTIVE' },
-  { label: 'Generating', value: 'GENERATING' },
-  { label: 'Pending', value: 'PENDING' },
-  { label: 'Failed', value: 'FAILED' },
+const STATUS_FILTER_VALUES: { labelKey: string; value: TopicStatus | 'ALL' }[] = [
+  { labelKey: 'admin.topicList.filters.all', value: 'ALL' },
+  { labelKey: 'admin.topicList.filters.active', value: 'ACTIVE' },
+  { labelKey: 'admin.topicList.filters.generating', value: 'GENERATING' },
+  { labelKey: 'admin.topicList.filters.pending', value: 'PENDING' },
+  { labelKey: 'admin.topicList.filters.failed', value: 'FAILED' },
 ]
 
 export default function TopicListPage() {
+  const { t } = useTranslation()
   const [statusFilter, setStatusFilter] = useState<TopicStatus | 'ALL'>('ALL')
-  const { data, isLoading } = useTopics()
-  const allTopics = Array.isArray(data) ? data : []
+  const { data: allTopics = [], isLoading } = useTopics()
 
   const topics =
-    statusFilter === 'ALL' ? allTopics : allTopics.filter(t => t.status === statusFilter)
+    statusFilter === 'ALL' ? allTopics : allTopics.filter(topic => topic.status === statusFilter)
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="font-display text-2xl font-bold text-gray-900">My Topics</h1>
+          <h1 className="font-display text-2xl font-bold text-gray-900">
+            {t('admin.topicList.heading')}
+          </h1>
           <p className="mt-1 text-sm text-gray-500">
-            {allTopics.length} topic{allTopics.length !== 1 ? 's' : ''} total
+            {t('admin.topicList.topicsTotal', { count: allTopics.length })}
           </p>
         </div>
         <Link
@@ -45,13 +47,16 @@ export default function TopicListPage() {
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
-          New Topic
+          {t('admin.topicList.newTopic')}
         </Link>
       </div>
 
-      {/* Status filter pills */}
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by status">
-        {STATUS_FILTERS.map(f => (
+      <div
+        className="flex flex-wrap gap-2"
+        role="group"
+        aria-label={t('admin.topicList.filterAriaLabel')}
+      >
+        {STATUS_FILTER_VALUES.map(f => (
           <button
             key={f.value}
             onClick={() => {
@@ -64,12 +69,11 @@ export default function TopicListPage() {
                 : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
             }`}
           >
-            {f.label}
+            {t(f.labelKey)}
           </button>
         ))}
       </div>
 
-      {/* Grid */}
       {isLoading ? (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3, 4, 5, 6].map(i => (
@@ -79,14 +83,16 @@ export default function TopicListPage() {
       ) : topics.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-16 text-center">
           <p className="text-gray-500">
-            No {statusFilter !== 'ALL' ? statusFilter.toLowerCase() : ''} topics found.
+            {t('admin.topicList.noTopicsFound', {
+              filter: statusFilter !== 'ALL' ? `${statusFilter.toLowerCase()} ` : '',
+            })}
           </p>
           {statusFilter === 'ALL' && (
             <Link
               to={ROUTES.ADMIN_CREATE_TOPIC}
               className="mt-2 inline-block text-sm font-medium text-blue-600 hover:underline"
             >
-              Create your first topic →
+              {t('admin.topicList.createFirst')}
             </Link>
           )}
         </div>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useCurrentUser } from '@/application/hooks/useAuth'
 import { useTopics } from '@/application/hooks/useTopics'
 import { ROUTES } from '@/lib/constants'
@@ -33,29 +34,27 @@ function OverviewCard({
 }
 
 export default function DashboardPage() {
+  const { t } = useTranslation()
   const { data: user } = useCurrentUser()
-  const { data, isLoading } = useTopics()
-  const topics = Array.isArray(data) ? data : []
+  const { data: topics = [], isLoading } = useTopics()
 
   const totalTopics = topics.length
-  const activeTopics = topics.filter(t => t.status === 'ACTIVE').length
-  const totalEnrolled = topics.reduce((sum, t) => sum + t.stats.enrolledUsers, 0)
+  const activeTopics = topics.filter(topic => topic.status === 'ACTIVE').length
+  const totalEnrolled = topics.reduce((sum, topic) => sum + topic.stats.enrolledUsers, 0)
 
   const recentTopics = [...topics].slice(0, 3)
 
+  const firstName = user?.name ? `, ${user.name.split(' ')[0]}` : ''
+
   return (
     <div className="space-y-8">
-      {/* Page header */}
       <div>
         <h1 className="font-display text-2xl font-bold text-gray-900">
-          Welcome back{user?.name ? `, ${user.name.split(' ')[0]}` : ''}!
+          {t('admin.dashboard.welcomeBack', { name: firstName })}
         </h1>
-        <p className="mt-1 text-sm text-gray-500">
-          Here&apos;s an overview of your Play4Change content.
-        </p>
+        <p className="mt-1 text-sm text-gray-500">{t('admin.dashboard.subtitle')}</p>
       </div>
 
-      {/* Overview cards */}
       {isLoading ? (
         <div className="grid gap-4 sm:grid-cols-3">
           {[1, 2, 3].map(i => (
@@ -64,25 +63,30 @@ export default function DashboardPage() {
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-3">
-          <OverviewCard label="Total Topics" value={totalTopics} accent="blue" />
           <OverviewCard
-            label="Active Topics"
+            label={t('admin.dashboard.totalTopics')}
+            value={totalTopics}
+            accent="blue"
+          />
+          <OverviewCard
+            label={t('admin.dashboard.activeTopics')}
             value={activeTopics}
-            sub={`${totalTopics - activeTopics} in other states`}
+            sub={t('admin.dashboard.otherStates', { count: totalTopics - activeTopics })}
             accent="green"
           />
           <OverviewCard
-            label="Total Enrolled"
+            label={t('admin.dashboard.totalEnrolled')}
             value={totalEnrolled.toLocaleString()}
-            sub="across all topics"
+            sub={t('admin.dashboard.acrossAllTopics')}
             accent="orange"
           />
         </div>
       )}
 
-      {/* Quick actions */}
       <div>
-        <h2 className="mb-4 font-display text-lg font-semibold text-gray-900">Quick Actions</h2>
+        <h2 className="mb-4 font-display text-lg font-semibold text-gray-900">
+          {t('admin.dashboard.quickActions')}
+        </h2>
         <div className="flex flex-wrap gap-3">
           <Link
             to={ROUTES.ADMIN_CREATE_TOPIC}
@@ -98,26 +102,27 @@ export default function DashboardPage() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
-            Create New Topic
+            {t('admin.dashboard.createNewTopic')}
           </Link>
           <Link
             to={ROUTES.ADMIN_TOPICS}
             className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:bg-gray-50"
           >
-            View All Topics
+            {t('admin.dashboard.viewAllTopics')}
           </Link>
         </div>
       </div>
 
-      {/* Recent topics */}
       <div>
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="font-display text-lg font-semibold text-gray-900">Recent Topics</h2>
+          <h2 className="font-display text-lg font-semibold text-gray-900">
+            {t('admin.dashboard.recentTopics')}
+          </h2>
           <Link
             to={ROUTES.ADMIN_TOPICS}
             className="text-sm font-medium text-blue-600 hover:underline"
           >
-            View all →
+            {t('admin.dashboard.viewAll')}
           </Link>
         </div>
 
@@ -129,12 +134,12 @@ export default function DashboardPage() {
           </div>
         ) : recentTopics.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-12 text-center">
-            <p className="text-gray-500">No topics yet.</p>
+            <p className="text-gray-500">{t('admin.dashboard.noTopics')}</p>
             <Link
               to={ROUTES.ADMIN_CREATE_TOPIC}
               className="mt-2 inline-block text-sm font-medium text-blue-600 hover:underline"
             >
-              Create your first topic →
+              {t('admin.dashboard.createFirst')}
             </Link>
           </div>
         ) : (

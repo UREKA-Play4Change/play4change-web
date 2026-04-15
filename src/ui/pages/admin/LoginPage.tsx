@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Logo from '@/ui/components/Logo'
 import { useSendMagicLink } from '@/application/hooks/useAuth'
 import { isValidEmail } from '@/lib/validators'
@@ -8,6 +9,7 @@ import { ROUTES } from '@/lib/constants'
 type Step = 'form' | 'magic-link-sent'
 
 export default function LoginPage() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState('')
@@ -20,7 +22,7 @@ export default function LoginPage() {
     setEmailError('')
 
     if (!isValidEmail(email)) {
-      setEmailError('Please enter a valid email address')
+      setEmailError(t('admin.login.emailError'))
       return
     }
 
@@ -29,17 +31,14 @@ export default function LoginPage() {
         setStep('magic-link-sent')
       },
       onError: () => {
-        setEmailError('Failed to send magic link. Please try again.')
+        setEmailError(t('admin.login.magicLinkError'))
       },
     })
   }
 
-  // OAuth handlers — in mock mode these would use the mock adapter
   function handleOAuthLogin(provider: 'GOOGLE' | 'FACEBOOK') {
-    // In production this would redirect to the OAuth provider.
-    // For now, simulate a mock login and redirect.
     void navigate(ROUTES.ADMIN_DASHBOARD)
-    void provider // used for future OAuth integration
+    void provider
   }
 
   if (step === 'magic-link-sent') {
@@ -49,11 +48,22 @@ export default function LoginPage() {
           <div className="mb-4 text-5xl" aria-hidden="true">
             ✉️
           </div>
-          <h2 className="mb-3 font-display text-2xl font-bold text-gray-900">Check your email</h2>
+          <h2 className="mb-3 font-display text-2xl font-bold text-gray-900">
+            {t('admin.login.checkEmail.heading')}
+          </h2>
           <p className="mb-6 text-gray-500">
-            We sent a magic link to <span className="font-semibold text-gray-900">{email}</span>.
-            <br />
-            Click the link in the email to sign in.
+            {t('admin.login.checkEmail.description', { email })
+              .split(email)
+              .flatMap((part, i, arr) =>
+                i < arr.length - 1
+                  ? [
+                      part,
+                      <span key={i} className="font-semibold text-gray-900">
+                        {email}
+                      </span>,
+                    ]
+                  : [part],
+              )}
           </p>
           <button
             onClick={() => {
@@ -61,7 +71,7 @@ export default function LoginPage() {
             }}
             className="text-sm text-blue-600 underline underline-offset-2 hover:text-blue-700"
           >
-            Use a different email
+            {t('admin.login.checkEmail.useDifferent')}
           </button>
         </div>
       </div>
@@ -70,30 +80,26 @@ export default function LoginPage() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 p-4">
-      {/* Background decoration */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute left-0 top-0 h-80 w-80 rounded-full bg-blue-100/40 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-green-100/30 blur-3xl" />
       </div>
 
       <div className="relative w-full max-w-md">
-        {/* Card */}
         <div className="glass-card rounded-3xl p-10 shadow-xl">
-          {/* Logo */}
           <div className="mb-8 text-center">
             <Logo size="lg" />
-            <p className="mt-2 text-sm text-gray-500">Administration Portal</p>
+            <p className="mt-2 text-sm text-gray-500">{t('admin.login.portalLabel')}</p>
           </div>
 
           <h1 className="mb-6 text-center font-display text-2xl font-bold text-gray-900">
-            Sign in
+            {t('admin.login.heading')}
           </h1>
 
-          {/* Magic link form */}
           <form onSubmit={handleEmailSubmit} noValidate>
             <div className="mb-4">
               <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-gray-700">
-                Email address
+                {t('admin.login.emailLabel')}
               </label>
               <input
                 id="email"
@@ -103,7 +109,7 @@ export default function LoginPage() {
                   setEmail(e.target.value)
                   setEmailError('')
                 }}
-                placeholder="admin@play4change.org"
+                placeholder={t('admin.login.emailPlaceholder')}
                 autoComplete="email"
                 aria-invalid={Boolean(emailError)}
                 aria-describedby={emailError ? 'email-error' : undefined}
@@ -125,18 +131,16 @@ export default function LoginPage() {
               disabled={sendMagicLink.isPending}
               className="w-full rounded-xl bg-blue-600 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {sendMagicLink.isPending ? 'Sending…' : 'Send magic link'}
+              {sendMagicLink.isPending ? t('admin.login.sending') : t('admin.login.sendButton')}
             </button>
           </form>
 
-          {/* Divider */}
           <div className="my-6 flex items-center gap-3">
             <div className="h-px flex-1 bg-gray-200" aria-hidden="true" />
-            <span className="text-xs text-gray-400">or continue with</span>
+            <span className="text-xs text-gray-400">{t('admin.login.orContinueWith')}</span>
             <div className="h-px flex-1 bg-gray-200" aria-hidden="true" />
           </div>
 
-          {/* OAuth buttons */}
           <div className="flex flex-col gap-3">
             <button
               type="button"
@@ -145,7 +149,6 @@ export default function LoginPage() {
               }}
               className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white py-3 text-sm font-semibold text-gray-700 shadow-sm transition-all hover:border-gray-300 hover:shadow-md"
             >
-              {/* Google logo SVG */}
               <svg className="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -164,7 +167,7 @@ export default function LoginPage() {
                   fill="#EA4335"
                 />
               </svg>
-              Continue with Google
+              {t('admin.login.continueGoogle')}
             </button>
 
             <button
@@ -174,7 +177,6 @@ export default function LoginPage() {
               }}
               className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white py-3 text-sm font-semibold text-gray-700 shadow-sm transition-all hover:border-gray-300 hover:shadow-md"
             >
-              {/* Facebook logo */}
               <svg
                 className="h-5 w-5 text-[#1877F2]"
                 viewBox="0 0 24 24"
@@ -183,15 +185,14 @@ export default function LoginPage() {
               >
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
               </svg>
-              Continue with Facebook
+              {t('admin.login.continueFacebook')}
             </button>
           </div>
         </div>
 
-        {/* Back to home */}
         <p className="mt-4 text-center text-xs text-gray-400">
           <a href={ROUTES.HOME} className="hover:text-gray-600">
-            ← Back to Play4Change
+            {t('admin.login.backToApp')}
           </a>
         </p>
       </div>

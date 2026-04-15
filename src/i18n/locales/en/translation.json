@@ -1,0 +1,271 @@
+{
+  "nav": {
+    "download": "Download",
+    "homeAriaLabel": "Play4Change home"
+  },
+  "footer": {
+    "partnerWith": "In partnership with",
+    "copyright": "© 2025 Play4Change — ISEL & U!REKA",
+    "administration": "Administration",
+    "iselAlt": "ISEL — Instituto Superior de Engenharia de Lisboa",
+    "urekaAlt": "U!REKA European University"
+  },
+  "hero": {
+    "tagline": "Adaptive learning powered by AI.",
+    "taglineStrong": "Gamified daily challenges for sustainability and digital literacy.",
+    "ctaDownload": "Download",
+    "ctaLearnMore": "Learn more",
+    "features": {
+      "aiContent": {
+        "label": "AI-Generated Content",
+        "description": "Upload any PDF or URL and our AI instantly builds structured daily challenges tailored to your topic."
+      },
+      "adaptiveLearning": {
+        "label": "Adaptive Learning",
+        "description": "Difficulty adjusts in real-time based on performance, keeping every learner in their optimal learning zone."
+      },
+      "gamification": {
+        "label": "Gamification & Peer Review",
+        "description": "Streaks, badges, and leaderboards drive motivation while peer review builds deeper collaborative understanding."
+      },
+      "sustainability": {
+        "label": "Sustainability Focus",
+        "description": "Purpose-built for sustainability and digital literacy — turning daily micro-learning into lasting behavioural change."
+      }
+    },
+    "carousel": {
+      "goTo": "Go to {{feature}}"
+    }
+  },
+  "mission": {
+    "label": "Our Mission",
+    "heading": "Learning that creates",
+    "headingHighlight": "real change",
+    "description": "Play4Change transforms passive knowledge into active engagement. Our platform makes sustainability education and digital literacy accessible, addictive, and impactful — one daily challenge at a time.",
+    "features": {
+      "aiContent": {
+        "title": "AI-Generated Content",
+        "description": "Topics are created by educators and enriched by AI — automatically generating quizzes, challenges, and daily tasks tailored to the subject."
+      },
+      "adaptiveLearning": {
+        "title": "Adaptive Learning",
+        "description": "The platform adapts to each learner's pace and performance, ensuring everyone is challenged at the right level — no more one-size-fits-all courses."
+      },
+      "gamification": {
+        "title": "Gamification & Peer Review",
+        "description": "Daily streaks, leaderboards, and achievement badges keep learners motivated. Peer review tasks develop critical thinking and community knowledge."
+      },
+      "sustainability": {
+        "title": "Sustainability Focus",
+        "description": "Topics are curated around the UN Sustainable Development Goals and digital citizenship — empowering the next generation of responsible changemakers."
+      }
+    }
+  },
+  "stats": {
+    "label": "Live Stats",
+    "heading": "Join a growing community",
+    "learnersWorldwide": "Learners worldwide",
+    "activeTopics": "Active topics",
+    "tasksCompleted": "Tasks completed"
+  },
+  "product": {
+    "label": "How it works",
+    "heading": "From content to knowledge in",
+    "headingHighlight": "4 steps",
+    "description": "Play4Change bridges the gap between educational content and real behavioral change — turning any resource into an engaging, adaptive learning journey.",
+    "cta": "Start learning today",
+    "steps": {
+      "step1": {
+        "title": "Educators create topics",
+        "description": "Admins upload PDF materials or provide URLs. Our AI processes the content and generates a structured learning path with daily challenges."
+      },
+      "step2": {
+        "title": "Learners enroll & start",
+        "description": "Students discover topics, enroll in seconds, and begin receiving one challenge per day — bite-sized tasks that fit any schedule."
+      },
+      "step3": {
+        "title": "Progress through challenges",
+        "description": "Each day brings new quizzes, reflection prompts, and peer tasks. The AI adapts difficulty based on performance to keep learners in the flow state."
+      },
+      "step4": {
+        "title": "Earn achievements & grow",
+        "description": "Complete streaks, earn badges, and climb leaderboards. Community peer reviews build deeper understanding and collaborative learning."
+      }
+    }
+  },
+  "download": {
+    "label": "Get the App",
+    "heading": "Play4Change is",
+    "headingHighlight": "coming to mobile",
+    "description": "We're putting the finishing touches on our mobile apps. Be the first to know when they launch — sign up for early access below.",
+    "android": {
+      "platform": "Android",
+      "store": "Google Play Store",
+      "storeDescription": "Available for Android 8.0 and above. Download from the Google Play Store when it launches.",
+      "notifyAriaLabel": "Notify me when Android app launches"
+    },
+    "ios": {
+      "platform": "iOS",
+      "store": "Apple App Store",
+      "storeDescription": "Available for iOS 15 and above. Find it on the App Store when it launches.",
+      "notifyAriaLabel": "Notify me when iOS app launches"
+    },
+    "comingSoon": "Coming Soon",
+    "notifyButton": "Notify me at launch",
+    "waitlist": {
+      "heading": "Join the waitlist",
+      "description": "Be among the first to experience Play4Change on your mobile device.",
+      "status": "Waitlist registration opening soon"
+    }
+  },
+  "admin": {
+    "login": {
+      "portalLabel": "Administration Portal",
+      "heading": "Sign in",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "admin@play4change.org",
+      "emailError": "Please enter a valid email address",
+      "magicLinkError": "Failed to send magic link. Please try again.",
+      "sending": "Sending…",
+      "sendButton": "Send magic link",
+      "orContinueWith": "or continue with",
+      "continueGoogle": "Continue with Google",
+      "continueFacebook": "Continue with Facebook",
+      "checkEmail": {
+        "heading": "Check your email",
+        "description": "We sent a magic link to {{email}}. Click the link in the email to sign in.",
+        "useDifferent": "Use a different email"
+      },
+      "backToApp": "← Back to Play4Change"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "myTopics": "My Topics",
+      "createTopic": "Create Topic",
+      "openSidebar": "Open sidebar",
+      "navAriaLabel": "Admin navigation",
+      "signingOut": "Signing out…",
+      "signOut": "Sign out"
+    },
+    "dashboard": {
+      "welcomeBack": "Welcome back{{name}}!",
+      "subtitle": "Here's an overview of your Play4Change content.",
+      "totalTopics": "Total Topics",
+      "activeTopics": "Active Topics",
+      "otherStates": "{{count}} in other states",
+      "totalEnrolled": "Total Enrolled",
+      "acrossAllTopics": "across all topics",
+      "quickActions": "Quick Actions",
+      "createNewTopic": "Create New Topic",
+      "viewAllTopics": "View All Topics",
+      "recentTopics": "Recent Topics",
+      "viewAll": "View all →",
+      "noTopics": "No topics yet.",
+      "createFirst": "Create your first topic →"
+    },
+    "topicList": {
+      "heading": "My Topics",
+      "topicsTotal_one": "{{count}} topic total",
+      "topicsTotal_other": "{{count}} topics total",
+      "newTopic": "New Topic",
+      "filterAriaLabel": "Filter by status",
+      "noTopicsFound": "No {{filter}}topics found.",
+      "createFirst": "Create your first topic →",
+      "filters": {
+        "all": "All",
+        "active": "Active",
+        "generating": "Generating",
+        "pending": "Pending",
+        "failed": "Failed"
+      }
+    },
+    "topicDetail": {
+      "breadcrumbTopics": "Topics",
+      "regenerate": "Regenerate",
+      "regenerating": "Regenerating…",
+      "daysUnit": "days",
+      "statsHeading": "Statistics",
+      "enrolledUsers": "Enrolled Users",
+      "completionRate": "Completion Rate",
+      "ofEnrolledUsers": "of enrolled users",
+      "averageScore": "Average Score",
+      "activeUsers": "Active Users",
+      "currentlyLearning": "currently learning",
+      "statsNotAvailable": "Statistics will be available once the topic is active.",
+      "notFound": "Topic not found.",
+      "backToTopics": "← Back to topics"
+    },
+    "createTopic": {
+      "heading": "Create New Topic",
+      "subtitle": "Upload a PDF or provide URLs — our AI will generate the learning content.",
+      "titleLabel": "Topic title",
+      "titlePlaceholder": "e.g. Introduction to Sustainable Development Goals",
+      "titleRequired": "Title is required",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Briefly describe what learners will gain from this topic…",
+      "descriptionRequired": "Description is required",
+      "categoryLabel": "Category",
+      "categoryPlaceholder": "e.g. Sustainability, Digital Literacy, Climate…",
+      "categoryRequired": "Category is required",
+      "contentSource": "Content source",
+      "sourceUrl": "URL(s)",
+      "sourcePdf": "PDF Upload",
+      "pdfRequired": "Please upload a PDF file",
+      "durationLabel": "Duration (days)",
+      "difficultyLabel": "Difficulty",
+      "creating": "Creating…",
+      "createButton": "Create Topic",
+      "cancel": "Cancel",
+      "createError": "Failed to create topic. Please try again.",
+      "selectSourceAriaLabel": "Select content source"
+    }
+  },
+  "components": {
+    "difficulty": {
+      "beginner": {
+        "label": "Beginner",
+        "description": "No prior knowledge needed"
+      },
+      "intermediate": {
+        "label": "Intermediate",
+        "description": "Some background helpful"
+      },
+      "advanced": {
+        "label": "Advanced",
+        "description": "Prior knowledge required"
+      },
+      "ariaLabel": "Select difficulty"
+    },
+    "duration": {
+      "ariaLabel": "Select duration in days",
+      "dayUnit": "d"
+    },
+    "fileUpload": {
+      "ariaLabel": "Upload PDF file, max {{maxSize}}MB",
+      "remove": "Remove",
+      "dragDrop": "Drag & drop your PDF here, or",
+      "browse": "browse",
+      "pdfOnly": "PDF only · max {{maxSize}}MB"
+    },
+    "urlInput": {
+      "placeholder": "https://example.com/article",
+      "urlAriaLabel": "URL {{index}}",
+      "removeAriaLabel": "Remove URL {{index}}",
+      "addAnother": "Add another URL ({{current}}/{{max}})"
+    },
+    "topicCard": {
+      "enrolled": "Enrolled",
+      "completion": "Completion",
+      "avgScore": "Avg Score",
+      "activeNow": "Active now",
+      "created": "Created {{date}}"
+    },
+    "statCard": {
+      "trendPositive": "+{{value}}% this month",
+      "trendNegative": "{{value}}% this month"
+    },
+    "languageSwitcher": {
+      "ariaLabel": "Select language"
+    }
+  }
+}

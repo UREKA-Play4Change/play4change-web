@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import AnimatedCounter from './AnimatedCounter'
 
 interface StatCardProps {
@@ -10,6 +11,8 @@ interface StatCardProps {
 }
 
 export default function StatCard({ label, value, prefix, suffix, icon, trend }: StatCardProps) {
+  const { t } = useTranslation()
+
   return (
     <div className="glass-card flex flex-col gap-3 rounded-2xl p-6 shadow-sm">
       {icon && (
@@ -26,8 +29,9 @@ export default function StatCard({ label, value, prefix, suffix, icon, trend }: 
       <p className="text-sm font-medium text-gray-500">{label}</p>
       {trend !== undefined && (
         <p className={`text-xs font-semibold ${trend >= 0 ? 'text-green-600' : 'text-red-500'}`}>
-          {trend >= 0 ? '+' : ''}
-          {trend}% this month
+          {trend >= 0
+            ? t('components.statCard.trendPositive', { value: trend })
+            : t('components.statCard.trendNegative', { value: trend })}
         </p>
       )}
     </div>
