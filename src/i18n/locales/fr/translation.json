@@ -1,0 +1,271 @@
+{
+  "nav": {
+    "download": "Télécharger",
+    "homeAriaLabel": "Accueil Play4Change"
+  },
+  "footer": {
+    "partnerWith": "En partenariat avec",
+    "copyright": "© 2025 Play4Change — ISEL & U!REKA",
+    "administration": "Administration",
+    "iselAlt": "ISEL — Instituto Superior de Engenharia de Lisboa",
+    "urekaAlt": "U!REKA Université Européenne"
+  },
+  "hero": {
+    "tagline": "Apprentissage adaptatif propulsé par l'IA.",
+    "taglineStrong": "Défis quotidiens gamifiés pour le développement durable et la littératie numérique.",
+    "ctaDownload": "Télécharger",
+    "ctaLearnMore": "En savoir plus",
+    "features": {
+      "aiContent": {
+        "label": "Contenu généré par IA",
+        "description": "Téléchargez un PDF ou une URL et notre IA génère instantanément des défis quotidiens structurés adaptés à votre sujet."
+      },
+      "adaptiveLearning": {
+        "label": "Apprentissage adaptatif",
+        "description": "La difficulté s'ajuste en temps réel selon les performances, maintenant chaque apprenant dans sa zone d'apprentissage optimale."
+      },
+      "gamification": {
+        "label": "Gamification & Évaluation par les pairs",
+        "description": "Les séries, badges et classements stimulent la motivation tandis que l'évaluation par les pairs favorise une compréhension collaborative plus profonde."
+      },
+      "sustainability": {
+        "label": "Axé sur la durabilité",
+        "description": "Conçu spécifiquement pour le développement durable et la littératie numérique — transformer le micro-apprentissage quotidien en changement de comportement durable."
+      }
+    },
+    "carousel": {
+      "goTo": "Aller à {{feature}}"
+    }
+  },
+  "mission": {
+    "label": "Notre mission",
+    "heading": "Un apprentissage qui crée",
+    "headingHighlight": "un vrai changement",
+    "description": "Play4Change transforme la connaissance passive en engagement actif. Notre plateforme rend l'éducation au développement durable et la littératie numérique accessibles, engageantes et impactantes — un défi quotidien à la fois.",
+    "features": {
+      "aiContent": {
+        "title": "Contenu généré par IA",
+        "description": "Les sujets sont créés par des éducateurs et enrichis par l'IA — générant automatiquement des quiz, défis et tâches quotidiennes adaptés au sujet."
+      },
+      "adaptiveLearning": {
+        "title": "Apprentissage adaptatif",
+        "description": "La plateforme s'adapte au rythme et aux performances de chaque apprenant, garantissant que chacun est challengé au bon niveau."
+      },
+      "gamification": {
+        "title": "Gamification & Évaluation par les pairs",
+        "description": "Les séries, classements et badges quotidiens maintiennent la motivation. Les tâches d'évaluation par les pairs développent la pensée critique et les connaissances communautaires."
+      },
+      "sustainability": {
+        "title": "Axé sur la durabilité",
+        "description": "Les sujets sont organisés autour des Objectifs de Développement Durable de l'ONU et de la citoyenneté numérique — pour la prochaine génération de acteurs responsables."
+      }
+    }
+  },
+  "stats": {
+    "label": "Statistiques en direct",
+    "heading": "Rejoignez une communauté en pleine croissance",
+    "learnersWorldwide": "Apprenants dans le monde",
+    "activeTopics": "Sujets actifs",
+    "tasksCompleted": "Tâches accomplies"
+  },
+  "product": {
+    "label": "Comment ça marche",
+    "heading": "Du contenu à la connaissance en",
+    "headingHighlight": "4 étapes",
+    "description": "Play4Change comble le fossé entre le contenu éducatif et le changement de comportement réel — transformant toute ressource en un parcours d'apprentissage adaptatif et engageant.",
+    "cta": "Commencer à apprendre aujourd'hui",
+    "steps": {
+      "step1": {
+        "title": "Les éducateurs créent des sujets",
+        "description": "Les administrateurs téléchargent des PDF ou fournissent des URL. Notre IA traite le contenu et génère un parcours d'apprentissage structuré avec des défis quotidiens."
+      },
+      "step2": {
+        "title": "Les apprenants s'inscrivent et commencent",
+        "description": "Les étudiants découvrent les sujets, s'inscrivent en quelques secondes et reçoivent un défi par jour — des tâches courtes adaptées à tous les emplois du temps."
+      },
+      "step3": {
+        "title": "Progresser à travers les défis",
+        "description": "Chaque jour apporte de nouveaux quiz, invites de réflexion et tâches entre pairs. L'IA adapte la difficulté selon les performances pour maintenir l'état de flow."
+      },
+      "step4": {
+        "title": "Gagner des succès et progresser",
+        "description": "Compléter des séries, gagner des badges et grimper dans les classements. Les évaluations entre pairs de la communauté renforcent la compréhension et l'apprentissage collaboratif."
+      }
+    }
+  },
+  "download": {
+    "label": "Télécharger l'application",
+    "heading": "Play4Change arrive",
+    "headingHighlight": "sur mobile",
+    "description": "Nous mettons la dernière touche à nos applications mobiles. Soyez le premier à savoir quand elles seront lancées — inscrivez-vous pour un accès anticipé.",
+    "android": {
+      "platform": "Android",
+      "store": "Google Play Store",
+      "storeDescription": "Disponible pour Android 8.0 et supérieur. Téléchargez depuis le Google Play Store au lancement.",
+      "notifyAriaLabel": "Me notifier au lancement de l'application Android"
+    },
+    "ios": {
+      "platform": "iOS",
+      "store": "Apple App Store",
+      "storeDescription": "Disponible pour iOS 15 et supérieur. Trouvez-la sur l'App Store au lancement.",
+      "notifyAriaLabel": "Me notifier au lancement de l'application iOS"
+    },
+    "comingSoon": "Bientôt disponible",
+    "notifyButton": "Me notifier au lancement",
+    "waitlist": {
+      "heading": "Rejoindre la liste d'attente",
+      "description": "Soyez parmi les premiers à découvrir Play4Change sur votre appareil mobile.",
+      "status": "Inscription à la liste d'attente bientôt disponible"
+    }
+  },
+  "admin": {
+    "login": {
+      "portalLabel": "Portail d'administration",
+      "heading": "Se connecter",
+      "emailLabel": "Adresse e-mail",
+      "emailPlaceholder": "admin@play4change.org",
+      "emailError": "Veuillez saisir une adresse e-mail valide",
+      "magicLinkError": "Échec de l'envoi du lien magique. Veuillez réessayer.",
+      "sending": "Envoi en cours…",
+      "sendButton": "Envoyer le lien magique",
+      "orContinueWith": "ou continuer avec",
+      "continueGoogle": "Continuer avec Google",
+      "continueFacebook": "Continuer avec Facebook",
+      "checkEmail": {
+        "heading": "Vérifiez vos e-mails",
+        "description": "Nous avons envoyé un lien magique à {{email}}. Cliquez sur le lien dans l'e-mail pour vous connecter.",
+        "useDifferent": "Utiliser une autre adresse e-mail"
+      },
+      "backToApp": "← Retour à Play4Change"
+    },
+    "nav": {
+      "dashboard": "Tableau de bord",
+      "myTopics": "Mes sujets",
+      "createTopic": "Créer un sujet",
+      "openSidebar": "Ouvrir la barre latérale",
+      "navAriaLabel": "Navigation administrateur",
+      "signingOut": "Déconnexion…",
+      "signOut": "Se déconnecter"
+    },
+    "dashboard": {
+      "welcomeBack": "Bon retour{{name}} !",
+      "subtitle": "Voici un aperçu de votre contenu Play4Change.",
+      "totalTopics": "Total des sujets",
+      "activeTopics": "Sujets actifs",
+      "otherStates": "{{count}} dans d'autres états",
+      "totalEnrolled": "Total des inscrits",
+      "acrossAllTopics": "sur tous les sujets",
+      "quickActions": "Actions rapides",
+      "createNewTopic": "Créer un nouveau sujet",
+      "viewAllTopics": "Voir tous les sujets",
+      "recentTopics": "Sujets récents",
+      "viewAll": "Voir tout →",
+      "noTopics": "Aucun sujet pour l'instant.",
+      "createFirst": "Créer votre premier sujet →"
+    },
+    "topicList": {
+      "heading": "Mes sujets",
+      "topicsTotal_one": "{{count}} sujet au total",
+      "topicsTotal_other": "{{count}} sujets au total",
+      "newTopic": "Nouveau sujet",
+      "filterAriaLabel": "Filtrer par statut",
+      "noTopicsFound": "Aucun sujet {{filter}}trouvé.",
+      "createFirst": "Créer votre premier sujet →",
+      "filters": {
+        "all": "Tous",
+        "active": "Actif",
+        "generating": "En génération",
+        "pending": "En attente",
+        "failed": "Échoué"
+      }
+    },
+    "topicDetail": {
+      "breadcrumbTopics": "Sujets",
+      "regenerate": "Régénérer",
+      "regenerating": "Régénération en cours…",
+      "daysUnit": "jours",
+      "statsHeading": "Statistiques",
+      "enrolledUsers": "Utilisateurs inscrits",
+      "completionRate": "Taux de complétion",
+      "ofEnrolledUsers": "des utilisateurs inscrits",
+      "averageScore": "Score moyen",
+      "activeUsers": "Utilisateurs actifs",
+      "currentlyLearning": "en cours d'apprentissage",
+      "statsNotAvailable": "Les statistiques seront disponibles une fois le sujet actif.",
+      "notFound": "Sujet introuvable.",
+      "backToTopics": "← Retour aux sujets"
+    },
+    "createTopic": {
+      "heading": "Créer un nouveau sujet",
+      "subtitle": "Téléchargez un PDF ou fournissez des URL — notre IA générera le contenu d'apprentissage.",
+      "titleLabel": "Titre du sujet",
+      "titlePlaceholder": "ex. Introduction aux Objectifs de Développement Durable",
+      "titleRequired": "Le titre est requis",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Décrivez brièvement ce que les apprenants gagneront de ce sujet…",
+      "descriptionRequired": "La description est requise",
+      "categoryLabel": "Catégorie",
+      "categoryPlaceholder": "ex. Durabilité, Littératie numérique, Climat…",
+      "categoryRequired": "La catégorie est requise",
+      "contentSource": "Source de contenu",
+      "sourceUrl": "URL(s)",
+      "sourcePdf": "Télécharger un PDF",
+      "pdfRequired": "Veuillez télécharger un fichier PDF",
+      "durationLabel": "Durée (jours)",
+      "difficultyLabel": "Difficulté",
+      "creating": "Création en cours…",
+      "createButton": "Créer le sujet",
+      "cancel": "Annuler",
+      "createError": "Échec de la création du sujet. Veuillez réessayer.",
+      "selectSourceAriaLabel": "Sélectionner la source de contenu"
+    }
+  },
+  "components": {
+    "difficulty": {
+      "beginner": {
+        "label": "Débutant",
+        "description": "Aucune connaissance préalable requise"
+      },
+      "intermediate": {
+        "label": "Intermédiaire",
+        "description": "Quelques bases utiles"
+      },
+      "advanced": {
+        "label": "Avancé",
+        "description": "Connaissances préalables requises"
+      },
+      "ariaLabel": "Sélectionner la difficulté"
+    },
+    "duration": {
+      "ariaLabel": "Sélectionner la durée en jours",
+      "dayUnit": "j"
+    },
+    "fileUpload": {
+      "ariaLabel": "Télécharger un fichier PDF, max {{maxSize}} Mo",
+      "remove": "Supprimer",
+      "dragDrop": "Faites glisser votre PDF ici, ou",
+      "browse": "parcourir",
+      "pdfOnly": "PDF uniquement · max {{maxSize}} Mo"
+    },
+    "urlInput": {
+      "placeholder": "https://exemple.com/article",
+      "urlAriaLabel": "URL {{index}}",
+      "removeAriaLabel": "Supprimer l'URL {{index}}",
+      "addAnother": "Ajouter une autre URL ({{current}}/{{max}})"
+    },
+    "topicCard": {
+      "enrolled": "Inscrits",
+      "completion": "Complétion",
+      "avgScore": "Score moy.",
+      "activeNow": "Actif maintenant",
+      "created": "Créé le {{date}}"
+    },
+    "statCard": {
+      "trendPositive": "+{{value}}% ce mois",
+      "trendNegative": "{{value}}% ce mois"
+    },
+    "languageSwitcher": {
+      "ariaLabel": "Sélectionner la langue"
+    }
+  }
+}
