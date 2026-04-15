@@ -15,7 +15,8 @@ const STATUS_FILTERS: { label: string; value: TopicStatus | 'ALL' }[] = [
 
 export default function TopicListPage() {
   const [statusFilter, setStatusFilter] = useState<TopicStatus | 'ALL'>('ALL')
-  const { data: allTopics = [], isLoading } = useTopics()
+  const { data, isLoading } = useTopics()
+  const allTopics = Array.isArray(data) ? data : []
 
   const topics =
     statusFilter === 'ALL' ? allTopics : allTopics.filter(t => t.status === statusFilter)
