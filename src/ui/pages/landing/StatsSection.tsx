@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useIntersectionObserver } from '@/ui/hooks/useIntersectionObserver'
 import { usePlatformStats } from '@/application/hooks/useStats'
 import StatCard from '@/ui/components/StatCard'
@@ -55,26 +56,15 @@ const TasksIcon = () => (
 )
 
 export default function StatsSection() {
+  const { t } = useTranslation()
   const ref = useRef<HTMLElement>(null)
   const isVisible = useIntersectionObserver(ref, { threshold: 0.2 })
   const { data: stats, isLoading } = usePlatformStats()
 
   const statItems = [
-    {
-      label: 'Learners worldwide',
-      value: stats?.totalUsers ?? 0,
-      icon: <UsersIcon />,
-    },
-    {
-      label: 'Active topics',
-      value: stats?.activeTopics ?? 0,
-      icon: <TopicsIcon />,
-    },
-    {
-      label: 'Tasks completed',
-      value: stats?.tasksCompleted ?? 0,
-      icon: <TasksIcon />,
-    },
+    { label: t('stats.learnersWorldwide'), value: stats?.totalUsers ?? 0, icon: <UsersIcon /> },
+    { label: t('stats.activeTopics'), value: stats?.activeTopics ?? 0, icon: <TopicsIcon /> },
+    { label: t('stats.tasksCompleted'), value: stats?.tasksCompleted ?? 0, icon: <TasksIcon /> },
   ]
 
   return (
@@ -88,10 +78,10 @@ export default function StatsSection() {
           }}
         >
           <span className="mb-4 inline-block rounded-full bg-green-100 px-4 py-1.5 text-sm font-semibold text-green-700">
-            Live Stats
+            {t('stats.label')}
           </span>
           <h2 className="font-display text-4xl font-bold text-gray-900 sm:text-5xl">
-            Join a growing community
+            {t('stats.heading')}
           </h2>
         </div>
 

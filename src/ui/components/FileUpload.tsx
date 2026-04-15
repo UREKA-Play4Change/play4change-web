@@ -1,4 +1,5 @@
 import { DragEvent, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { validatePdfFile } from '@/lib/validators'
 import { MAX_PDF_SIZE_MB } from '@/lib/constants'
 
@@ -9,6 +10,7 @@ interface FileUploadProps {
 }
 
 export default function FileUpload({ value, onChange, error }: FileUploadProps) {
+  const { t } = useTranslation()
   const inputRef = useRef<HTMLInputElement>(null)
   const [isDragging, setIsDragging] = useState(false)
   const [fileError, setFileError] = useState('')
@@ -37,7 +39,7 @@ export default function FileUpload({ value, onChange, error }: FileUploadProps) 
       <div
         role="button"
         tabIndex={0}
-        aria-label={`Upload PDF file, max ${MAX_PDF_SIZE_MB}MB`}
+        aria-label={t('components.fileUpload.ariaLabel', { maxSize: MAX_PDF_SIZE_MB })}
         onClick={() => {
           inputRef.current?.click()
         }}
@@ -91,7 +93,7 @@ export default function FileUpload({ value, onChange, error }: FileUploadProps) 
               }}
               className="text-xs font-medium text-red-500 hover:underline"
             >
-              Remove
+              {t('components.fileUpload.remove')}
             </button>
           </>
         ) : (
@@ -112,9 +114,12 @@ export default function FileUpload({ value, onChange, error }: FileUploadProps) 
             </svg>
             <div>
               <p className="text-sm font-medium text-gray-700">
-                Drag & drop your PDF here, or <span className="text-blue-600">browse</span>
+                {t('components.fileUpload.dragDrop')}{' '}
+                <span className="text-blue-600">{t('components.fileUpload.browse')}</span>
               </p>
-              <p className="text-xs text-gray-400">PDF only · max {MAX_PDF_SIZE_MB}MB</p>
+              <p className="text-xs text-gray-400">
+                {t('components.fileUpload.pdfOnly', { maxSize: MAX_PDF_SIZE_MB })}
+              </p>
             </div>
           </>
         )}

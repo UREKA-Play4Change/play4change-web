@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useTopic, useRegenerateTopic } from '@/application/hooks/useTopics'
 import { formatDate, formatPercentage, formatScore } from '@/lib/formatters'
 import { ROUTES } from '@/lib/constants'
@@ -27,20 +28,27 @@ const STATUS_STYLES: Record<string, string> = {
   FAILED: 'bg-red-100 text-red-700',
 }
 
-function renderStatsFromRecord(stats: TopicStats) {
+function StatsGrid({ stats, t }: { stats: TopicStats; t: (key: string) => string }) {
   const knownKeys = ['enrolledUsers', 'completionRate', 'averageScore', 'activeUsers']
   const extraKeys = Object.keys(stats).filter(k => !knownKeys.includes(k))
 
   return (
     <>
-      <StatCard label="Enrolled Users" value={stats.enrolledUsers} />
+      <StatCard label={t('admin.topicDetail.enrolledUsers')} value={stats.enrolledUsers} />
       <StatCard
-        label="Completion Rate"
+        label={t('admin.topicDetail.completionRate')}
         value={formatPercentage(stats.completionRate)}
-        sub="of enrolled users"
+        sub={t('admin.topicDetail.ofEnrolledUsers')}
       />
-      <StatCard label="Average Score" value={formatScore(stats.averageScore)} />
-      <StatCard label="Active Users" value={stats.activeUsers} sub="currently learning" />
+      <StatCard
+        label={t('admin.topicDetail.averageScore')}
+        value={formatScore(stats.averageScore)}
+      />
+      <StatCard
+        label={t('admin.topicDetail.activeUsers')}
+        value={stats.activeUsers}
+        sub={t('admin.topicDetail.currentlyLearning')}
+      />
       {extraKeys.map(key => (
         <StatCard key={key} label={key.replace(/([A-Z])/g, ' $1').trim()} value={stats[key]} />
       ))}
@@ -49,6 +57,7 @@ function renderStatsFromRecord(stats: TopicStats) {
 }
 
 export default function TopicDetailPage() {
+  const { t } = useTranslation()
   const { id } = useParams<{ id: string }>()
   const { data: topic, isLoading, isError } = useTopic(id ?? '')
   const regenerate = useRegenerateTopic()
@@ -69,12 +78,12 @@ export default function TopicDetailPage() {
   if (isError || !topic) {
     return (
       <div className="text-center py-20">
-        <p className="text-gray-500">Topic not found.</p>
+        <p className="text-gray-500">{t('admin.topicDetail.notFound')}</p>
         <Link
           to={ROUTES.ADMIN_TOPICS}
           className="mt-2 inline-block text-sm font-medium text-blue-600 hover:underline"
         >
-          ← Back to topics
+          {t('admin.topicDetail.backToTopics')}
         </Link>
       </div>
     )
@@ -82,16 +91,14 @@ export default function TopicDetailPage() {
 
   return (
     <div className="space-y-8">
-      {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-gray-400">
         <Link to={ROUTES.ADMIN_TOPICS} className="hover:text-blue-600">
-          Topics
+          {t('admin.topicDetail.breadcrumbTopics')}
         </Link>
         <span aria-hidden="true">/</span>
         <span className="text-gray-700">{topic.title}</span>
       </nav>
 
-      {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -102,7 +109,9 @@ export default function TopicDetailPage() {
             </span>
             <span className="text-xs text-gray-400">{topic.category}</span>
             <span className="text-xs text-gray-400">·</span>
-            <span className="text-xs text-gray-400">{topic.durationDays} days</span>
+            <span className="text-xs text-gray-400">
+              {topic.durationDays} {t('admin.topicDetail.daysUnit')}
+            </span>
             <span className="text-xs text-gray-400">·</span>
             <span className="text-xs text-gray-400">
               {topic.difficulty.charAt(0) + topic.difficulty.slice(1).toLowerCase()}
@@ -110,7 +119,7 @@ export default function TopicDetailPage() {
           </div>
           <h1 className="font-display text-2xl font-bold text-gray-900">{topic.title}</h1>
           <p className="mt-2 max-w-2xl text-sm text-gray-500">{topic.description}</p>
-          <p className="mt-2 text-xs text-gray-400">Created {formatDate(topic.createdAt)}</p>
+          <p className="mt-2 text-xs text-gray-400">{formatDate(topic.createdAt)}</p>
         </div>
 
         <button
@@ -134,21 +143,24 @@ export default function TopicDetailPage() {
               d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
             />
           </svg>
-          {regenerate.isPending ? 'Regenerating…' : 'Regenerate'}
+          {regenerate.isPending
+            ? t('admin.topicDetail.regenerating')
+            : t('admin.topicDetail.regenerate')}
         </button>
       </div>
 
-      {/* Stats grid — extensible via TopicStats index signature */}
       {topic.status === 'ACTIVE' ? (
         <div>
-          <h2 className="mb-4 font-display text-lg font-semibold text-gray-900">Statistics</h2>
+          <h2 className="mb-4 font-display text-lg font-semibold text-gray-900">
+            {t('admin.topicDetail.statsHeading')}
+          </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {renderStatsFromRecord(topic.stats)}
+            <StatsGrid stats={topic.stats} t={t} />
           </div>
         </div>
       ) : (
         <div className="rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-10 text-center">
-          <p className="text-gray-400">Statistics will be available once the topic is active.</p>
+          <p className="text-gray-400">{t('admin.topicDetail.statsNotAvailable')}</p>
         </div>
       )}
     </div>

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { MAX_DURATION_DAYS, MIN_DURATION_DAYS } from '@/lib/constants'
 
 interface DurationSelectorProps {
@@ -6,13 +7,18 @@ interface DurationSelectorProps {
 }
 
 export default function DurationSelector({ value, onChange }: DurationSelectorProps) {
+  const { t } = useTranslation()
   const options = Array.from(
     { length: MAX_DURATION_DAYS - MIN_DURATION_DAYS + 1 },
     (_, i) => MIN_DURATION_DAYS + i,
   )
 
   return (
-    <div className="flex flex-wrap gap-2" role="group" aria-label="Select duration in days">
+    <div
+      className="flex flex-wrap gap-2"
+      role="group"
+      aria-label={t('components.duration.ariaLabel')}
+    >
       {options.map(days => (
         <button
           key={days}
@@ -27,7 +33,8 @@ export default function DurationSelector({ value, onChange }: DurationSelectorPr
               : 'border-gray-200 bg-white text-gray-700 hover:border-blue-300 hover:bg-blue-50'
           }`}
         >
-          {days}d
+          {days}
+          {t('components.duration.dayUnit')}
         </button>
       ))}
     </div>
