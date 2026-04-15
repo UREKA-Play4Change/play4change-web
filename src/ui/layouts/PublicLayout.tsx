@@ -12,12 +12,6 @@ function Header() {
         <nav className="flex items-center gap-6">
           <Link
             to={ROUTES.DOWNLOAD}
-            className="text-sm font-medium text-gray-600 transition-colors hover:text-blue-600"
-          >
-            Get the App
-          </Link>
-          <Link
-            to={ROUTES.DOWNLOAD}
             className="rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
           >
             Download
