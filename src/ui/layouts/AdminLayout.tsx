@@ -117,10 +117,12 @@ export default function AdminLayout() {
         {user && (
           <div className="mb-3 flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-sm font-bold text-blue-700">
-              {user.name.charAt(0).toUpperCase()}
+              {(user.name || user.email || '?').charAt(0).toUpperCase()}
             </div>
             <div className="min-w-0">
-              <p className="truncate text-sm font-semibold text-gray-900">{user.name}</p>
+              <p className="truncate text-sm font-semibold text-gray-900">
+                {user.name || user.email}
+              </p>
               <p className="truncate text-xs text-gray-400">{user.email}</p>
             </div>
           </div>

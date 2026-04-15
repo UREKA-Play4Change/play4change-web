@@ -47,7 +47,7 @@ export default function DashboardPage() {
       {/* Page header */}
       <div>
         <h1 className="font-display text-2xl font-bold text-gray-900">
-          Welcome back{user ? `, ${user.name.split(' ')[0]}` : ''}!
+          Welcome back{user?.name ? `, ${user.name.split(' ')[0]}` : ''}!
         </h1>
         <p className="mt-1 text-sm text-gray-500">
           Here&apos;s an overview of your Play4Change content.
