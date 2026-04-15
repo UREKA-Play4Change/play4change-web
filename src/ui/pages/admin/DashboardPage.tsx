@@ -34,7 +34,8 @@ function OverviewCard({
 
 export default function DashboardPage() {
   const { data: user } = useCurrentUser()
-  const { data: topics = [], isLoading } = useTopics()
+  const { data, isLoading } = useTopics()
+  const topics = Array.isArray(data) ? data : []
 
   const totalTopics = topics.length
   const activeTopics = topics.filter(t => t.status === 'ACTIVE').length
