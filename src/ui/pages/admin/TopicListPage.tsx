@@ -17,7 +17,8 @@ const STATUS_FILTER_VALUES: { labelKey: string; value: TopicStatus | 'ALL' }[] =
 export default function TopicListPage() {
   const { t } = useTranslation()
   const [statusFilter, setStatusFilter] = useState<TopicStatus | 'ALL'>('ALL')
-  const { data: allTopics = [], isLoading } = useTopics()
+  const { data: rawTopics, isLoading } = useTopics()
+  const allTopics = Array.isArray(rawTopics) ? rawTopics : []
 
   const topics =
     statusFilter === 'ALL' ? allTopics : allTopics.filter(topic => topic.status === statusFilter)

@@ -9,6 +9,7 @@ export function useTopics(status?: TopicStatus) {
     queryKey: ['topics', status],
     queryFn: () => topicService.listMyTopics(status),
     staleTime: 30 * 1000, // 30 seconds
+    select: data => (Array.isArray(data) ? data : []),
   })
 }
 

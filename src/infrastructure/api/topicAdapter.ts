@@ -17,8 +17,18 @@ export class TopicAdapter implements ITopicService {
 
   async listMyTopics(status?: TopicStatus): Promise<Topic[]> {
     const params = status ? { status } : {}
-    const response = await apiClient.get<Topic[]>('/admin/topics', { params })
-    return response.data
+    const response = await apiClient.get<unknown>('/admin/topics', { params })
+    const raw = response.data
+    if (Array.isArray(raw)) return raw as Topic[]
+    if (
+      raw !== null &&
+      typeof raw === 'object' &&
+      'data' in raw &&
+      Array.isArray((raw as { data: unknown }).data)
+    ) {
+      return (raw as { data: Topic[] }).data
+    }
+    return []
   }
 
   async getTopicById(id: string): Promise<Topic> {
