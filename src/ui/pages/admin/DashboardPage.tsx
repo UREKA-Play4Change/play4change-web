@@ -36,13 +36,14 @@ function OverviewCard({
 export default function DashboardPage() {
   const { t } = useTranslation()
   const { data: user } = useCurrentUser()
-  const { data: topics = [], isLoading } = useTopics()
+  const { data: rawTopics, isLoading } = useTopics()
+  const topics = Array.isArray(rawTopics) ? rawTopics : []
 
   const totalTopics = topics.length
   const activeTopics = topics.filter(topic => topic.status === 'ACTIVE').length
   const totalEnrolled = topics.reduce((sum, topic) => sum + topic.stats.enrolledUsers, 0)
 
-  const recentTopics = [...topics].slice(0, 3)
+  const recentTopics = topics.slice(0, 3)
 
   const firstName = user?.name ? `, ${user.name.split(' ')[0]}` : ''
 
