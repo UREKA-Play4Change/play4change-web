@@ -139,10 +139,10 @@ export default function HeroSection() {
         .delay-500 { animation-delay: 0.5s; opacity: 0; }
       `}</style>
 
-      <div className="relative mx-auto flex min-h-screen max-w-7xl items-center px-6 py-24">
-        <div className="flex w-full flex-col items-center gap-16 lg:flex-row lg:items-center lg:gap-20">
+      <div className="relative mx-auto flex min-h-screen max-w-7xl items-center px-6 py-16 sm:py-24">
+        <div className="flex w-full flex-col items-center gap-10 sm:gap-16 lg:flex-row lg:items-center lg:gap-20">
           {/* ── Left: headline + CTA ── */}
-          <div className="flex flex-1 flex-col items-center text-center lg:items-start lg:text-left">
+          <div className="flex w-full flex-1 flex-col items-center text-center lg:items-start lg:text-left">
             <div className="animate-fadeInUp delay-100 mb-6">
               <Logo size="xl" className="block" />
             </div>
@@ -152,10 +152,10 @@ export default function HeroSection() {
               <span className="font-semibold text-gray-800">{t('hero.taglineStrong')}</span>
             </p>
 
-            <div className="animate-fadeInUp delay-300 flex flex-col items-center gap-4 sm:flex-row lg:items-start">
+            <div className="animate-fadeInUp delay-300 flex flex-col items-center gap-3 sm:flex-row sm:gap-4 lg:items-start">
               <Link
                 to={ROUTES.DOWNLOAD}
-                className="group flex items-center gap-3 rounded-full bg-blue-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-200 transition-all hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-300 hover:-translate-y-0.5"
+                className="group flex items-center gap-3 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-200 transition-all hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-300 hover:-translate-y-0.5 sm:px-8 sm:py-4 sm:text-base"
               >
                 <svg
                   className="h-5 w-5"
@@ -175,7 +175,7 @@ export default function HeroSection() {
               </Link>
               <a
                 href="#mission"
-                className="flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-8 py-4 text-base font-semibold text-gray-700 backdrop-blur-sm transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+                className="flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-6 py-3 text-sm font-semibold text-gray-700 backdrop-blur-sm transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 sm:px-8 sm:py-4 sm:text-base"
               >
                 {t('hero.ctaLearnMore')}
                 <svg
@@ -193,9 +193,9 @@ export default function HeroSection() {
           </div>
 
           {/* ── Right: feature carousel ── */}
-          <div className="animate-fadeInUp delay-400 flex flex-1 flex-col items-center">
+          <div className="animate-fadeInUp delay-400 flex w-full flex-1 flex-col items-center">
             {/* Card stack */}
-            <div className="relative w-full max-w-md">
+            <div className="relative w-[85vw] max-w-sm sm:w-full sm:max-w-md">
               {/* Decorative background cards */}
               <div
                 className="absolute inset-0 rounded-2xl bg-gray-100"
@@ -209,13 +209,13 @@ export default function HeroSection() {
               />
 
               {/* Feature cards */}
-              <div className="relative h-64">
+              <div className="relative h-64 sm:h-72">
                 {FEATURE_KEYS.map((key, i) => {
                   const style = FEATURE_STYLES[i]
                   return (
                     <div
                       key={key}
-                      className="glass-card absolute inset-0 rounded-2xl p-8 shadow-sm"
+                      className="glass-card absolute inset-0 rounded-2xl p-6 shadow-sm sm:p-8"
                       style={{
                         opacity: i === activeIndex ? 1 : 0,
                         transform: i === activeIndex ? 'translateY(0)' : 'translateY(14px)',
@@ -260,8 +260,8 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="animate-fadeInUp delay-500 absolute bottom-10 left-1/2 -translate-x-1/2">
+      {/* Scroll indicator — hidden on mobile to avoid overlapping stacked carousel */}
+      <div className="animate-fadeInUp delay-500 absolute bottom-10 left-1/2 hidden -translate-x-1/2 sm:block">
         <div
           className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-gray-300 p-1"
           aria-hidden="true"
