@@ -102,21 +102,15 @@
       "platform": "Android",
       "store": "Google Play Store",
       "storeDescription": "Beschikbaar voor Android 8.0 en hoger. Download van de Google Play Store bij lancering.",
-      "notifyAriaLabel": "Meld me bij lancering van de Android-app"
+      "comingSoonAriaLabel": "Android-app binnenkort beschikbaar"
     },
     "ios": {
       "platform": "iOS",
       "store": "Apple App Store",
       "storeDescription": "Beschikbaar voor iOS 15 en hoger. Vind het in de App Store bij lancering.",
-      "notifyAriaLabel": "Meld me bij lancering van de iOS-app"
+      "comingSoonAriaLabel": "iOS-app binnenkort beschikbaar"
     },
-    "comingSoon": "Binnenkort beschikbaar",
-    "notifyButton": "Meld me bij lancering",
-    "waitlist": {
-      "heading": "Word lid van de wachtlijst",
-      "description": "Wees een van de eersten die Play4Change op je mobiele apparaat ervaart.",
-      "status": "Aanmelding voor wachtlijst binnenkort beschikbaar"
-    }
+    "comingSoon": "Binnenkort beschikbaar"
   },
   "admin": {
     "login": {

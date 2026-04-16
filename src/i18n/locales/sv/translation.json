@@ -102,21 +102,15 @@
       "platform": "Android",
       "store": "Google Play Store",
       "storeDescription": "Tillgänglig för Android 8.0 och senare. Ladda ner från Google Play Store vid lansering.",
-      "notifyAriaLabel": "Meddela mig när Android-appen lanseras"
+      "comingSoonAriaLabel": "Android-appen kommer snart"
     },
     "ios": {
       "platform": "iOS",
       "store": "Apple App Store",
       "storeDescription": "Tillgänglig för iOS 15 och senare. Hitta den i App Store vid lansering.",
-      "notifyAriaLabel": "Meddela mig när iOS-appen lanseras"
+      "comingSoonAriaLabel": "iOS-appen kommer snart"
     },
-    "comingSoon": "Kommer snart",
-    "notifyButton": "Meddela mig vid lansering",
-    "waitlist": {
-      "heading": "Gå med i väntelistan",
-      "description": "Var bland de första att uppleva Play4Change på din mobila enhet.",
-      "status": "Registrering till väntelistan öppnar snart"
-    }
+    "comingSoon": "Kommer snart"
   },
   "admin": {
     "login": {
