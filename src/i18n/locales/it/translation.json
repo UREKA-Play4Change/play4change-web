@@ -102,21 +102,15 @@
       "platform": "Android",
       "store": "Google Play Store",
       "storeDescription": "Disponibile per Android 8.0 e superiori. Scaricala dal Google Play Store al lancio.",
-      "notifyAriaLabel": "Avvisami al lancio dell'app Android"
+      "comingSoonAriaLabel": "App Android prossimamente"
     },
     "ios": {
       "platform": "iOS",
       "store": "Apple App Store",
       "storeDescription": "Disponibile per iOS 15 e superiori. Trovala sull'App Store al lancio.",
-      "notifyAriaLabel": "Avvisami al lancio dell'app iOS"
+      "comingSoonAriaLabel": "App iOS prossimamente"
     },
-    "comingSoon": "Prossimamente",
-    "notifyButton": "Avvisami al lancio",
-    "waitlist": {
-      "heading": "Unisciti alla lista d'attesa",
-      "description": "Sii tra i primi a sperimentare Play4Change sul tuo dispositivo mobile.",
-      "status": "Registrazione alla lista d'attesa prossimamente disponibile"
-    }
+    "comingSoon": "Prossimamente"
   },
   "admin": {
     "login": {

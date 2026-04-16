@@ -4,7 +4,7 @@ import { useIntersectionObserver } from '@/ui/hooks/useIntersectionObserver'
 
 const AndroidIcon = () => (
   <svg className="h-10 w-10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M17.523 15.341A5 5 0 0 0 20 11H4a5 5 0 0 0 2.477 4.341l-1.327 2.385a.5.5 0 0 0 .874.487L7.46 15.8A6.98 6.98 0 0 0 12 17a6.98 6.98 0 0 0 4.54-1.2l1.436 2.413a.5.5 0 0 0 .874-.487zM8.5 13a1 1 0 1 1 0-2 1 1 0 0 1 0 2m7 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2M6.5 9.5a5.5 5.5 0 0 1 11 0H6.5z" />
+    <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84 1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C14.15 1.23 13.1 1 12 1c-1.1 0-2.15.23-3.09.63L7.43.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.3 1.3C6.41 3.07 5 5.37 5 8h14c0-2.63-1.41-4.93-3.47-5.84zM10 6H9V5h1v1zm5 0h-1V5h1v1z" />
   </svg>
 )
 
@@ -80,15 +80,6 @@ function PlatformCard({
           <span>{t(`download.${platformKey}.platform`)}</span>
         </div>
 
-        <div
-          className={`mb-3 inline-flex items-center gap-2 rounded-full border ${isAndroid ? 'border-green-200 bg-green-50 text-green-700' : 'border-blue-200 bg-blue-50 text-blue-700'} px-3 py-1 text-xs font-bold uppercase tracking-wider`}
-        >
-          <span
-            className={`h-1.5 w-1.5 rounded-full ${isAndroid ? 'bg-green-500' : 'bg-blue-500'} animate-pulse`}
-          />
-          {t('download.comingSoon')}
-        </div>
-
         <h3 className="mb-2 font-display text-xl font-bold text-gray-900">
           {t(`download.${platformKey}.store`)}
         </h3>
@@ -98,24 +89,10 @@ function PlatformCard({
 
         <button
           disabled
-          aria-label={t(`download.${platformKey}.notifyAriaLabel`)}
+          aria-label={t(`download.${platformKey}.comingSoonAriaLabel`)}
           className={`mt-5 flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full border-2 ${accentColor === 'green' ? 'border-green-200 bg-green-50 text-green-600' : 'border-blue-200 bg-blue-50 text-blue-600'} px-6 py-3 text-sm font-semibold opacity-60`}
         >
-          <svg
-            className="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-            />
-          </svg>
-          {t('download.notifyButton')}
+          {t('download.comingSoon')}
         </button>
       </div>
     </div>
@@ -161,26 +138,6 @@ export default function DownloadPage() {
         >
           <PlatformCard platform="android" delay={0} isVisible={isVisible} />
           <PlatformCard platform="ios" delay={150} isVisible={isVisible} />
-        </div>
-
-        <div
-          className="mx-auto mt-20 max-w-lg transition-all duration-700"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-            transitionDelay: '300ms',
-          }}
-        >
-          <div className="glass-card rounded-3xl p-8 text-center shadow-sm">
-            <div className="mb-3 text-4xl" aria-hidden="true">
-              🚀
-            </div>
-            <h2 className="mb-2 font-display text-xl font-bold text-gray-900">
-              {t('download.waitlist.heading')}
-            </h2>
-            <p className="mb-5 text-sm text-gray-500">{t('download.waitlist.description')}</p>
-            <p className="text-xs font-medium text-blue-600">{t('download.waitlist.status')}</p>
-          </div>
         </div>
       </div>
     </section>
