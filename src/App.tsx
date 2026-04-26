@@ -14,6 +14,7 @@ const CreateTopicPage = lazy(() => import('@/ui/pages/admin/CreateTopicPage'))
 const ProtectedRoute = lazy(() => import('@/ui/components/ProtectedRoute'))
 const AdminLayout = lazy(() => import('@/ui/layouts/AdminLayout'))
 const PublicLayout = lazy(() => import('@/ui/layouts/PublicLayout'))
+const NotFoundPage = lazy(() => import('@/ui/pages/NotFoundPage'))
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,6 +58,9 @@ function App() {
                 <Route path={ROUTES.ADMIN_CREATE_TOPIC} element={<CreateTopicPage />} />
               </Route>
             </Route>
+
+            {/* 404 catch-all */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
