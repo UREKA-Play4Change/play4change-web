@@ -8,7 +8,7 @@ This document lists every mock/hardcoded value in the frontend, how to find it, 
 
 ```env
 # .env.development
-VITE_USE_MOCK=true   # All data comes from mock adapters
+VITE_USE_MOCK=true   # All data comes from mock adapters 
 
 # .env.production
 VITE_USE_MOCK=false  # All data comes from the real API
