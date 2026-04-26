@@ -29,6 +29,15 @@ export function useVerifyMagicLink() {
       // resetQueries clears any prior error state so ProtectedRoute sees isPending→isLoading
       // instead of isError, preventing an immediate redirect back to the login page
       void queryClient.resetQueries({ queryKey: ['auth', 'me'] })
+      // Notify any other open tabs (e.g. the login tab the user left behind) so they
+      // can acquire the new tokens and navigate to the dashboard without a page reload.
+      try {
+        const bc = new BroadcastChannel('p4c:auth')
+        bc.postMessage({ type: 'login', tokens })
+        bc.close()
+      } catch {
+        // BroadcastChannel unavailable (e.g. some private browsing modes)
+      }
     },
   })
 }

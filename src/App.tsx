@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider, useQueryClient } from '@tanstack/react-query'
+import { setTokens } from '@/infrastructure/api/apiClient'
 import { ROUTES } from '@/lib/constants'
 
 const LandingPage = lazy(() => import('@/ui/pages/landing/LandingPage'))
@@ -34,11 +35,15 @@ function PageLoader() {
   )
 }
 
-// Listens for the auth:session-expired event dispatched by the API client when a
-// token refresh fails, and navigates to the login page via React Router instead of
-// a hard window.location redirect that breaks SPA routing.
+// Handles two global auth events:
+// 1. auth:session-expired — dispatched by the API client when a token refresh fails;
+//    navigates to login via React Router instead of a hard window.location redirect.
+// 2. BroadcastChannel 'p4c:auth' login message — sent by the verify page in a new
+//    tab (email magic link always opens a new tab); syncs tokens into this tab so
+//    the user lands on the dashboard in both the original tab and the new one.
 function AuthSessionHandler() {
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
 
   useEffect(() => {
     function handleSessionExpired() {
@@ -49,6 +54,31 @@ function AuthSessionHandler() {
       window.removeEventListener('auth:session-expired', handleSessionExpired)
     }
   }, [navigate])
+
+  useEffect(() => {
+    let bc: BroadcastChannel | null = null
+    try {
+      bc = new BroadcastChannel('p4c:auth')
+      bc.addEventListener(
+        'message',
+        (
+          e: MessageEvent<{ type: string; tokens?: { accessToken: string; refreshToken: string } }>,
+        ) => {
+          const { type, tokens } = e.data
+          if (type === 'login' && tokens) {
+            // Load the tokens into this tab's memory so the ProtectedRoute's
+            // /admin/me call goes out with a valid Authorization header.
+            setTokens(tokens)
+            void queryClient.resetQueries({ queryKey: ['auth', 'me'] })
+            void navigate(ROUTES.ADMIN_DASHBOARD, { replace: true })
+          }
+        },
+      )
+    } catch {
+      // BroadcastChannel unavailable (e.g. some private browsing modes)
+    }
+    return () => bc?.close()
+  }, [navigate, queryClient])
 
   return null
 }

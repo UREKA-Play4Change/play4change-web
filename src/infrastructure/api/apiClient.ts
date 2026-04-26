@@ -94,9 +94,13 @@ apiClient.interceptors.response.use(
     const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean }
 
     if (error.response?.status === 401 && !originalRequest._retry) {
-      // No refresh token available — propagate the error instead of attempting a
-      // refresh that will fail and hard-redirect to /admin/login via onRefreshFailed
-      if (!refreshToken) {
+      const requestUrl = originalRequest.url ?? ''
+
+      // Auth endpoints (magic-link verify, OAuth, etc.) returning 401 means the
+      // provided credential is wrong — NOT that the access token needs refreshing.
+      // Attempting a refresh here would be the wrong action and would trigger
+      // onRefreshFailed → clearTokens → session-expired event for a bad magic link.
+      if (requestUrl.startsWith('/auth/') || !refreshToken) {
         return Promise.reject(error)
       }
 
