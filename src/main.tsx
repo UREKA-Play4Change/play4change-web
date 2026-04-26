@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
+import ErrorBoundary from './ui/components/ErrorBoundary.tsx'
 import './i18n'
 import './styles/globals.css'
 
@@ -9,6 +10,8 @@ if (!rootElement) throw new Error('Root element not found')
 
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </React.StrictMode>,
 )
