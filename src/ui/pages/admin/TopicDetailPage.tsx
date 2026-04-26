@@ -1,9 +1,11 @@
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import axios from 'axios'
 import { useTopic, useRegenerateTopic } from '@/application/hooks/useTopics'
 import { formatDate, formatPercentage, formatScore } from '@/lib/formatters'
 import { ROUTES } from '@/lib/constants'
 import type { TopicStats } from '@/domain/models/Topic'
+import ErrorState from '@/ui/components/ErrorState'
 
 interface StatCardProps {
   label: string
@@ -59,7 +61,7 @@ function StatsGrid({ stats, t }: { stats: TopicStats; t: (key: string) => string
 export default function TopicDetailPage() {
   const { t } = useTranslation()
   const { id } = useParams<{ id: string }>()
-  const { data: topic, isLoading, isError } = useTopic(id ?? '')
+  const { data: topic, isLoading, isError, error, refetch } = useTopic(id ?? '')
   const regenerate = useRegenerateTopic()
 
   if (isLoading) {
@@ -76,8 +78,12 @@ export default function TopicDetailPage() {
   }
 
   if (isError || !topic) {
+    const is404 = axios.isAxiosError(error) && error.response?.status === 404
+    if (!is404 && isError) {
+      return <ErrorState onRetry={() => void refetch()} />
+    }
     return (
-      <div className="text-center py-20">
+      <div className="py-20 text-center">
         <p className="text-gray-500">{t('admin.topicDetail.notFound')}</p>
         <Link
           to={ROUTES.ADMIN_TOPICS}

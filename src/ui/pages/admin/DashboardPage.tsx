@@ -4,6 +4,7 @@ import { useCurrentUser } from '@/application/hooks/useAuth'
 import { useTopics } from '@/application/hooks/useTopics'
 import { ROUTES } from '@/lib/constants'
 import TopicCard from '@/ui/components/TopicCard'
+import ErrorState from '@/ui/components/ErrorState'
 
 function OverviewCard({
   label,
@@ -36,8 +37,10 @@ function OverviewCard({
 export default function DashboardPage() {
   const { t } = useTranslation()
   const { data: user } = useCurrentUser()
-  const { data: rawTopics, isLoading } = useTopics()
+  const { data: rawTopics, isLoading, isError, refetch } = useTopics()
   const topics = Array.isArray(rawTopics) ? rawTopics : []
+
+  if (isError) return <ErrorState onRetry={() => void refetch()} />
 
   const totalTopics = topics.length
   const activeTopics = topics.filter(topic => topic.status === 'ACTIVE').length

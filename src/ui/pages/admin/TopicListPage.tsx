@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useTopics } from '@/application/hooks/useTopics'
 import type { TopicStatus } from '@/domain/models/Topic'
 import TopicCard from '@/ui/components/TopicCard'
+import ErrorState from '@/ui/components/ErrorState'
 import { ROUTES } from '@/lib/constants'
 
 const STATUS_FILTER_VALUES: { labelKey: string; value: TopicStatus | 'ALL' }[] = [
@@ -17,8 +18,10 @@ const STATUS_FILTER_VALUES: { labelKey: string; value: TopicStatus | 'ALL' }[] =
 export default function TopicListPage() {
   const { t } = useTranslation()
   const [statusFilter, setStatusFilter] = useState<TopicStatus | 'ALL'>('ALL')
-  const { data: rawTopics, isLoading } = useTopics()
+  const { data: rawTopics, isLoading, isError, refetch } = useTopics()
   const allTopics = Array.isArray(rawTopics) ? rawTopics : []
+
+  if (isError) return <ErrorState onRetry={() => void refetch()} />
 
   const topics =
     statusFilter === 'ALL' ? allTopics : allTopics.filter(topic => topic.status === statusFilter)
