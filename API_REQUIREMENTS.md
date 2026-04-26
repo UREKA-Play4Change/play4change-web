@@ -10,7 +10,7 @@ This document lists the HTTP endpoints the Play4Change web platform requires fro
 **Status:** Standard — likely already planned
 **Request:**
 ```json
-{ "email": "admin@play4change.org" }
+{ "email": "admin@play4change.eu" }
 ```
 **Response:** `204 No Content` or `{ "message": "Magic link sent" }`
 **Notes:** Sends an email with a magic link to the admin.
