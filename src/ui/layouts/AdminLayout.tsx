@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import Logo from '@/ui/components/Logo'
 import LanguageSwitcher from '@/ui/components/LanguageSwitcher'
 import { useCurrentUser, useLogout } from '@/application/hooks/useAuth'
-import { getAccessToken } from '@/infrastructure/api/apiClient'
+import { getRefreshToken } from '@/infrastructure/api/apiClient'
 import { ROUTES } from '@/lib/constants'
 
 const NAV_ITEM_DEFS = [
@@ -74,7 +74,7 @@ export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   function handleLogout() {
-    const token = getAccessToken() ?? ''
+    const token = getRefreshToken() ?? ''
     logout.mutate(token, {
       onSettled: () => {
         void navigate(ROUTES.ADMIN_LOGIN)
