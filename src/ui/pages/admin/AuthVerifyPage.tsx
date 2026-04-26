@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useVerifyMagicLink } from '@/application/hooks/useAuth'
 import { ROUTES } from '@/lib/constants'
@@ -8,6 +8,10 @@ export default function AuthVerifyPage() {
   const navigate = useNavigate()
   const verifyMagicLink = useVerifyMagicLink()
   const [failed, setFailed] = useState(false)
+  // Guard against React 18 Strict Mode's double-invocation of useEffect in dev,
+  // which would call verify twice — the second call gets 401 (token already used)
+  // and triggers the refresh interceptor's hard redirect to /admin/login.
+  const verifyCalledRef = useRef(false)
 
   const token = searchParams.get('token')
 
@@ -16,6 +20,9 @@ export default function AuthVerifyPage() {
       void navigate(ROUTES.HOME, { replace: true })
       return
     }
+
+    if (verifyCalledRef.current) return
+    verifyCalledRef.current = true
 
     verifyMagicLink.mutate(token, {
       onSuccess: () => {

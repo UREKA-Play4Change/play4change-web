@@ -88,6 +88,12 @@ apiClient.interceptors.response.use(
     const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean }
 
     if (error.response?.status === 401 && !originalRequest._retry) {
+      // No refresh token available — propagate the error instead of attempting a
+      // refresh that will fail and hard-redirect to /admin/login via onRefreshFailed
+      if (!refreshToken) {
+        return Promise.reject(error)
+      }
+
       if (isRefreshing) {
         // Queue the request until refresh completes
         return new Promise(resolve => {

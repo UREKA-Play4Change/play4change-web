@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useVerifyMagicLink } from '@/application/hooks/useAuth'
 import { ROUTES } from '@/lib/constants'
@@ -7,6 +7,8 @@ export default function AuthCallbackPage() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const verifyMagicLink = useVerifyMagicLink()
+  // Guard against React 18 Strict Mode double-invocation — see AuthVerifyPage
+  const verifyCalledRef = useRef(false)
 
   const token = searchParams.get('token')
 
@@ -15,6 +17,9 @@ export default function AuthCallbackPage() {
       void navigate(ROUTES.ADMIN_LOGIN, { replace: true })
       return
     }
+
+    if (verifyCalledRef.current) return
+    verifyCalledRef.current = true
 
     verifyMagicLink.mutate(token, {
       onSuccess: () => {
