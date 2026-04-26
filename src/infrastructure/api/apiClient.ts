@@ -20,6 +20,10 @@ export function getAccessToken() {
   return accessToken
 }
 
+export function getRefreshToken() {
+  return refreshToken
+}
+
 function subscribeTokenRefresh(cb: (token: string) => void) {
   refreshSubscribers.push(cb)
 }
