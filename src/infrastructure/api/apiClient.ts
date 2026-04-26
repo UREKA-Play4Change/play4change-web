@@ -1,19 +1,41 @@
 import axios, { type AxiosInstance, type InternalAxiosRequestConfig } from 'axios'
 
-// Module-level token store — intentionally NOT in localStorage for security
-let accessToken: string | null = null
-let refreshToken: string | null = null
+const SESSION_ACCESS_KEY = 'p4c_access_token'
+const COOKIE_REFRESH_KEY = 'p4c_refresh_token'
+
+function setCookie(name: string, value: string, days = 7) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString()
+  const secure = location.protocol === 'https:' ? '; Secure' : ''
+  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Strict${secure}`
+}
+
+function getCookie(name: string): string | null {
+  const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'))
+  return match ? decodeURIComponent(match[1]) : null
+}
+
+function deleteCookie(name: string) {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Strict`
+}
+
+// Restore tokens from storage on module load
+let accessToken: string | null = sessionStorage.getItem(SESSION_ACCESS_KEY)
+let refreshToken: string | null = getCookie(COOKIE_REFRESH_KEY)
 let isRefreshing = false
 let refreshSubscribers: ((token: string) => void)[] = []
 
 export function setTokens(tokens: { accessToken: string; refreshToken: string }) {
   accessToken = tokens.accessToken
   refreshToken = tokens.refreshToken
+  sessionStorage.setItem(SESSION_ACCESS_KEY, tokens.accessToken)
+  setCookie(COOKIE_REFRESH_KEY, tokens.refreshToken)
 }
 
 export function clearTokens() {
   accessToken = null
   refreshToken = null
+  sessionStorage.removeItem(SESSION_ACCESS_KEY)
+  deleteCookie(COOKIE_REFRESH_KEY)
 }
 
 export function getAccessToken() {

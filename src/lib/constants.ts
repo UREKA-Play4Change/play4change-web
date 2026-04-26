@@ -13,6 +13,7 @@ export const ROUTES = {
   DOWNLOAD: '/download',
   ADMIN_LOGIN: '/admin/login',
   AUTH_CALLBACK: '/auth/callback',
+  AUTH_VERIFY: '/auth/verify',
   ADMIN_DASHBOARD: '/admin/dashboard',
   ADMIN_TOPICS: '/admin/topics',
   ADMIN_TOPIC_DETAIL: '/admin/topics/:id',

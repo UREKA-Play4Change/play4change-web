@@ -7,6 +7,7 @@ const LandingPage = lazy(() => import('@/ui/pages/landing/LandingPage'))
 const DownloadPage = lazy(() => import('@/ui/pages/download/DownloadPage'))
 const LoginPage = lazy(() => import('@/ui/pages/admin/LoginPage'))
 const AuthCallbackPage = lazy(() => import('@/ui/pages/admin/AuthCallbackPage'))
+const AuthVerifyPage = lazy(() => import('@/ui/pages/admin/AuthVerifyPage'))
 const DashboardPage = lazy(() => import('@/ui/pages/admin/DashboardPage'))
 const TopicListPage = lazy(() => import('@/ui/pages/admin/TopicListPage'))
 const TopicDetailPage = lazy(() => import('@/ui/pages/admin/TopicDetailPage'))
@@ -48,6 +49,7 @@ function App() {
             {/* Admin auth */}
             <Route path={ROUTES.ADMIN_LOGIN} element={<LoginPage />} />
             <Route path={ROUTES.AUTH_CALLBACK} element={<AuthCallbackPage />} />
+            <Route path={ROUTES.AUTH_VERIFY} element={<AuthVerifyPage />} />
 
             {/* Protected admin routes */}
             <Route element={<ProtectedRoute />}>
