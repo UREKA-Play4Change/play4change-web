@@ -263,5 +263,22 @@
     "languageSwitcher": {
       "ariaLabel": "Wybierz język"
     }
+  },
+  "errors": {
+    "notFound": {
+      "heading": "Strona nie znaleziona",
+      "description": "Strona, której szukasz, nie istnieje lub została przeniesiona.",
+      "backHome": "Wróć do strony głównej"
+    },
+    "serverError": {
+      "heading": "Coś poszło nie tak",
+      "description": "Nie udało się załadować tej treści. Sprawdź połączenie i spróbuj ponownie.",
+      "retry": "Spróbuj ponownie"
+    },
+    "boundary": {
+      "heading": "Coś poszło nie tak",
+      "description": "Wystąpił nieoczekiwany błąd. Odśwież stronę.",
+      "refresh": "Odśwież stronę"
+    }
   }
 }

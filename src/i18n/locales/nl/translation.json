@@ -261,5 +261,22 @@
     "languageSwitcher": {
       "ariaLabel": "Selecteer taal"
     }
+  },
+  "errors": {
+    "notFound": {
+      "heading": "Pagina niet gevonden",
+      "description": "De pagina die je zoekt bestaat niet of is verplaatst.",
+      "backHome": "Terug naar home"
+    },
+    "serverError": {
+      "heading": "Er is iets misgegaan",
+      "description": "We konden deze inhoud niet laden. Controleer je verbinding en probeer opnieuw.",
+      "retry": "Probeer opnieuw"
+    },
+    "boundary": {
+      "heading": "Er is iets misgegaan",
+      "description": "Er is een onverwachte fout opgetreden. Vernieuw de pagina.",
+      "refresh": "Pagina vernieuwen"
+    }
   }
 }

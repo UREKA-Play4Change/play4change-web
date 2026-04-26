@@ -261,5 +261,22 @@
     "languageSwitcher": {
       "ariaLabel": "Sélectionner la langue"
     }
+  },
+  "errors": {
+    "notFound": {
+      "heading": "Page introuvable",
+      "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+      "backHome": "Retour à l'accueil"
+    },
+    "serverError": {
+      "heading": "Une erreur s'est produite",
+      "description": "Impossible de charger ce contenu. Vérifiez votre connexion et réessayez.",
+      "retry": "Réessayer"
+    },
+    "boundary": {
+      "heading": "Une erreur s'est produite",
+      "description": "Une erreur inattendue s'est produite. Veuillez actualiser la page.",
+      "refresh": "Actualiser la page"
+    }
   }
 }

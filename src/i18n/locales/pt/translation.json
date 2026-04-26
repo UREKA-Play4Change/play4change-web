@@ -261,5 +261,22 @@
     "languageSwitcher": {
       "ariaLabel": "Selecionar idioma"
     }
+  },
+  "errors": {
+    "notFound": {
+      "heading": "Página não encontrada",
+      "description": "A página que procuras não existe ou foi movida.",
+      "backHome": "Voltar ao início"
+    },
+    "serverError": {
+      "heading": "Algo correu mal",
+      "description": "Não conseguimos carregar este conteúdo. Verifica a tua ligação e tenta novamente.",
+      "retry": "Tentar novamente"
+    },
+    "boundary": {
+      "heading": "Algo correu mal",
+      "description": "Ocorreu um erro inesperado. Por favor atualiza a página.",
+      "refresh": "Atualizar página"
+    }
   }
 }

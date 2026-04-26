@@ -261,5 +261,22 @@
     "languageSwitcher": {
       "ariaLabel": "Select language"
     }
+  },
+  "errors": {
+    "notFound": {
+      "heading": "Page not found",
+      "description": "The page you're looking for doesn't exist or has been moved.",
+      "backHome": "Back to home"
+    },
+    "serverError": {
+      "heading": "Something went wrong",
+      "description": "We couldn't load this content. Check your connection and try again.",
+      "retry": "Try again"
+    },
+    "boundary": {
+      "heading": "Something went wrong",
+      "description": "An unexpected error occurred. Please refresh the page.",
+      "refresh": "Refresh page"
+    }
   }
 }

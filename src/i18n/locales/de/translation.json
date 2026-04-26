@@ -261,5 +261,22 @@
     "languageSwitcher": {
       "ariaLabel": "Sprache auswählen"
     }
+  },
+  "errors": {
+    "notFound": {
+      "heading": "Seite nicht gefunden",
+      "description": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+      "backHome": "Zurück zur Startseite"
+    },
+    "serverError": {
+      "heading": "Etwas ist schiefgelaufen",
+      "description": "Die Inhalte konnten nicht geladen werden. Überprüfe die Verbindung und versuche es erneut.",
+      "retry": "Erneut versuchen"
+    },
+    "boundary": {
+      "heading": "Etwas ist schiefgelaufen",
+      "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte lade die Seite neu.",
+      "refresh": "Seite neu laden"
+    }
   }
 }

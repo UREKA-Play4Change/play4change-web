@@ -261,5 +261,22 @@
     "languageSwitcher": {
       "ariaLabel": "Välj språk"
     }
+  },
+  "errors": {
+    "notFound": {
+      "heading": "Sidan hittades inte",
+      "description": "Sidan du letar efter finns inte eller har flyttats.",
+      "backHome": "Tillbaka till startsidan"
+    },
+    "serverError": {
+      "heading": "Något gick fel",
+      "description": "Vi kunde inte ladda det här innehållet. Kontrollera din anslutning och försök igen.",
+      "retry": "Försök igen"
+    },
+    "boundary": {
+      "heading": "Något gick fel",
+      "description": "Ett oväntat fel inträffade. Ladda om sidan.",
+      "refresh": "Ladda om sidan"
+    }
   }
 }
