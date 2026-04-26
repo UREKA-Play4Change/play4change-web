@@ -9,7 +9,7 @@ export function useCurrentUser() {
   return useQuery({
     queryKey: ['auth', 'me'],
     queryFn: () => authService.getCurrentUser(),
-    retry: false,
+    retry: 1,
     staleTime: 5 * 60 * 1000, // 5 minutes
   })
 }

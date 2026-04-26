@@ -60,12 +60,9 @@ function onTokenRefreshed(token: string) {
 function onRefreshFailed() {
   refreshSubscribers = []
   clearTokens()
-  // Skip the hard redirect if already on an auth page — the component-level
-  // error handling (ProtectedRoute / AuthVerifyPage) will take care of it
-  const { pathname } = window.location
-  if (!pathname.startsWith('/auth/') && pathname !== '/admin/login') {
-    window.location.href = '/admin/login'
-  }
+  // Dispatch a DOM event so the React tree can handle navigation via React Router
+  // instead of a hard full-page redirect that breaks SPA routing.
+  window.dispatchEvent(new CustomEvent('auth:session-expired'))
 }
 
 const apiClient: AxiosInstance = axios.create({

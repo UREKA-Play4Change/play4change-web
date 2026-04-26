@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { lazy, Suspense, useEffect } from 'react'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ROUTES } from '@/lib/constants'
 
@@ -34,10 +34,30 @@ function PageLoader() {
   )
 }
 
+// Listens for the auth:session-expired event dispatched by the API client when a
+// token refresh fails, and navigates to the login page via React Router instead of
+// a hard window.location redirect that breaks SPA routing.
+function AuthSessionHandler() {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    function handleSessionExpired() {
+      void navigate(ROUTES.ADMIN_LOGIN, { replace: true })
+    }
+    window.addEventListener('auth:session-expired', handleSessionExpired)
+    return () => {
+      window.removeEventListener('auth:session-expired', handleSessionExpired)
+    }
+  }, [navigate])
+
+  return null
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <AuthSessionHandler />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             {/* Public routes */}
