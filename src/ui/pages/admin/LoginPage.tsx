@@ -1,8 +1,8 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Logo from '@/ui/components/Logo'
-import { useSendMagicLink } from '@/application/hooks/useAuth'
+import { useCurrentUser, useSendMagicLink } from '@/application/hooks/useAuth'
 import { isValidEmail } from '@/lib/validators'
 import { ROUTES } from '@/lib/constants'
 
@@ -11,6 +11,15 @@ type Step = 'form' | 'magic-link-sent'
 export default function LoginPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const { data: user, isLoading: isCheckingAuth } = useCurrentUser()
+
+  // Redirect to dashboard if already authenticated
+  useEffect(() => {
+    if (!isCheckingAuth && user) {
+      void navigate(ROUTES.ADMIN_DASHBOARD, { replace: true })
+    }
+  }, [user, isCheckingAuth, navigate])
+
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState('')
   const [step, setStep] = useState<Step>('form')

@@ -26,7 +26,9 @@ export function useVerifyMagicLink() {
     mutationFn: (token: string) => authService.verifyMagicLink(token),
     onSuccess: tokens => {
       setTokens(tokens)
-      void queryClient.invalidateQueries({ queryKey: ['auth', 'me'] })
+      // resetQueries clears any prior error state so ProtectedRoute sees isPending→isLoading
+      // instead of isError, preventing an immediate redirect back to the login page
+      void queryClient.resetQueries({ queryKey: ['auth', 'me'] })
     },
   })
 }
@@ -38,7 +40,7 @@ export function useLoginWithOAuth() {
       authService.loginWithOAuth(provider, credential),
     onSuccess: tokens => {
       setTokens(tokens)
-      void queryClient.invalidateQueries({ queryKey: ['auth', 'me'] })
+      void queryClient.resetQueries({ queryKey: ['auth', 'me'] })
     },
   })
 }
