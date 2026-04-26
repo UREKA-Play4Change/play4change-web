@@ -60,7 +60,12 @@ function onTokenRefreshed(token: string) {
 function onRefreshFailed() {
   refreshSubscribers = []
   clearTokens()
-  window.location.href = '/admin/login'
+  // Skip the hard redirect if already on an auth page — the component-level
+  // error handling (ProtectedRoute / AuthVerifyPage) will take care of it
+  const { pathname } = window.location
+  if (!pathname.startsWith('/auth/') && pathname !== '/admin/login') {
+    window.location.href = '/admin/login'
+  }
 }
 
 const apiClient: AxiosInstance = axios.create({
@@ -70,9 +75,13 @@ const apiClient: AxiosInstance = axios.create({
   },
 })
 
-// Request interceptor — attach access token
+// Request interceptor — attach access token (skip on auth endpoints to prevent
+// a stale/expired token from causing the backend to reject a magic-link verify
+// or OAuth request with 401 before the user is even authenticated)
 apiClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-  if (accessToken) {
+  const url = config.url ?? ''
+  const isAuthEndpoint = url.startsWith('/auth/')
+  if (accessToken && !isAuthEndpoint) {
     config.headers.Authorization = `Bearer ${accessToken}`
   }
   return config

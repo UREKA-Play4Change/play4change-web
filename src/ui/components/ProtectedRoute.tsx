@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { useCurrentUser } from '@/application/hooks/useAuth'
+import { clearTokens } from '@/infrastructure/api/apiClient'
 import { ROUTES } from '@/lib/constants'
 
 export default function ProtectedRoute() {
@@ -16,6 +17,9 @@ export default function ProtectedRoute() {
   }
 
   if (isError || !user) {
+    // Clear tokens so LoginPage's getAccessToken() check returns null and doesn't
+    // immediately bounce the user back here in a redirect loop
+    clearTokens()
     return <Navigate to={ROUTES.ADMIN_LOGIN} replace />
   }
 

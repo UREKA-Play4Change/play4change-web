@@ -1,8 +1,10 @@
 import { FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import Logo from '@/ui/components/Logo'
-import { useCurrentUser, useSendMagicLink } from '@/application/hooks/useAuth'
+import { useSendMagicLink } from '@/application/hooks/useAuth'
+import { getAccessToken } from '@/infrastructure/api/apiClient'
 import { isValidEmail } from '@/lib/validators'
 import { ROUTES } from '@/lib/constants'
 
@@ -11,14 +13,20 @@ type Step = 'form' | 'magic-link-sent'
 export default function LoginPage() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { data: user, isLoading: isCheckingAuth } = useCurrentUser()
+  const queryClient = useQueryClient()
 
-  // Redirect to dashboard if already authenticated
+  // If there is already an access token in memory (restored from sessionStorage on
+  // page load, or just set by a magic-link verification), skip the login form and
+  // go straight to the dashboard.  We reset the auth query first so ProtectedRoute
+  // sees isPending/isLoading instead of a stale error from a previous failed attempt.
   useEffect(() => {
-    if (!isCheckingAuth && user) {
+    if (getAccessToken()) {
+      void queryClient.resetQueries({ queryKey: ['auth', 'me'] })
       void navigate(ROUTES.ADMIN_DASHBOARD, { replace: true })
     }
-  }, [user, isCheckingAuth, navigate])
+    // Only run on mount — token in memory won't change during this render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState('')
