@@ -1,7 +1,15 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
-import { QueryClient, QueryClientProvider, useQueryClient } from '@tanstack/react-query'
+import {
+  QueryClient,
+  QueryClientProvider,
+  QueryCache,
+  MutationCache,
+  useQueryClient,
+} from '@tanstack/react-query'
+import { Toaster, toast } from 'sonner'
 import { setTokens } from '@/infrastructure/api/apiClient'
+import { getErrorMessage, isHandledByAuthFlow } from '@/lib/errorMessage'
 import { ROUTES } from '@/lib/constants'
 
 const LandingPage = lazy(() => import('@/ui/pages/landing/LandingPage'))
@@ -19,6 +27,16 @@ const PublicLayout = lazy(() => import('@/ui/layouts/PublicLayout'))
 const NotFoundPage = lazy(() => import('@/ui/pages/NotFoundPage'))
 
 const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError: error => {
+      if (!isHandledByAuthFlow(error)) toast.error(getErrorMessage(error))
+    },
+  }),
+  mutationCache: new MutationCache({
+    onError: error => {
+      if (!isHandledByAuthFlow(error)) toast.error(getErrorMessage(error))
+    },
+  }),
   defaultOptions: {
     queries: {
       retry: 1,
@@ -86,6 +104,7 @@ function AuthSessionHandler() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster position="top-right" richColors closeButton />
       <BrowserRouter>
         <AuthSessionHandler />
         <Suspense fallback={<PageLoader />}>
