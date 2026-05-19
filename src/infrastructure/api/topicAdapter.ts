@@ -23,10 +23,10 @@ export class TopicAdapter implements ITopicService {
     if (
       raw !== null &&
       typeof raw === 'object' &&
-      'data' in raw &&
-      Array.isArray((raw as { data: unknown }).data)
+      'content' in raw &&
+      Array.isArray((raw as { content: unknown }).content)
     ) {
-      return (raw as { data: Topic[] }).data
+      return (raw as { content: Topic[] }).content
     }
     return []
   }

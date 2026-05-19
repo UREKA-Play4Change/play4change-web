@@ -16,8 +16,12 @@ export interface Topic {
   status: TopicStatus
   difficulty: TopicDifficulty
   durationDays: number
+  taskCount: number
+  language: string
   category: string
   createdAt: string
+  expiresAt?: string | null
+  generationLog?: unknown[]
   stats: TopicStats
 }
 
@@ -27,5 +31,8 @@ export interface CreateTopicFromUrlRequest {
   urls: string[]
   durationDays: number
   difficulty: TopicDifficulty
+  language: string
+  taskCount: number
   category: string
+  expiresAt?: string
 }

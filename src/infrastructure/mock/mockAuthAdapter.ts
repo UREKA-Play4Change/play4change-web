@@ -12,6 +12,7 @@ const MOCK_USER: AdminUser = {
 const MOCK_TOKENS: AuthTokens = {
   accessToken: 'mock-access-token-abc123',
   refreshToken: 'mock-refresh-token-xyz789',
+  expiresIn: 900,
 }
 
 export class MockAuthAdapter implements IAuthService {

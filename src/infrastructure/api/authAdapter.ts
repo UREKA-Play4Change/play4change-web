@@ -8,9 +8,7 @@ export class AuthAdapter implements IAuthService {
   }
 
   async verifyMagicLink(token: string): Promise<AuthTokens> {
-    const response = await apiClient.get<AuthTokens>(
-      `/auth/verify?token=${encodeURIComponent(token)}`,
-    )
+    const response = await apiClient.post<AuthTokens>('/auth/magic-link/verify', { token })
     return response.data
   }
 
@@ -25,7 +23,7 @@ export class AuthAdapter implements IAuthService {
   }
 
   async logout(refreshToken: string): Promise<void> {
-    await apiClient.delete('/auth/logout', { data: { refreshToken } })
+    await apiClient.post('/auth/logout', { refreshToken })
   }
 
   async getCurrentUser(): Promise<AdminUser> {

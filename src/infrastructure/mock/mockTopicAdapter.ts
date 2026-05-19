@@ -12,6 +12,8 @@ const MOCK_TOPICS: Topic[] = [
     status: 'ACTIVE',
     difficulty: 'BEGINNER',
     durationDays: 5,
+    taskCount: 15,
+    language: 'en',
     category: 'Sustainability',
     createdAt: '2025-01-15T10:00:00Z',
     stats: {
@@ -29,6 +31,8 @@ const MOCK_TOPICS: Topic[] = [
     status: 'ACTIVE',
     difficulty: 'BEGINNER',
     durationDays: 7,
+    taskCount: 15,
+    language: 'en',
     category: 'Digital Literacy',
     createdAt: '2025-01-20T09:30:00Z',
     stats: {
@@ -46,6 +50,8 @@ const MOCK_TOPICS: Topic[] = [
     status: 'ACTIVE',
     difficulty: 'INTERMEDIATE',
     durationDays: 6,
+    taskCount: 15,
+    language: 'en',
     category: 'Sustainability',
     createdAt: '2025-02-01T14:00:00Z',
     stats: {
@@ -63,6 +69,8 @@ const MOCK_TOPICS: Topic[] = [
     status: 'GENERATING',
     difficulty: 'INTERMEDIATE',
     durationDays: 5,
+    taskCount: 15,
+    language: 'en',
     category: 'Digital Literacy',
     createdAt: '2025-02-10T11:15:00Z',
     stats: {
@@ -80,6 +88,8 @@ const MOCK_TOPICS: Topic[] = [
     status: 'ACTIVE',
     difficulty: 'ADVANCED',
     durationDays: 7,
+    taskCount: 15,
+    language: 'en',
     category: 'Sustainability',
     createdAt: '2025-02-15T08:00:00Z',
     stats: {
@@ -97,6 +107,8 @@ const MOCK_TOPICS: Topic[] = [
     status: 'PENDING',
     difficulty: 'BEGINNER',
     durationDays: 4,
+    taskCount: 15,
+    language: 'en',
     category: 'Digital Literacy',
     createdAt: '2025-02-20T16:45:00Z',
     stats: {
@@ -114,6 +126,8 @@ const MOCK_TOPICS: Topic[] = [
     status: 'FAILED',
     difficulty: 'ADVANCED',
     durationDays: 6,
+    taskCount: 15,
+    language: 'en',
     category: 'Sustainability',
     createdAt: '2025-02-25T12:00:00Z',
     stats: {
@@ -138,6 +152,8 @@ export class MockTopicAdapter implements ITopicService {
       status: 'PENDING',
       difficulty: request.difficulty,
       durationDays: request.durationDays,
+      taskCount: request.taskCount,
+      language: request.language,
       category: request.category,
       createdAt: new Date().toISOString(),
       stats: {
@@ -160,6 +176,8 @@ export class MockTopicAdapter implements ITopicService {
       status: 'PENDING',
       difficulty: 'BEGINNER',
       durationDays: 5,
+      taskCount: 15,
+      language: 'en',
       category: 'General',
       createdAt: new Date().toISOString(),
       stats: {
