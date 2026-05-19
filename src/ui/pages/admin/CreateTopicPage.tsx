@@ -1,12 +1,14 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCreateTopicFromUrl, useCreateTopicFromPdf } from '@/application/hooks/useTopics'
+import { useTopicProgress } from '@/application/hooks/useTopicProgress'
 import type { TopicDifficulty } from '@/domain/models/Topic'
 import FileUpload from '@/ui/components/FileUpload'
 import UrlInput from '@/ui/components/UrlInput'
 import DurationSelector from '@/ui/components/DurationSelector'
 import DifficultySelector from '@/ui/components/DifficultySelector'
+import TopicProgressStepper from '@/ui/components/TopicProgressStepper'
 import { validateUrls } from '@/lib/validators'
 import { ROUTES } from '@/lib/constants'
 
@@ -25,6 +27,17 @@ export default function CreateTopicPage() {
   const navigate = useNavigate()
   const createFromUrl = useCreateTopicFromUrl()
   const createFromPdf = useCreateTopicFromPdf()
+
+  const [createdTopicId, setCreatedTopicId] = useState<string | null>(null)
+  const progress = useTopicProgress(createdTopicId, createdTopicId !== null)
+
+  // Navigate to topic detail once generation completes or fails
+  useEffect(() => {
+    if (!createdTopicId) return
+    if (progress.done || progress.failed) {
+      void navigate(ROUTES.ADMIN_TOPIC_DETAIL.replace(':id', createdTopicId))
+    }
+  }, [createdTopicId, progress.done, progress.failed, navigate])
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -78,7 +91,7 @@ export default function CreateTopicPage() {
         },
         {
           onSuccess: topic => {
-            void navigate(ROUTES.ADMIN_TOPIC_DETAIL.replace(':id', topic.id))
+            setCreatedTopicId(topic.id)
           },
         },
       )
@@ -95,10 +108,24 @@ export default function CreateTopicPage() {
 
       createFromPdf.mutate(formData, {
         onSuccess: topic => {
-          void navigate(ROUTES.ADMIN_TOPIC_DETAIL.replace(':id', topic.id))
+          setCreatedTopicId(topic.id)
         },
       })
     }
+  }
+
+  if (createdTopicId) {
+    return (
+      <div className="mx-auto max-w-2xl space-y-8">
+        <div>
+          <h1 className="font-display text-2xl font-bold text-gray-900">
+            {t('admin.createTopic.heading')}
+          </h1>
+          <p className="mt-1 text-sm text-gray-500">{t('admin.createTopic.generatingSubtitle')}</p>
+        </div>
+        <TopicProgressStepper {...progress} />
+      </div>
+    )
   }
 
   return (

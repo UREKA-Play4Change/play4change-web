@@ -1,11 +1,15 @@
+import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import axios from 'axios'
+import { useQueryClient } from '@tanstack/react-query'
 import { useTopic, useRegenerateTopic } from '@/application/hooks/useTopics'
+import { useTopicProgress } from '@/application/hooks/useTopicProgress'
 import { formatDate, formatPercentage, formatScore } from '@/lib/formatters'
 import { ROUTES } from '@/lib/constants'
 import type { TopicStats } from '@/domain/models/Topic'
 import ErrorState from '@/ui/components/ErrorState'
+import TopicProgressStepper from '@/ui/components/TopicProgressStepper'
 
 interface StatCardProps {
   label: string
@@ -61,8 +65,19 @@ function StatsGrid({ stats, t }: { stats: TopicStats; t: (key: string) => string
 export default function TopicDetailPage() {
   const { t } = useTranslation()
   const { id } = useParams<{ id: string }>()
+  const queryClient = useQueryClient()
   const { data: topic, isLoading, isError, error, refetch } = useTopic(id ?? '')
   const regenerate = useRegenerateTopic()
+
+  const isGenerating = topic?.status === 'PENDING' || topic?.status === 'GENERATING'
+  const progress = useTopicProgress(id ?? null, isGenerating)
+
+  // Refresh topic data once SSE signals completion or failure
+  useEffect(() => {
+    if (progress.done || progress.failed) {
+      void queryClient.invalidateQueries({ queryKey: ['topics', id] })
+    }
+  }, [progress.done, progress.failed, queryClient, id])
 
   if (isLoading) {
     return (
@@ -155,7 +170,7 @@ export default function TopicDetailPage() {
         </button>
       </div>
 
-      {topic.status === 'ACTIVE' ? (
+      {topic.status === 'ACTIVE' && topic.stats != null ? (
         <div>
           <h2 className="mb-4 font-display text-lg font-semibold text-gray-900">
             {t('admin.topicDetail.statsHeading')}
@@ -164,6 +179,8 @@ export default function TopicDetailPage() {
             <StatsGrid stats={topic.stats} t={t} />
           </div>
         </div>
+      ) : isGenerating ? (
+        <TopicProgressStepper {...progress} />
       ) : (
         <div className="rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-10 text-center">
           <p className="text-gray-400">{t('admin.topicDetail.statsNotAvailable')}</p>

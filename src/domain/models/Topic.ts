@@ -22,7 +22,7 @@ export interface Topic {
   createdAt: string
   expiresAt?: string | null
   generationLog?: unknown[]
-  stats: TopicStats
+  stats: TopicStats | null
 }
 
 export interface CreateTopicFromUrlRequest {

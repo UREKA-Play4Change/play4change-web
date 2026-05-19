@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import Logo from '@/ui/components/Logo'
-import { useSendMagicLink } from '@/application/hooks/useAuth'
+import { useSendMagicLink, useVerifyMagicLink } from '@/application/hooks/useAuth'
 import { getAccessToken } from '@/infrastructure/api/apiClient'
 import { isValidEmail } from '@/lib/validators'
 import { ROUTES } from '@/lib/constants'
@@ -31,8 +31,11 @@ export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState('')
   const [step, setStep] = useState<Step>('form')
+  const [token, setToken] = useState('')
+  const [tokenError, setTokenError] = useState('')
 
   const sendMagicLink = useSendMagicLink()
+  const verifyMagicLink = useVerifyMagicLink()
 
   function handleEmailSubmit(e: FormEvent) {
     e.preventDefault()
@@ -56,6 +59,24 @@ export default function LoginPage() {
   function handleOAuthLogin(provider: 'GOOGLE' | 'FACEBOOK') {
     void navigate(ROUTES.ADMIN_DASHBOARD)
     void provider
+  }
+
+  function handleTokenSubmit(e: FormEvent) {
+    e.preventDefault()
+    setTokenError('')
+    const trimmed = token.trim()
+    if (!trimmed) {
+      setTokenError('Paste the token from the email.')
+      return
+    }
+    verifyMagicLink.mutate(trimmed, {
+      onSuccess: () => {
+        void navigate(ROUTES.ADMIN_DASHBOARD, { replace: true })
+      },
+      onError: () => {
+        setTokenError('Invalid or expired token. Request a new link.')
+      },
+    })
   }
 
   if (step === 'magic-link-sent') {
@@ -82,9 +103,48 @@ export default function LoginPage() {
                   : [part],
               )}
           </p>
+
+          <form onSubmit={handleTokenSubmit} noValidate className="mb-6 text-left">
+            <label htmlFor="token" className="mb-1.5 block text-sm font-medium text-gray-700">
+              Or paste the token from the email
+            </label>
+            <input
+              id="token"
+              type="text"
+              value={token}
+              onChange={e => {
+                setToken(e.target.value)
+                setTokenError('')
+              }}
+              placeholder="Paste token here…"
+              autoComplete="off"
+              aria-invalid={Boolean(tokenError)}
+              aria-describedby={tokenError ? 'token-error' : undefined}
+              className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all focus:ring-2 focus:ring-blue-500 ${
+                tokenError
+                  ? 'border-red-300 bg-red-50 focus:ring-red-400'
+                  : 'border-gray-200 bg-white focus:border-blue-400'
+              }`}
+            />
+            {tokenError && (
+              <p id="token-error" className="mt-1 text-xs text-red-600" role="alert">
+                {tokenError}
+              </p>
+            )}
+            <button
+              type="submit"
+              disabled={verifyMagicLink.isPending}
+              className="mt-3 w-full rounded-xl bg-blue-600 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {verifyMagicLink.isPending ? 'Signing in…' : 'Sign in'}
+            </button>
+          </form>
+
           <button
             onClick={() => {
               setStep('form')
+              setToken('')
+              setTokenError('')
             }}
             className="text-sm text-blue-600 underline underline-offset-2 hover:text-blue-700"
           >

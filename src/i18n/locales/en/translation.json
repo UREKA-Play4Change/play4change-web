@@ -127,7 +127,7 @@
       "continueFacebook": "Continue with Facebook",
       "checkEmail": {
         "heading": "Check your email",
-        "description": "We sent a magic link to {{email}}. Click the link in the email to sign in.",
+        "description": "We sent a sign-in code to {{email}}. Copy the code from the email and paste it below.",
         "useDifferent": "Use a different email"
       },
       "backToApp": "← Back to Play4Change"
@@ -192,6 +192,7 @@
     "createTopic": {
       "heading": "Create New Topic",
       "subtitle": "Upload a PDF or provide URLs — our AI will generate the learning content.",
+      "generatingSubtitle": "Your topic is being generated. This usually takes 1–2 minutes.",
       "titleLabel": "Topic title",
       "titlePlaceholder": "e.g. Introduction to Sustainable Development Goals",
       "titleRequired": "Title is required",
