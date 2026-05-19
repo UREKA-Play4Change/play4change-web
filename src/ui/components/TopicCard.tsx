@@ -57,7 +57,7 @@ export default function TopicCard({ topic }: TopicCardProps) {
         </span>
       </div>
 
-      {topic.status === 'ACTIVE' && (
+      {topic.status === 'ACTIVE' && topic.stats != null && (
         <div className="grid grid-cols-2 gap-3 border-t border-gray-100 pt-4">
           <div>
             <p className="text-xs text-gray-400">{t('components.topicCard.enrolled')}</p>

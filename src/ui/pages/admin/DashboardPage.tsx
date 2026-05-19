@@ -44,7 +44,7 @@ export default function DashboardPage() {
 
   const totalTopics = topics.length
   const activeTopics = topics.filter(topic => topic.status === 'ACTIVE').length
-  const totalEnrolled = topics.reduce((sum, topic) => sum + topic.stats.enrolledUsers, 0)
+  const totalEnrolled = topics.reduce((sum, topic) => sum + (topic.stats?.enrolledUsers ?? 0), 0)
 
   const recentTopics = topics.slice(0, 3)
 
