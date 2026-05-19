@@ -211,7 +211,9 @@
       "createButton": "Onderwerp aanmaken",
       "cancel": "Annuleren",
       "createError": "Kan onderwerp niet aanmaken. Probeer het opnieuw.",
-      "selectSourceAriaLabel": "Inhoudsbron selecteren"
+      "selectSourceAriaLabel": "Inhoudsbron selecteren",
+      "languageLabel": "Inhoudstaal",
+      "taskCountLabel": "Aantal taken"
     }
   },
   "components": {

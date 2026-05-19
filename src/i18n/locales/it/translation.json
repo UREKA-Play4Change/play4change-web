@@ -211,7 +211,9 @@
       "createButton": "Crea argomento",
       "cancel": "Annulla",
       "createError": "Impossibile creare l'argomento. Riprova.",
-      "selectSourceAriaLabel": "Seleziona fonte del contenuto"
+      "selectSourceAriaLabel": "Seleziona fonte del contenuto",
+      "languageLabel": "Lingua del contenuto",
+      "taskCountLabel": "Numero di attività"
     }
   },
   "components": {

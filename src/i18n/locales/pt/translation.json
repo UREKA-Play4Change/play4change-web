@@ -211,7 +211,9 @@
       "createButton": "Criar tema",
       "cancel": "Cancelar",
       "createError": "Não foi possível criar o tema. Por favor, tente novamente.",
-      "selectSourceAriaLabel": "Selecionar fonte de conteúdo"
+      "selectSourceAriaLabel": "Selecionar fonte de conteúdo",
+      "languageLabel": "Idioma do conteúdo",
+      "taskCountLabel": "Número de tarefas"
     }
   },
   "components": {

@@ -211,7 +211,9 @@
       "createButton": "Thema erstellen",
       "cancel": "Abbrechen",
       "createError": "Thema konnte nicht erstellt werden. Bitte versuche es erneut.",
-      "selectSourceAriaLabel": "Inhaltsquelle auswählen"
+      "selectSourceAriaLabel": "Inhaltsquelle auswählen",
+      "languageLabel": "Inhaltssprache",
+      "taskCountLabel": "Anzahl der Aufgaben"
     }
   },
   "components": {

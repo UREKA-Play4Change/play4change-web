@@ -211,7 +211,9 @@
       "createButton": "Créer le sujet",
       "cancel": "Annuler",
       "createError": "Échec de la création du sujet. Veuillez réessayer.",
-      "selectSourceAriaLabel": "Sélectionner la source de contenu"
+      "selectSourceAriaLabel": "Sélectionner la source de contenu",
+      "languageLabel": "Langue du contenu",
+      "taskCountLabel": "Nombre de tâches"
     }
   },
   "components": {

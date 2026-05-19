@@ -33,6 +33,8 @@ export default function CreateTopicPage() {
   const [pdfFile, setPdfFile] = useState<File | null>(null)
   const [durationDays, setDurationDays] = useState(5)
   const [difficulty, setDifficulty] = useState<TopicDifficulty>('BEGINNER')
+  const [language, setLanguage] = useState('en')
+  const [taskCount, setTaskCount] = useState(15)
   const [category, setCategory] = useState('')
   const [errors, setErrors] = useState<FormErrors>({})
 
@@ -70,6 +72,8 @@ export default function CreateTopicPage() {
           urls: urls.filter(Boolean),
           durationDays,
           difficulty,
+          language,
+          taskCount,
           category: category.trim(),
         },
         {
@@ -84,6 +88,8 @@ export default function CreateTopicPage() {
       formData.append('description', description.trim())
       formData.append('durationDays', String(durationDays))
       formData.append('difficulty', difficulty)
+      formData.append('language', language)
+      formData.append('taskCount', String(taskCount))
       formData.append('category', category.trim())
       if (pdfFile) formData.append('file', pdfFile)
 
@@ -186,6 +192,25 @@ export default function CreateTopicPage() {
           )}
         </div>
 
+        {/* Language */}
+        <div>
+          <label htmlFor="language" className="mb-1.5 block text-sm font-medium text-gray-700">
+            {t('admin.createTopic.languageLabel')}
+          </label>
+          <select
+            id="language"
+            value={language}
+            onChange={e => {
+              setLanguage(e.target.value)
+            }}
+            className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition-all focus:border-blue-400 focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="en">English</option>
+            <option value="pt-PT">Português</option>
+            <option value="es-ES">Español</option>
+          </select>
+        </div>
+
         {/* Source type toggle */}
         <div>
           <p className="mb-3 text-sm font-medium text-gray-700">
@@ -256,6 +281,24 @@ export default function CreateTopicPage() {
             {t('admin.createTopic.difficultyLabel')}
           </label>
           <DifficultySelector value={difficulty} onChange={setDifficulty} />
+        </div>
+
+        {/* Task count */}
+        <div>
+          <label htmlFor="taskCount" className="mb-1.5 block text-sm font-medium text-gray-700">
+            {t('admin.createTopic.taskCountLabel')}
+          </label>
+          <input
+            id="taskCount"
+            type="number"
+            min={1}
+            max={30}
+            value={taskCount}
+            onChange={e => {
+              setTaskCount(Number(e.target.value))
+            }}
+            className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition-all focus:border-blue-400 focus:ring-2 focus:ring-blue-500"
+          />
         </div>
 
         {/* Submit */}

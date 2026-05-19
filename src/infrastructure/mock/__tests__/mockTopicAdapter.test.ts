@@ -33,6 +33,8 @@ describe('MockTopicAdapter', () => {
       urls: ['https://example.com'],
       durationDays: 5,
       difficulty: 'BEGINNER',
+      language: 'en',
+      taskCount: 15,
       category: 'Test',
     })
     const countAfter = (await adapter.listMyTopics()).length

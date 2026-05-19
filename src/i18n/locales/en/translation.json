@@ -211,7 +211,9 @@
       "createButton": "Create Topic",
       "cancel": "Cancel",
       "createError": "Failed to create topic. Please try again.",
-      "selectSourceAriaLabel": "Select content source"
+      "selectSourceAriaLabel": "Select content source",
+      "languageLabel": "Content language",
+      "taskCountLabel": "Number of tasks"
     }
   },
   "components": {

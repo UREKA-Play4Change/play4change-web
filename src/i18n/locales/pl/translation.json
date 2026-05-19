@@ -213,7 +213,9 @@
       "createButton": "Utwórz temat",
       "cancel": "Anuluj",
       "createError": "Nie udało się utworzyć tematu. Spróbuj ponownie.",
-      "selectSourceAriaLabel": "Wybierz źródło treści"
+      "selectSourceAriaLabel": "Wybierz źródło treści",
+      "languageLabel": "Język treści",
+      "taskCountLabel": "Liczba zadań"
     }
   },
   "components": {

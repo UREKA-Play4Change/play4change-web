@@ -211,7 +211,9 @@
       "createButton": "Skapa ämne",
       "cancel": "Avbryt",
       "createError": "Det gick inte att skapa ämnet. Försök igen.",
-      "selectSourceAriaLabel": "Välj innehållskälla"
+      "selectSourceAriaLabel": "Välj innehållskälla",
+      "languageLabel": "Innehållsspråk",
+      "taskCountLabel": "Antal uppgifter"
     }
   },
   "components": {
