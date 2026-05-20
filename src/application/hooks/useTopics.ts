@@ -19,6 +19,7 @@ export function useTopic(id: string) {
     queryFn: () => topicService.getTopicById(id),
     enabled: Boolean(id),
     staleTime: 30 * 1000,
+    refetchInterval: query => (query.state.data?.status === 'ACTIVE' ? 60_000 : false),
   })
 }
 
