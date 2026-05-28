@@ -1,4 +1,11 @@
-import type { CreateTopicFromUrlRequest, Topic, TopicStatus } from '@/domain/models/Topic'
+import type {
+  AdaptiveTaskAdmin,
+  CreateTopicFromUrlRequest,
+  TaskTemplate,
+  Topic,
+  TopicStatus,
+  UpdateTaskRequest,
+} from '@/domain/models/Topic'
 import type { ITopicService } from '@/domain/ports/TopicPort'
 import apiClient from './apiClient'
 
@@ -38,6 +45,23 @@ export class TopicAdapter implements ITopicService {
 
   async regenerateTopic(id: string): Promise<Topic> {
     const response = await apiClient.post<Topic>(`/admin/topics/${id}/regenerate`)
+    return response.data
+  }
+
+  async getTopicTasks(topicId: string): Promise<TaskTemplate[]> {
+    const response = await apiClient.get<TaskTemplate[]>(`/admin/topics/${topicId}/tasks`)
+    return response.data
+  }
+
+  async getTopicStruggleTasks(topicId: string): Promise<AdaptiveTaskAdmin[]> {
+    const response = await apiClient.get<AdaptiveTaskAdmin[]>(
+      `/admin/topics/${topicId}/struggle-tasks`,
+    )
+    return response.data
+  }
+
+  async updateTask(templateId: string, request: UpdateTaskRequest): Promise<TaskTemplate> {
+    const response = await apiClient.put<TaskTemplate>(`/admin/tasks/${templateId}`, request)
     return response.data
   }
 }
