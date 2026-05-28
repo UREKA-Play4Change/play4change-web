@@ -1,4 +1,11 @@
-import type { CreateTopicFromUrlRequest, Topic, TopicStatus } from '@/domain/models/Topic'
+import type {
+  AdaptiveTaskAdmin,
+  CreateTopicFromUrlRequest,
+  TaskTemplate,
+  Topic,
+  TopicStatus,
+  UpdateTaskRequest,
+} from '@/domain/models/Topic'
 import type { ITopicService } from '@/domain/ports/TopicPort'
 
 const delay = (ms = 500) => new Promise(r => setTimeout(r, ms))
@@ -139,6 +146,129 @@ const MOCK_TOPICS: Topic[] = [
   },
 ]
 
+const MOCK_TASKS: Record<string, TaskTemplate[]> = {
+  'topic-001': [
+    {
+      id: 'tpl-001-1',
+      dayIndex: 0,
+      poolIndex: 0,
+      title: 'What does SDG stand for?',
+      description: 'Select the correct full form of the abbreviation used in the UN 2030 Agenda.',
+      hint: 'Think about what the United Nations wants to achieve by 2030.',
+      taskType: 'MULTIPLE_CHOICE',
+      pointsReward: 20,
+      options: [
+        'Sustainable Development Goals',
+        'Social Development Guidelines',
+        'Systematic Design Goals',
+        'Shared Development Governance',
+      ],
+      correctAnswer: 0,
+      version: 1,
+      language: 'en',
+      createdAt: '2025-01-15T10:05:00Z',
+      stats: { totalAttempts: 312, successCount: 289, successRate: 0.926, avgPointsAwarded: 18.5 },
+    },
+    {
+      id: 'tpl-001-2',
+      dayIndex: 1,
+      poolIndex: 0,
+      title: 'How many SDGs are there?',
+      description: 'Choose the correct number of Sustainable Development Goals adopted in 2015.',
+      hint: null,
+      taskType: 'MULTIPLE_CHOICE',
+      pointsReward: 20,
+      options: ['10', '15', '17', '21'],
+      correctAnswer: 2,
+      version: 1,
+      language: 'en',
+      createdAt: '2025-01-15T10:06:00Z',
+      stats: { totalAttempts: 298, successCount: 261, successRate: 0.876, avgPointsAwarded: 17.5 },
+    },
+    {
+      id: 'tpl-001-3',
+      dayIndex: 2,
+      poolIndex: 0,
+      title: 'Which SDG focuses on clean water?',
+      description: 'Identify the correct SDG number dedicated to clean water and sanitation.',
+      hint: 'It is one of the basic human needs goals.',
+      taskType: 'MULTIPLE_CHOICE',
+      pointsReward: 20,
+      options: ['SDG 3', 'SDG 6', 'SDG 9', 'SDG 14'],
+      correctAnswer: 1,
+      version: 2,
+      language: 'en',
+      createdAt: '2025-01-15T10:07:00Z',
+      stats: { totalAttempts: 267, successCount: 198, successRate: 0.741, avgPointsAwarded: 14.8 },
+    },
+  ],
+  'topic-003': [
+    {
+      id: 'tpl-003-1',
+      dayIndex: 0,
+      poolIndex: 0,
+      title: 'What is the core principle of a circular economy?',
+      description: 'Choose the statement that best captures the circular economy concept.',
+      hint: 'Think about what happens to products after use.',
+      taskType: 'MULTIPLE_CHOICE',
+      pointsReward: 20,
+      options: [
+        'Maximising production output at minimum cost',
+        'Eliminating waste by keeping resources in use',
+        'Moving manufacturing to lower-cost regions',
+        'Reducing all product packaging to zero',
+      ],
+      correctAnswer: 1,
+      version: 1,
+      language: 'en',
+      createdAt: '2025-02-01T14:05:00Z',
+      stats: { totalAttempts: 183, successCount: 129, successRate: 0.705, avgPointsAwarded: 14.1 },
+    },
+  ],
+}
+
+const MOCK_STRUGGLE_TASKS: Record<string, AdaptiveTaskAdmin[]> = {
+  'topic-001': [
+    {
+      id: 'adp-001-1',
+      sessionId: 'sess-001',
+      sessionStatus: 'RESOLVED',
+      errorPattern: 'WRONG_CONCEPT',
+      sessionDetectedAt: '2025-03-10T14:22:00Z',
+      enrollmentId: 'enr-001',
+      title: 'Simpler: What does SDG stand for?',
+      description:
+        'The letters S, D, G — what do they mean in the context of the United Nations agenda?',
+      hint: 'Each letter is the first letter of a word in the phrase.',
+      pointsReward: 10,
+      orderIndex: 0,
+      options: ['Sustainable Development Goals', 'Shared Design Guidelines'],
+      correctAnswer: 0,
+      isCorrect: true,
+      completedAt: '2025-03-10T14:25:00Z',
+    },
+    {
+      id: 'adp-001-2',
+      sessionId: 'sess-002',
+      sessionStatus: 'OPEN',
+      errorPattern: 'PARTIAL_UNDERSTANDING',
+      sessionDetectedAt: '2025-04-01T09:10:00Z',
+      enrollmentId: 'enr-042',
+      title: 'Which goal deals with life on land?',
+      description: 'Choose the SDG that specifically addresses terrestrial ecosystems.',
+      hint: 'It is one of the last goals in the list.',
+      pointsReward: 10,
+      orderIndex: 0,
+      options: ['SDG 13', 'SDG 15', 'SDG 17'],
+      correctAnswer: 1,
+      isCorrect: null,
+      completedAt: null,
+    },
+  ],
+}
+
+let taskStore: Record<string, TaskTemplate[]> = { ...MOCK_TASKS }
+
 let topicsStore = [...MOCK_TOPICS]
 let nextId = topicsStore.length + 1
 
@@ -213,5 +343,40 @@ export class MockTopicAdapter implements ITopicService {
     const updated: Topic = { ...topicsStore[idx], status: 'GENERATING' }
     topicsStore = topicsStore.map(t => (t.id === id ? updated : t))
     return updated
+  }
+
+  async getTopicTasks(topicId: string): Promise<TaskTemplate[]> {
+    await delay(400)
+    return taskStore[topicId] ?? []
+  }
+
+  async getTopicStruggleTasks(topicId: string): Promise<AdaptiveTaskAdmin[]> {
+    await delay(400)
+    return MOCK_STRUGGLE_TASKS[topicId] ?? []
+  }
+
+  async updateTask(templateId: string, request: UpdateTaskRequest): Promise<TaskTemplate> {
+    await delay(600)
+    for (const topicId of Object.keys(taskStore)) {
+      const idx = taskStore[topicId].findIndex(t => t.id === templateId)
+      if (idx !== -1) {
+        const existing = taskStore[topicId][idx]
+        const updated: TaskTemplate = {
+          ...existing,
+          title: request.title,
+          description: request.description,
+          hint: request.hint,
+          options: request.options,
+          correctAnswer: request.correctAnswer,
+          version: existing.version + 1,
+        }
+        taskStore = {
+          ...taskStore,
+          [topicId]: taskStore[topicId].map(t => (t.id === templateId ? updated : t)),
+        }
+        return updated
+      }
+    }
+    throw new Error(`TaskTemplate not found: ${templateId}`)
   }
 }

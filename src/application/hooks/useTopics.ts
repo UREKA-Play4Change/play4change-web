@@ -1,6 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { container } from '@/infrastructure/di/container'
-import type { CreateTopicFromUrlRequest, TopicStatus } from '@/domain/models/Topic'
+import type {
+  CreateTopicFromUrlRequest,
+  TopicStatus,
+  UpdateTaskRequest,
+} from '@/domain/models/Topic'
 
 const topicService = container.topicService
 
@@ -50,6 +54,35 @@ export function useRegenerateTopic() {
     onSuccess: topic => {
       void queryClient.invalidateQueries({ queryKey: ['topics', topic.id] })
       void queryClient.invalidateQueries({ queryKey: ['topics'] })
+    },
+  })
+}
+
+export function useTopicTasks(topicId: string) {
+  return useQuery({
+    queryKey: ['topic-tasks', topicId],
+    queryFn: () => topicService.getTopicTasks(topicId),
+    enabled: Boolean(topicId),
+    staleTime: 60 * 1000,
+  })
+}
+
+export function useTopicStruggleTasks(topicId: string) {
+  return useQuery({
+    queryKey: ['topic-struggle-tasks', topicId],
+    queryFn: () => topicService.getTopicStruggleTasks(topicId),
+    enabled: Boolean(topicId),
+    staleTime: 60 * 1000,
+  })
+}
+
+export function useUpdateTask(topicId: string) {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({ templateId, request }: { templateId: string; request: UpdateTaskRequest }) =>
+      topicService.updateTask(templateId, request),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ['topic-tasks', topicId] })
     },
   })
 }

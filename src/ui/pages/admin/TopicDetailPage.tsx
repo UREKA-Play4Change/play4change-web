@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import axios from 'axios'
@@ -7,9 +7,14 @@ import { useTopic, useRegenerateTopic } from '@/application/hooks/useTopics'
 import { useTopicProgress } from '@/application/hooks/useTopicProgress'
 import { formatDate, formatPercentage, formatScore } from '@/lib/formatters'
 import { ROUTES } from '@/lib/constants'
-import type { TopicStats } from '@/domain/models/Topic'
+import type { PhaseLogEntry, TopicStats } from '@/domain/models/Topic'
 import ErrorState from '@/ui/components/ErrorState'
 import TopicProgressStepper from '@/ui/components/TopicProgressStepper'
+import TaskQuestionsPanel from '@/ui/components/TaskQuestionsPanel'
+import StruggleTasksPanel from '@/ui/components/StruggleTasksPanel'
+import GenerationLogPanel from '@/ui/components/GenerationLogPanel'
+
+type Tab = 'overview' | 'questions' | 'struggle' | 'log'
 
 interface StatCardProps {
   label: string
@@ -62,17 +67,24 @@ function StatsGrid({ stats, t }: { stats: TopicStats; t: (key: string) => string
   )
 }
 
+const TABS: { id: Tab; label: string }[] = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'questions', label: 'Questions' },
+  { id: 'struggle', label: 'Struggle Questions' },
+  { id: 'log', label: 'Generation Log' },
+]
+
 export default function TopicDetailPage() {
   const { t } = useTranslation()
   const { id } = useParams<{ id: string }>()
   const queryClient = useQueryClient()
   const { data: topic, isLoading, isError, error, refetch } = useTopic(id ?? '')
   const regenerate = useRegenerateTopic()
+  const [activeTab, setActiveTab] = useState<Tab>('overview')
 
   const isGenerating = topic?.status === 'PENDING' || topic?.status === 'GENERATING'
   const progress = useTopicProgress(id ?? null, isGenerating)
 
-  // Refresh topic data once SSE signals completion or failure
   useEffect(() => {
     if (progress.done || progress.failed) {
       void queryClient.invalidateQueries({ queryKey: ['topics', id] })
@@ -110,8 +122,11 @@ export default function TopicDetailPage() {
     )
   }
 
+  const generationLog = (topic.generationLog ?? []) as PhaseLogEntry[]
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
+      {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-gray-400">
         <Link to={ROUTES.ADMIN_TOPICS} className="hover:text-blue-600">
           {t('admin.topicDetail.breadcrumbTopics')}
@@ -120,6 +135,7 @@ export default function TopicDetailPage() {
         <span className="text-gray-700">{topic.title}</span>
       </nav>
 
+      {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -170,22 +186,54 @@ export default function TopicDetailPage() {
         </button>
       </div>
 
-      {topic.status === 'ACTIVE' && topic.stats != null ? (
-        <div>
-          <h2 className="mb-4 font-display text-lg font-semibold text-gray-900">
-            {t('admin.topicDetail.statsHeading')}
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <StatsGrid stats={topic.stats} t={t} />
-          </div>
-        </div>
-      ) : isGenerating ? (
-        <TopicProgressStepper {...progress} />
-      ) : (
-        <div className="rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-10 text-center">
-          <p className="text-gray-400">{t('admin.topicDetail.statsNotAvailable')}</p>
-        </div>
+      {/* Tabs */}
+      <div className="border-b border-gray-100">
+        <nav className="-mb-px flex gap-6" aria-label="Topic tabs">
+          {TABS.map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => {
+                setActiveTab(tab.id)
+              }}
+              className={`border-b-2 pb-3 text-sm font-medium transition-colors ${
+                activeTab === tab.id
+                  ? 'border-blue-600 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </nav>
+      </div>
+
+      {/* Tab content */}
+      {activeTab === 'overview' && (
+        <>
+          {topic.status === 'ACTIVE' && topic.stats != null ? (
+            <div>
+              <h2 className="mb-4 font-display text-lg font-semibold text-gray-900">
+                {t('admin.topicDetail.statsHeading')}
+              </h2>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <StatsGrid stats={topic.stats} t={t} />
+              </div>
+            </div>
+          ) : isGenerating ? (
+            <TopicProgressStepper {...progress} />
+          ) : (
+            <div className="rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-10 text-center">
+              <p className="text-gray-400">{t('admin.topicDetail.statsNotAvailable')}</p>
+            </div>
+          )}
+        </>
       )}
+
+      {activeTab === 'questions' && <TaskQuestionsPanel topicId={topic.id} />}
+
+      {activeTab === 'struggle' && <StruggleTasksPanel topicId={topic.id} />}
+
+      {activeTab === 'log' && <GenerationLogPanel log={generationLog} />}
     </div>
   )
 }
