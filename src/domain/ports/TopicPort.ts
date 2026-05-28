@@ -1,4 +1,11 @@
-import type { CreateTopicFromUrlRequest, Topic, TopicStatus } from '../models/Topic'
+import type {
+  AdaptiveTaskAdmin,
+  CreateTopicFromUrlRequest,
+  TaskTemplate,
+  Topic,
+  TopicStatus,
+  UpdateTaskRequest,
+} from '../models/Topic'
 
 export interface ITopicService {
   createFromUrl(request: CreateTopicFromUrlRequest): Promise<Topic>
@@ -6,4 +13,7 @@ export interface ITopicService {
   listMyTopics(status?: TopicStatus): Promise<Topic[]>
   getTopicById(id: string): Promise<Topic>
   regenerateTopic(id: string): Promise<Topic>
+  getTopicTasks(topicId: string): Promise<TaskTemplate[]>
+  getTopicStruggleTasks(topicId: string): Promise<AdaptiveTaskAdmin[]>
+  updateTask(templateId: string, request: UpdateTaskRequest): Promise<TaskTemplate>
 }
