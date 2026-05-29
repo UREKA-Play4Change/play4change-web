@@ -21,6 +21,7 @@ const DashboardPage = lazy(() => import('@/ui/pages/admin/DashboardPage'))
 const TopicListPage = lazy(() => import('@/ui/pages/admin/TopicListPage'))
 const TopicDetailPage = lazy(() => import('@/ui/pages/admin/TopicDetailPage'))
 const CreateTopicPage = lazy(() => import('@/ui/pages/admin/CreateTopicPage'))
+const LearningPathsPage = lazy(() => import('@/ui/pages/admin/LearningPathsPage'))
 const ProtectedRoute = lazy(() => import('@/ui/components/ProtectedRoute'))
 const AdminLayout = lazy(() => import('@/ui/layouts/AdminLayout'))
 const PublicLayout = lazy(() => import('@/ui/layouts/PublicLayout'))
@@ -127,6 +128,7 @@ function App() {
                 <Route path={ROUTES.ADMIN_TOPICS} element={<TopicListPage />} />
                 <Route path={ROUTES.ADMIN_TOPIC_DETAIL} element={<TopicDetailPage />} />
                 <Route path={ROUTES.ADMIN_CREATE_TOPIC} element={<CreateTopicPage />} />
+                <Route path={ROUTES.ADMIN_LEARNING_PATHS} element={<LearningPathsPage />} />
               </Route>
             </Route>
 
