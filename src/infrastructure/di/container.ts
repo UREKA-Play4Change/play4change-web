@@ -1,14 +1,17 @@
 import type { IAuthService } from '@/domain/ports/AuthPort'
 import type { ITopicService } from '@/domain/ports/TopicPort'
 import type { IStatsService } from '@/domain/ports/StatsPort'
+import type { IReportService } from '@/domain/ports/ReportPort'
 
 import { AuthAdapter } from '@/infrastructure/api/authAdapter'
 import { TopicAdapter } from '@/infrastructure/api/topicAdapter'
 import { StatsAdapter } from '@/infrastructure/api/statsAdapter'
+import { ReportAdapter } from '@/infrastructure/api/reportAdapter'
 
 import { MockAuthAdapter } from '@/infrastructure/mock/mockAuthAdapter'
 import { MockTopicAdapter } from '@/infrastructure/mock/mockTopicAdapter'
 import { MockStatsAdapter } from '@/infrastructure/mock/mockStatsAdapter'
+import { MockReportAdapter } from '@/infrastructure/mock/mockReportAdapter'
 
 const useMock = import.meta.env.VITE_USE_MOCK === 'true'
 
@@ -16,6 +19,7 @@ interface ServiceContainer {
   authService: IAuthService
   topicService: ITopicService
   statsService: IStatsService
+  reportService: IReportService
 }
 
 function createContainer(): ServiceContainer {
@@ -24,6 +28,7 @@ function createContainer(): ServiceContainer {
       authService: new MockAuthAdapter(),
       topicService: new MockTopicAdapter(),
       statsService: new MockStatsAdapter(),
+      reportService: new MockReportAdapter(),
     }
   }
 
@@ -31,6 +36,7 @@ function createContainer(): ServiceContainer {
     authService: new AuthAdapter(),
     topicService: new TopicAdapter(),
     statsService: new StatsAdapter(),
+    reportService: new ReportAdapter(),
   }
 }
 
