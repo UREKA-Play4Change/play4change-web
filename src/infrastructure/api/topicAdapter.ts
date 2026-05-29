@@ -1,6 +1,8 @@
 import type {
   AdaptiveTaskAdmin,
   CreateTopicFromUrlRequest,
+  LearningGraph,
+  PrerequisiteTopic,
   TaskTemplate,
   Topic,
   TopicStatus,
@@ -62,6 +64,28 @@ export class TopicAdapter implements ITopicService {
 
   async updateTask(templateId: string, request: UpdateTaskRequest): Promise<TaskTemplate> {
     const response = await apiClient.put<TaskTemplate>(`/admin/tasks/${templateId}`, request)
+    return response.data
+  }
+
+  async getPrerequisites(topicId: string): Promise<PrerequisiteTopic[]> {
+    const response = await apiClient.get<PrerequisiteTopic[]>(
+      `/admin/topics/${topicId}/prerequisites`,
+    )
+    return response.data
+  }
+
+  async setPrerequisites(topicId: string, prerequisiteIds: string[]): Promise<PrerequisiteTopic[]> {
+    const response = await apiClient.post<PrerequisiteTopic[]>(
+      `/admin/topics/${topicId}/prerequisites`,
+      {
+        prerequisiteIds,
+      },
+    )
+    return response.data
+  }
+
+  async getLearningGraph(): Promise<LearningGraph> {
+    const response = await apiClient.get<LearningGraph>('/admin/learning-graph')
     return response.data
   }
 }
