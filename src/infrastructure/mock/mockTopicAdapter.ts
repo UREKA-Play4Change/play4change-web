@@ -5,6 +5,7 @@ import type {
   PrerequisiteTopic,
   TaskTemplate,
   Topic,
+  TopicBadgeStats,
   TopicStatus,
   UpdateTaskRequest,
 } from '@/domain/models/Topic'
@@ -415,5 +416,24 @@ export class MockTopicAdapter implements ITopicService {
       }
     }
     return { edges }
+  }
+
+  async getTopicBadgeStats(topicId: string): Promise<TopicBadgeStats> {
+    await delay(300)
+    const topic = topicsStore.find(t => t.id === topicId)
+    const enrolled = topic?.stats?.enrolledUsers ?? 0
+    const issued = Math.floor(enrolled * 0.3)
+    return {
+      totalIssued: issued,
+      enrolledCount: enrolled,
+      earnedPercentage: enrolled > 0 ? (issued / enrolled) * 100 : 0,
+      recentEarners:
+        issued > 0
+          ? [
+              { userId: 'user-001', earnedAt: '2026-04-10T12:00:00Z' },
+              { userId: 'user-002', earnedAt: '2026-04-08T09:30:00Z' },
+            ]
+          : [],
+    }
   }
 }
