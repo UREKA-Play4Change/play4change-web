@@ -21,4 +21,5 @@ export const ROUTES = {
   ADMIN_LEARNING_PATHS: '/admin/learning-paths',
   ADMIN_REPORTS: '/admin/reports',
   ADMIN_REPORT_DETAIL: '/admin/reports/:reportId',
+  ADMIN_USERS: '/admin/users',
 } as const
