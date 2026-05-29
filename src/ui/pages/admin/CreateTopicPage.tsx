@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -361,7 +362,14 @@ export default function CreateTopicPage() {
 
         {(createFromUrl.isError || createFromPdf.isError) && (
           <p className="text-sm text-red-600" role="alert">
-            {t('admin.createTopic.createError')}
+            {(() => {
+              const err = createFromUrl.error ?? createFromPdf.error
+              if (axios.isAxiosError(err)) {
+                const data = err.response?.data as { field?: string; reason?: string } | undefined
+                if (data?.reason) return `${data.field ? `${data.field}: ` : ''}${data.reason}`
+              }
+              return t('admin.createTopic.createError')
+            })()}
           </p>
         )}
       </form>
