@@ -86,3 +86,32 @@ export function useUpdateTask(topicId: string) {
     },
   })
 }
+
+export function useTopicPrerequisites(topicId: string) {
+  return useQuery({
+    queryKey: ['topic-prerequisites', topicId],
+    queryFn: () => topicService.getPrerequisites(topicId),
+    enabled: Boolean(topicId),
+    staleTime: 60 * 1000,
+  })
+}
+
+export function useSetPrerequisites(topicId: string) {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (prerequisiteIds: string[]) =>
+      topicService.setPrerequisites(topicId, prerequisiteIds),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ['topic-prerequisites', topicId] })
+      void queryClient.invalidateQueries({ queryKey: ['learning-graph'] })
+    },
+  })
+}
+
+export function useLearningGraph() {
+  return useQuery({
+    queryKey: ['learning-graph'],
+    queryFn: () => topicService.getLearningGraph(),
+    staleTime: 60 * 1000,
+  })
+}
