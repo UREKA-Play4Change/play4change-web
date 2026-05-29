@@ -18,4 +18,5 @@ export const ROUTES = {
   ADMIN_TOPICS: '/admin/topics',
   ADMIN_TOPIC_DETAIL: '/admin/topics/:id',
   ADMIN_CREATE_TOPIC: '/admin/topics/new',
+  ADMIN_LEARNING_PATHS: '/admin/learning-paths',
 } as const
