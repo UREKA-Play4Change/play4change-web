@@ -139,7 +139,8 @@
       "openSidebar": "Apri barra laterale",
       "navAriaLabel": "Navigazione amministratore",
       "signingOut": "Disconnessione…",
-      "signOut": "Disconnetti"
+      "signOut": "Disconnetti",
+      "learningPaths": "Learning Paths"
     },
     "dashboard": {
       "welcomeBack": "Bentornato{{name}}!",
@@ -214,6 +215,27 @@
       "selectSourceAriaLabel": "Seleziona fonte del contenuto",
       "languageLabel": "Lingua del contenuto",
       "taskCountLabel": "Numero di attività"
+    },
+    "prerequisites": {
+      "heading": "Prerequisites",
+      "subheading": "Select topics that must be completed before this one unlocks.",
+      "noTopics": "No other active topics available.",
+      "current": "Current prerequisites",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "Prerequisites updated",
+      "saveError": "Failed to update prerequisites"
+    },
+    "learningPaths": {
+      "title": "Learning Paths",
+      "subtitle": "Manage prerequisite relationships between topics to create structured learning journeys.",
+      "totalTopics": "Total topics",
+      "topicsWithPrereqs": "Topics with prerequisites",
+      "totalEdges": "Total connections",
+      "graphHeading": "Prerequisite graph",
+      "noEdges": "No prerequisite relationships defined yet. Open a topic and set its prerequisites from the Prerequisites tab.",
+      "requires": "requires",
+      "hint": "To edit prerequisites, open any topic and use the Prerequisites tab."
     }
   },
   "components": {
@@ -280,5 +302,8 @@
       "description": "Si è verificato un errore imprevisto. Ricarica la pagina.",
       "refresh": "Ricarica pagina"
     }
+  },
+  "common": {
+    "cancel": "Cancel"
   }
 }

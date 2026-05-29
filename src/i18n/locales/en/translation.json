@@ -136,6 +136,7 @@
       "dashboard": "Dashboard",
       "myTopics": "My Topics",
       "createTopic": "Create Topic",
+      "learningPaths": "Learning Paths",
       "openSidebar": "Open sidebar",
       "navAriaLabel": "Admin navigation",
       "signingOut": "Signing out…",
@@ -215,7 +216,31 @@
       "selectSourceAriaLabel": "Select content source",
       "languageLabel": "Content language",
       "taskCountLabel": "Number of tasks"
+    },
+    "prerequisites": {
+      "heading": "Prerequisites",
+      "subheading": "Select topics that must be completed before this one unlocks.",
+      "noTopics": "No other active topics available.",
+      "current": "Current prerequisites",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "Prerequisites updated",
+      "saveError": "Failed to update prerequisites"
+    },
+    "learningPaths": {
+      "title": "Learning Paths",
+      "subtitle": "Manage prerequisite relationships between topics to create structured learning journeys.",
+      "totalTopics": "Total topics",
+      "topicsWithPrereqs": "Topics with prerequisites",
+      "totalEdges": "Total connections",
+      "graphHeading": "Prerequisite graph",
+      "noEdges": "No prerequisite relationships defined yet. Open a topic and set its prerequisites from the Prerequisites tab.",
+      "requires": "requires",
+      "hint": "To edit prerequisites, open any topic and use the Prerequisites tab."
     }
+  },
+  "common": {
+    "cancel": "Cancel"
   },
   "components": {
     "difficulty": {

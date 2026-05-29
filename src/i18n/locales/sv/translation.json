@@ -139,7 +139,8 @@
       "openSidebar": "Öppna sidofält",
       "navAriaLabel": "Administrationsnavigering",
       "signingOut": "Loggar ut…",
-      "signOut": "Logga ut"
+      "signOut": "Logga ut",
+      "learningPaths": "Learning Paths"
     },
     "dashboard": {
       "welcomeBack": "Välkommen tillbaka{{name}}!",
@@ -214,6 +215,27 @@
       "selectSourceAriaLabel": "Välj innehållskälla",
       "languageLabel": "Innehållsspråk",
       "taskCountLabel": "Antal uppgifter"
+    },
+    "prerequisites": {
+      "heading": "Prerequisites",
+      "subheading": "Select topics that must be completed before this one unlocks.",
+      "noTopics": "No other active topics available.",
+      "current": "Current prerequisites",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "Prerequisites updated",
+      "saveError": "Failed to update prerequisites"
+    },
+    "learningPaths": {
+      "title": "Learning Paths",
+      "subtitle": "Manage prerequisite relationships between topics to create structured learning journeys.",
+      "totalTopics": "Total topics",
+      "topicsWithPrereqs": "Topics with prerequisites",
+      "totalEdges": "Total connections",
+      "graphHeading": "Prerequisite graph",
+      "noEdges": "No prerequisite relationships defined yet. Open a topic and set its prerequisites from the Prerequisites tab.",
+      "requires": "requires",
+      "hint": "To edit prerequisites, open any topic and use the Prerequisites tab."
     }
   },
   "components": {
@@ -280,5 +302,8 @@
       "description": "Ett oväntat fel inträffade. Ladda om sidan.",
       "refresh": "Ladda om sidan"
     }
+  },
+  "common": {
+    "cancel": "Cancel"
   }
 }
