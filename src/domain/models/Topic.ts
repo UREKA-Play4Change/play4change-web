@@ -9,6 +9,22 @@ export interface TopicStats {
   [key: string]: number
 }
 
+export interface PrerequisiteTopic {
+  id: string
+  title: string
+  status: TopicStatus
+  category: string
+}
+
+export interface LearningGraphEdge {
+  topicId: string
+  prerequisiteTopicId: string
+}
+
+export interface LearningGraph {
+  edges: LearningGraphEdge[]
+}
+
 export interface Topic {
   id: string
   title: string
@@ -23,6 +39,7 @@ export interface Topic {
   expiresAt?: string | null
   generationLog?: unknown[]
   stats: TopicStats | null
+  prerequisites?: PrerequisiteTopic[]
 }
 
 export interface TaskQuestionStats {
