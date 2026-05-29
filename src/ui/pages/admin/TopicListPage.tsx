@@ -15,6 +15,14 @@ const STATUS_FILTER_VALUES: { labelKey: string; value: TopicStatus | 'ALL' }[] =
   { labelKey: 'admin.topicList.filters.failed', value: 'FAILED' },
 ]
 
+const STATUS_CHIP_COLOR: Record<TopicStatus | 'ALL', string> = {
+  ALL: 'bg-gray-100 text-gray-600',
+  ACTIVE: 'bg-green-100 text-green-700',
+  GENERATING: 'bg-blue-100 text-blue-700',
+  PENDING: 'bg-yellow-100 text-yellow-700',
+  FAILED: 'bg-red-100 text-red-700',
+}
+
 export default function TopicListPage() {
   const { t } = useTranslation()
   const [statusFilter, setStatusFilter] = useState<TopicStatus | 'ALL'>('ALL')
@@ -60,22 +68,36 @@ export default function TopicListPage() {
         role="group"
         aria-label={t('admin.topicList.filterAriaLabel')}
       >
-        {STATUS_FILTER_VALUES.map(f => (
-          <button
-            key={f.value}
-            onClick={() => {
-              setStatusFilter(f.value)
-            }}
-            aria-pressed={statusFilter === f.value}
-            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
-              statusFilter === f.value
-                ? 'bg-blue-600 text-white shadow-sm'
-                : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
-            }`}
-          >
-            {t(f.labelKey)}
-          </button>
-        ))}
+        {STATUS_FILTER_VALUES.map(f => {
+          const count =
+            f.value === 'ALL'
+              ? allTopics.length
+              : allTopics.filter(t => t.status === f.value).length
+          const active = statusFilter === f.value
+          return (
+            <button
+              key={f.value}
+              onClick={() => {
+                setStatusFilter(f.value)
+              }}
+              aria-pressed={active}
+              className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+                active
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              {t(f.labelKey)}
+              <span
+                className={`rounded-full px-1.5 py-0.5 text-xs font-semibold leading-none ${
+                  active ? 'bg-white/20 text-white' : STATUS_CHIP_COLOR[f.value]
+                }`}
+              >
+                {count}
+              </span>
+            </button>
+          )
+        })}
       </div>
 
       {isLoading ? (
