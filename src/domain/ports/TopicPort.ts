@@ -1,6 +1,8 @@
 import type {
   AdaptiveTaskAdmin,
   CreateTopicFromUrlRequest,
+  LearningGraph,
+  PrerequisiteTopic,
   TaskTemplate,
   Topic,
   TopicStatus,
@@ -16,4 +18,7 @@ export interface ITopicService {
   getTopicTasks(topicId: string): Promise<TaskTemplate[]>
   getTopicStruggleTasks(topicId: string): Promise<AdaptiveTaskAdmin[]>
   updateTask(templateId: string, request: UpdateTaskRequest): Promise<TaskTemplate>
+  getPrerequisites(topicId: string): Promise<PrerequisiteTopic[]>
+  setPrerequisites(topicId: string, prerequisiteIds: string[]): Promise<PrerequisiteTopic[]>
+  getLearningGraph(): Promise<LearningGraph>
 }
