@@ -1,6 +1,8 @@
 import type {
   AdaptiveTaskAdmin,
   CreateTopicFromUrlRequest,
+  LearningGraph,
+  PrerequisiteTopic,
   TaskTemplate,
   Topic,
   TopicStatus,
@@ -272,6 +274,12 @@ let taskStore: Record<string, TaskTemplate[]> = { ...MOCK_TASKS }
 let topicsStore = [...MOCK_TOPICS]
 let nextId = topicsStore.length + 1
 
+// In-memory prerequisite graph: topicId → list of prerequisite topicIds
+const prerequisiteStore = new Map<string, string[]>([
+  ['topic-003', ['topic-001']],
+  ['topic-005', ['topic-001', 'topic-003']],
+])
+
 export class MockTopicAdapter implements ITopicService {
   async createFromUrl(request: CreateTopicFromUrlRequest): Promise<Topic> {
     await delay(800)
@@ -378,5 +386,34 @@ export class MockTopicAdapter implements ITopicService {
       }
     }
     throw new Error(`TaskTemplate not found: ${templateId}`)
+  }
+
+  async getPrerequisites(topicId: string): Promise<PrerequisiteTopic[]> {
+    await delay(300)
+    const ids = prerequisiteStore.get(topicId) ?? []
+    return ids
+      .map(id => topicsStore.find(t => t.id === id))
+      .filter((t): t is Topic => t != null)
+      .map(t => ({ id: t.id, title: t.title, status: t.status, category: t.category }))
+  }
+
+  async setPrerequisites(topicId: string, prerequisiteIds: string[]): Promise<PrerequisiteTopic[]> {
+    await delay(500)
+    prerequisiteStore.set(topicId, prerequisiteIds)
+    return prerequisiteIds
+      .map(id => topicsStore.find(t => t.id === id))
+      .filter((t): t is Topic => t != null)
+      .map(t => ({ id: t.id, title: t.title, status: t.status, category: t.category }))
+  }
+
+  async getLearningGraph(): Promise<LearningGraph> {
+    await delay(400)
+    const edges: LearningGraph['edges'] = []
+    for (const [topicId, prereqIds] of prerequisiteStore) {
+      for (const prereqId of prereqIds) {
+        edges.push({ topicId, prerequisiteTopicId: prereqId })
+      }
+    }
+    return { edges }
   }
 }
