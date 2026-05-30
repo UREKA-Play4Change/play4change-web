@@ -110,3 +110,15 @@ export interface CreateTopicFromUrlRequest {
   category: string
   expiresAt?: string
 }
+
+export interface RecentEarner {
+  userId: string
+  earnedAt: string
+}
+
+export interface TopicBadgeStats {
+  totalIssued: number
+  enrolledCount: number
+  earnedPercentage: number
+  recentEarners: RecentEarner[]
+}

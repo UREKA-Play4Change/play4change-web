@@ -115,3 +115,15 @@ export function useLearningGraph() {
     staleTime: 60 * 1000,
   })
 }
+
+export function useAllTopicBadgeStats(topicIds: string[]) {
+  return useQuery({
+    queryKey: ['badge-stats', topicIds],
+    queryFn: () =>
+      Promise.all(
+        topicIds.map(id => topicService.getTopicBadgeStats(id).then(s => ({ topicId: id, ...s }))),
+      ),
+    enabled: topicIds.length > 0,
+    staleTime: 60 * 1000,
+  })
+}

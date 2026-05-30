@@ -5,6 +5,7 @@ import type {
   PrerequisiteTopic,
   TaskTemplate,
   Topic,
+  TopicBadgeStats,
   TopicStatus,
   UpdateTaskRequest,
 } from '@/domain/models/Topic'
@@ -86,6 +87,11 @@ export class TopicAdapter implements ITopicService {
 
   async getLearningGraph(): Promise<LearningGraph> {
     const response = await apiClient.get<LearningGraph>('/admin/learning-graph')
+    return response.data
+  }
+
+  async getTopicBadgeStats(topicId: string): Promise<TopicBadgeStats> {
+    const response = await apiClient.get<TopicBadgeStats>(`/admin/topics/${topicId}/badges`)
     return response.data
   }
 }

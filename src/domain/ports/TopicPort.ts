@@ -5,6 +5,7 @@ import type {
   PrerequisiteTopic,
   TaskTemplate,
   Topic,
+  TopicBadgeStats,
   TopicStatus,
   UpdateTaskRequest,
 } from '../models/Topic'
@@ -21,4 +22,5 @@ export interface ITopicService {
   getPrerequisites(topicId: string): Promise<PrerequisiteTopic[]>
   setPrerequisites(topicId: string, prerequisiteIds: string[]): Promise<PrerequisiteTopic[]>
   getLearningGraph(): Promise<LearningGraph>
+  getTopicBadgeStats(topicId: string): Promise<TopicBadgeStats>
 }
