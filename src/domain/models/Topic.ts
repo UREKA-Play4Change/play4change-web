@@ -31,7 +31,6 @@ export interface Topic {
   description: string
   status: TopicStatus
   difficulty: TopicDifficulty
-  durationDays: number
   taskCount: number
   language: string
   category: string
@@ -102,8 +101,7 @@ export interface UpdateTaskRequest {
 export interface CreateTopicFromUrlRequest {
   title: string
   description: string
-  urls: string[]
-  durationDays: number
+  url: string
   difficulty: TopicDifficulty
   language: string
   taskCount: number

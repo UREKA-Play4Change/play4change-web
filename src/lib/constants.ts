@@ -4,9 +4,7 @@ export const APP_TAGLINE =
 
 export const MAX_PDF_SIZE_MB = 100
 export const MAX_PDF_SIZE_BYTES = MAX_PDF_SIZE_MB * 1024 * 1024
-export const MAX_URLS = 5
-export const MIN_DURATION_DAYS = 3
-export const MAX_DURATION_DAYS = 7
+export const MAX_URLS = 1
 
 export const ROUTES = {
   HOME: '/',

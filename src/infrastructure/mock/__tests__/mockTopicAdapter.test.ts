@@ -30,8 +30,7 @@ describe('MockTopicAdapter', () => {
     await adapter.createFromUrl({
       title: 'Test Topic',
       description: 'Test description',
-      urls: ['https://example.com'],
-      durationDays: 5,
+      url: 'https://example.com',
       difficulty: 'BEGINNER',
       language: 'en',
       taskCount: 15,

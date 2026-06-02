@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { MAX_DURATION_DAYS, MIN_DURATION_DAYS } from '@/lib/constants'
+
+const MIN_DURATION_DAYS = 3
+const MAX_DURATION_DAYS = 7
 
 interface DurationSelectorProps {
   value: number

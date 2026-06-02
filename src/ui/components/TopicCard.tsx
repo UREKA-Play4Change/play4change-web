@@ -50,9 +50,6 @@ export default function TopicCard({ topic }: TopicCardProps) {
           {topic.difficulty.charAt(0) + topic.difficulty.slice(1).toLowerCase()}
         </span>
         <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs font-medium text-gray-500">
-          {topic.durationDays}d
-        </span>
-        <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs font-medium text-gray-500">
           {topic.category}
         </span>
       </div>

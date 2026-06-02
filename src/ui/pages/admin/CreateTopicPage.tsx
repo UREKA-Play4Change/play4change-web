@@ -7,7 +7,6 @@ import { useTopicProgress } from '@/application/hooks/useTopicProgress'
 import type { TopicDifficulty } from '@/domain/models/Topic'
 import FileUpload from '@/ui/components/FileUpload'
 import UrlInput from '@/ui/components/UrlInput'
-import DurationSelector from '@/ui/components/DurationSelector'
 import DifficultySelector from '@/ui/components/DifficultySelector'
 import TopicProgressStepper from '@/ui/components/TopicProgressStepper'
 import { validateUrls } from '@/lib/validators'
@@ -45,7 +44,6 @@ export default function CreateTopicPage() {
   const [sourceType, setSourceType] = useState<SourceType>('url')
   const [urls, setUrls] = useState([''])
   const [pdfFile, setPdfFile] = useState<File | null>(null)
-  const [durationDays, setDurationDays] = useState(5)
   const [difficulty, setDifficulty] = useState<TopicDifficulty>('BEGINNER')
   const [language, setLanguage] = useState('en')
   const [taskCount, setTaskCount] = useState(15)
@@ -83,8 +81,7 @@ export default function CreateTopicPage() {
         {
           title: title.trim(),
           description: description.trim(),
-          urls: urls.filter(Boolean),
-          durationDays,
+          url: urls[0] ?? '',
           difficulty,
           language,
           taskCount,
@@ -100,7 +97,6 @@ export default function CreateTopicPage() {
       const formData = new FormData()
       formData.append('title', title.trim())
       formData.append('description', description.trim())
-      formData.append('durationDays', String(durationDays))
       formData.append('difficulty', difficulty)
       formData.append('language', language)
       formData.append('taskCount', String(taskCount))
@@ -293,14 +289,6 @@ export default function CreateTopicPage() {
               error={errors.pdf}
             />
           )}
-        </div>
-
-        {/* Duration */}
-        <div>
-          <label className="mb-3 block text-sm font-medium text-gray-700">
-            {t('admin.createTopic.durationLabel')}
-          </label>
-          <DurationSelector value={durationDays} onChange={setDurationDays} />
         </div>
 
         {/* Difficulty */}

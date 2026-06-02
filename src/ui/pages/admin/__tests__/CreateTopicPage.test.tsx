@@ -111,7 +111,7 @@ describe('CreateTopicPage — URL form', () => {
           title: 'Test Topic',
           description: 'A test description',
           category: 'Science',
-          urls: ['https://example.com'],
+          url: 'https://example.com',
         }),
       )
     })

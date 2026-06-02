@@ -149,10 +149,6 @@ export default function TopicDetailPage() {
             <span className="text-xs text-gray-400">{topic.category}</span>
             <span className="text-xs text-gray-400">·</span>
             <span className="text-xs text-gray-400">
-              {topic.durationDays} {t('admin.topicDetail.daysUnit')}
-            </span>
-            <span className="text-xs text-gray-400">·</span>
-            <span className="text-xs text-gray-400">
               {topic.difficulty.charAt(0) + topic.difficulty.slice(1).toLowerCase()}
             </span>
           </div>
