@@ -122,9 +122,6 @@
       "magicLinkError": "Det gick inte att skicka magic-länken. Försök igen.",
       "sending": "Skickar…",
       "sendButton": "Skicka magic-länk",
-      "orContinueWith": "eller fortsätt med",
-      "continueGoogle": "Fortsätt med Google",
-      "continueFacebook": "Fortsätt med Facebook",
       "checkEmail": {
         "heading": "Kontrollera din e-post",
         "description": "Vi skickade en magic-länk till {{email}}. Klicka på länken i e-postmeddelandet för att logga in.",
