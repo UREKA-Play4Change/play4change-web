@@ -1,7 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { container } from '@/infrastructure/di/container'
 import { setTokens, clearTokens } from '@/infrastructure/api/apiClient'
-import type { OAuthProvider } from '@/domain/models/Auth'
 
 const authService = container.authService
 
@@ -38,18 +37,6 @@ export function useVerifyMagicLink() {
       } catch {
         // BroadcastChannel unavailable (e.g. some private browsing modes)
       }
-    },
-  })
-}
-
-export function useLoginWithOAuth() {
-  const queryClient = useQueryClient()
-  return useMutation({
-    mutationFn: ({ provider, credential }: { provider: OAuthProvider; credential: string }) =>
-      authService.loginWithOAuth(provider, credential),
-    onSuccess: tokens => {
-      setTokens(tokens)
-      void queryClient.resetQueries({ queryKey: ['auth', 'me'] })
     },
   })
 }
