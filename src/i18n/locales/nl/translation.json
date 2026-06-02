@@ -122,9 +122,6 @@
       "magicLinkError": "Kan magic link niet verzenden. Probeer het opnieuw.",
       "sending": "Verzenden…",
       "sendButton": "Stuur magic link",
-      "orContinueWith": "of doorgaan met",
-      "continueGoogle": "Doorgaan met Google",
-      "continueFacebook": "Doorgaan met Facebook",
       "checkEmail": {
         "heading": "Controleer je e-mail",
         "description": "We hebben een magic link gestuurd naar {{email}}. Klik op de link in de e-mail om in te loggen.",

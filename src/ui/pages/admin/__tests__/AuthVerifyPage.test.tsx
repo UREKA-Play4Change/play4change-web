@@ -18,7 +18,6 @@ vi.mock('@/infrastructure/di/container', () => ({
     authService: {
       sendMagicLink: vi.fn(),
       verifyMagicLink: mockVerifyMagicLink,
-      loginWithOAuth: vi.fn(),
       refreshToken: vi.fn(),
       logout: vi.fn(),
       getCurrentUser: vi.fn().mockRejectedValue(new Error('not authenticated')),

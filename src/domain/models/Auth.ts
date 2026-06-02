@@ -1,5 +1,3 @@
-export type OAuthProvider = 'GOOGLE' | 'FACEBOOK'
-
 export interface AuthTokens {
   accessToken: string
   refreshToken: string

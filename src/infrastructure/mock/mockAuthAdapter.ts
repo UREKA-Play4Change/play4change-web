@@ -1,4 +1,4 @@
-import type { AdminUser, AuthTokens, OAuthProvider } from '@/domain/models/Auth'
+import type { AdminUser, AuthTokens } from '@/domain/models/Auth'
 import type { IAuthService } from '@/domain/ports/AuthPort'
 
 const delay = (ms = 500) => new Promise(r => setTimeout(r, ms))
@@ -22,11 +22,6 @@ export class MockAuthAdapter implements IAuthService {
   }
 
   async verifyMagicLink(_token: string): Promise<AuthTokens> {
-    await delay()
-    return { ...MOCK_TOKENS }
-  }
-
-  async loginWithOAuth(_provider: OAuthProvider, _credential: string): Promise<AuthTokens> {
     await delay()
     return { ...MOCK_TOKENS }
   }

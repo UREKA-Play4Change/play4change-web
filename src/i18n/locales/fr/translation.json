@@ -122,9 +122,6 @@
       "magicLinkError": "Échec de l'envoi du lien magique. Veuillez réessayer.",
       "sending": "Envoi en cours…",
       "sendButton": "Envoyer le lien magique",
-      "orContinueWith": "ou continuer avec",
-      "continueGoogle": "Continuer avec Google",
-      "continueFacebook": "Continuer avec Facebook",
       "checkEmail": {
         "heading": "Vérifiez vos e-mails",
         "description": "Nous avons envoyé un lien magique à {{email}}. Cliquez sur le lien dans l'e-mail pour vous connecter.",

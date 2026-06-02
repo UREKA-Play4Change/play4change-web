@@ -122,9 +122,6 @@
       "magicLinkError": "Nie udało się wysłać linku magicznego. Spróbuj ponownie.",
       "sending": "Wysyłanie…",
       "sendButton": "Wyślij link magiczny",
-      "orContinueWith": "lub kontynuuj przez",
-      "continueGoogle": "Kontynuuj z Google",
-      "continueFacebook": "Kontynuuj z Facebook",
       "checkEmail": {
         "heading": "Sprawdź swoją skrzynkę",
         "description": "Wysłaliśmy link magiczny na adres {{email}}. Kliknij link w e-mailu, aby się zalogować.",

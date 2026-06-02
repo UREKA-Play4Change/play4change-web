@@ -1,4 +1,4 @@
-import type { AdminUser, AuthTokens, OAuthProvider } from '@/domain/models/Auth'
+import type { AdminUser, AuthTokens } from '@/domain/models/Auth'
 import type { IAuthService } from '@/domain/ports/AuthPort'
 import apiClient from './apiClient'
 
@@ -9,11 +9,6 @@ export class AuthAdapter implements IAuthService {
 
   async verifyMagicLink(token: string): Promise<AuthTokens> {
     const response = await apiClient.post<AuthTokens>('/auth/magic-link/verify', { token })
-    return response.data
-  }
-
-  async loginWithOAuth(provider: OAuthProvider, credential: string): Promise<AuthTokens> {
-    const response = await apiClient.post<AuthTokens>('/auth/oauth', { provider, credential })
     return response.data
   }
 

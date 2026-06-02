@@ -122,9 +122,6 @@
       "magicLinkError": "Magic Link konnte nicht gesendet werden. Bitte versuche es erneut.",
       "sending": "Sende…",
       "sendButton": "Magic Link senden",
-      "orContinueWith": "oder weiter mit",
-      "continueGoogle": "Mit Google fortfahren",
-      "continueFacebook": "Mit Facebook fortfahren",
       "checkEmail": {
         "heading": "Überprüfe deine E-Mails",
         "description": "Wir haben einen Magic Link an {{email}} gesendet. Klicke auf den Link in der E-Mail, um dich anzumelden.",
