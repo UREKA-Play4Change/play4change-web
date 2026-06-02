@@ -122,9 +122,6 @@
       "magicLinkError": "Failed to send magic link. Please try again.",
       "sending": "Sending…",
       "sendButton": "Send magic link",
-      "orContinueWith": "or continue with",
-      "continueGoogle": "Continue with Google",
-      "continueFacebook": "Continue with Facebook",
       "checkEmail": {
         "heading": "Check your email",
         "description": "We sent a sign-in code to {{email}}. Copy the code from the email and paste it below.",
