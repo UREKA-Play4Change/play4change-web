@@ -4,7 +4,7 @@ export type TopicDifficulty = 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED'
 export interface TopicStats {
   enrolledUsers: number
   completionRate: number
-  averageScore: number
+  totalScore: number
   activeUsers: number
   [key: string]: number
 }
@@ -72,10 +72,11 @@ export interface AdaptiveTaskAdmin {
   errorPattern: 'WRONG_CONCEPT' | 'PARTIAL_UNDERSTANDING' | 'READING_ERROR' | 'TIME_PRESSURE'
   sessionDetectedAt: string
   enrollmentId: string
+  originalTaskTemplateId: string
+  originalTaskTitle: string
   title: string
   description: string
   hint: string | null
-  pointsReward: number
   orderIndex: number
   options: string[] | null
   correctAnswer: number | null
