@@ -87,6 +87,17 @@ export function useUpdateTask(topicId: string) {
   })
 }
 
+export function useUpdateAdaptiveTask(topicId: string) {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({ taskId, request }: { taskId: string; request: UpdateTaskRequest }) =>
+      topicService.updateAdaptiveTask(taskId, request),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ['topic-struggle-tasks', topicId] })
+    },
+  })
+}
+
 export function useTopicPrerequisites(topicId: string) {
   return useQuery({
     queryKey: ['topic-prerequisites', topicId],

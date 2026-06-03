@@ -19,6 +19,7 @@ export interface ITopicService {
   getTopicTasks(topicId: string): Promise<TaskTemplate[]>
   getTopicStruggleTasks(topicId: string): Promise<AdaptiveTaskAdmin[]>
   updateTask(templateId: string, request: UpdateTaskRequest): Promise<TaskTemplate>
+  updateAdaptiveTask(taskId: string, request: UpdateTaskRequest): Promise<AdaptiveTaskAdmin>
   getPrerequisites(topicId: string): Promise<PrerequisiteTopic[]>
   setPrerequisites(topicId: string, prerequisiteIds: string[]): Promise<PrerequisiteTopic[]>
   getLearningGraph(): Promise<LearningGraph>

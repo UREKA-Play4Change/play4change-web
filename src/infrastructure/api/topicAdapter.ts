@@ -68,6 +68,14 @@ export class TopicAdapter implements ITopicService {
     return response.data
   }
 
+  async updateAdaptiveTask(taskId: string, request: UpdateTaskRequest): Promise<AdaptiveTaskAdmin> {
+    const response = await apiClient.put<AdaptiveTaskAdmin>(
+      `/admin/adaptive-tasks/${taskId}`,
+      request,
+    )
+    return response.data
+  }
+
   async getPrerequisites(topicId: string): Promise<PrerequisiteTopic[]> {
     const response = await apiClient.get<PrerequisiteTopic[]>(
       `/admin/topics/${topicId}/prerequisites`,
