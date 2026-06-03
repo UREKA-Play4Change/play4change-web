@@ -180,7 +180,7 @@
       "enrolledUsers": "Eingeschriebene Nutzer",
       "completionRate": "Abschlussrate",
       "ofEnrolledUsers": "der eingeschriebenen Nutzer",
-      "averageScore": "Durchschnittspunktzahl",
+      "totalScore": "Gesamtpunktzahl",
       "activeUsers": "Aktive Nutzer",
       "currentlyLearning": "lernen gerade",
       "statsNotAvailable": "Statistiken sind verfügbar, sobald das Thema aktiv ist.",
@@ -203,7 +203,6 @@
       "sourceUrl": "URL(s)",
       "sourcePdf": "PDF hochladen",
       "pdfRequired": "Bitte lade eine PDF-Datei hoch",
-      "durationLabel": "Dauer (Tage)",
       "difficultyLabel": "Schwierigkeitsgrad",
       "creating": "Wird erstellt…",
       "createButton": "Thema erstellen",
@@ -250,10 +249,6 @@
         "description": "Vorwissen erforderlich"
       },
       "ariaLabel": "Schwierigkeitsgrad auswählen"
-    },
-    "duration": {
-      "ariaLabel": "Dauer in Tagen auswählen",
-      "dayUnit": "T"
     },
     "fileUpload": {
       "ariaLabel": "PDF-Datei hochladen, max {{maxSize}} MB",

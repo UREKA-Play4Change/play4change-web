@@ -182,7 +182,7 @@
       "enrolledUsers": "Zapisani użytkownicy",
       "completionRate": "Wskaźnik ukończenia",
       "ofEnrolledUsers": "zapisanych użytkowników",
-      "averageScore": "Średni wynik",
+      "totalScore": "Łączny wynik",
       "activeUsers": "Aktywni użytkownicy",
       "currentlyLearning": "teraz się uczy",
       "statsNotAvailable": "Statystyki będą dostępne po aktywowaniu tematu.",
@@ -205,7 +205,6 @@
       "sourceUrl": "URL(e)",
       "sourcePdf": "Prześlij PDF",
       "pdfRequired": "Prześlij plik PDF",
-      "durationLabel": "Czas trwania (dni)",
       "difficultyLabel": "Poziom trudności",
       "creating": "Tworzenie…",
       "createButton": "Utwórz temat",
@@ -252,10 +251,6 @@
         "description": "Wymagana wiedza wstępna"
       },
       "ariaLabel": "Wybierz poziom trudności"
-    },
-    "duration": {
-      "ariaLabel": "Wybierz czas trwania w dniach",
-      "dayUnit": "d"
     },
     "fileUpload": {
       "ariaLabel": "Prześlij plik PDF, maks {{maxSize}} MB",

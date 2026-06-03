@@ -180,7 +180,7 @@
       "enrolledUsers": "Ingeschreven gebruikers",
       "completionRate": "Voltooiingspercentage",
       "ofEnrolledUsers": "van ingeschreven gebruikers",
-      "averageScore": "Gemiddelde score",
+      "totalScore": "Totaalscore",
       "activeUsers": "Actieve gebruikers",
       "currentlyLearning": "leren momenteel",
       "statsNotAvailable": "Statistieken zijn beschikbaar zodra het onderwerp actief is.",
@@ -203,7 +203,6 @@
       "sourceUrl": "URL('s)",
       "sourcePdf": "PDF uploaden",
       "pdfRequired": "Upload een PDF-bestand",
-      "durationLabel": "Duur (dagen)",
       "difficultyLabel": "Moeilijkheidsgraad",
       "creating": "Aanmaken…",
       "createButton": "Onderwerp aanmaken",
@@ -250,10 +249,6 @@
         "description": "Voorkennis vereist"
       },
       "ariaLabel": "Selecteer moeilijkheidsgraad"
-    },
-    "duration": {
-      "ariaLabel": "Selecteer duur in dagen",
-      "dayUnit": "d"
     },
     "fileUpload": {
       "ariaLabel": "PDF-bestand uploaden, max {{maxSize}} MB",

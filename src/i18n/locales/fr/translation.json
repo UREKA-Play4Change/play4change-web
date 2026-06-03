@@ -180,7 +180,7 @@
       "enrolledUsers": "Utilisateurs inscrits",
       "completionRate": "Taux de complétion",
       "ofEnrolledUsers": "des utilisateurs inscrits",
-      "averageScore": "Score moyen",
+      "totalScore": "Score total",
       "activeUsers": "Utilisateurs actifs",
       "currentlyLearning": "en cours d'apprentissage",
       "statsNotAvailable": "Les statistiques seront disponibles une fois le sujet actif.",
@@ -203,7 +203,6 @@
       "sourceUrl": "URL(s)",
       "sourcePdf": "Télécharger un PDF",
       "pdfRequired": "Veuillez télécharger un fichier PDF",
-      "durationLabel": "Durée (jours)",
       "difficultyLabel": "Difficulté",
       "creating": "Création en cours…",
       "createButton": "Créer le sujet",
@@ -250,10 +249,6 @@
         "description": "Connaissances préalables requises"
       },
       "ariaLabel": "Sélectionner la difficulté"
-    },
-    "duration": {
-      "ariaLabel": "Sélectionner la durée en jours",
-      "dayUnit": "j"
     },
     "fileUpload": {
       "ariaLabel": "Télécharger un fichier PDF, max {{maxSize}} Mo",

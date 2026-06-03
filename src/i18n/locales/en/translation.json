@@ -180,7 +180,7 @@
       "enrolledUsers": "Enrolled Users",
       "completionRate": "Completion Rate",
       "ofEnrolledUsers": "of enrolled users",
-      "averageScore": "Average Score",
+      "totalScore": "Total Score",
       "activeUsers": "Active Users",
       "currentlyLearning": "currently learning",
       "statsNotAvailable": "Statistics will be available once the topic is active.",
@@ -204,7 +204,6 @@
       "sourceUrl": "URL(s)",
       "sourcePdf": "PDF Upload",
       "pdfRequired": "Please upload a PDF file",
-      "durationLabel": "Duration (days)",
       "difficultyLabel": "Difficulty",
       "creating": "Creating…",
       "createButton": "Create Topic",
@@ -254,10 +253,6 @@
         "description": "Prior knowledge required"
       },
       "ariaLabel": "Select difficulty"
-    },
-    "duration": {
-      "ariaLabel": "Select duration in days",
-      "dayUnit": "d"
     },
     "fileUpload": {
       "ariaLabel": "Upload PDF file, max {{maxSize}}MB",

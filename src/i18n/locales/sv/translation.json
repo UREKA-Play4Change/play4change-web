@@ -180,7 +180,7 @@
       "enrolledUsers": "Registrerade användare",
       "completionRate": "Slutförandegrad",
       "ofEnrolledUsers": "av registrerade användare",
-      "averageScore": "Genomsnittligt poäng",
+      "totalScore": "Total poäng",
       "activeUsers": "Aktiva användare",
       "currentlyLearning": "lär sig just nu",
       "statsNotAvailable": "Statistik kommer att vara tillgänglig när ämnet är aktivt.",
@@ -203,7 +203,6 @@
       "sourceUrl": "URL:er",
       "sourcePdf": "Ladda upp PDF",
       "pdfRequired": "Ladda upp en PDF-fil",
-      "durationLabel": "Varaktighet (dagar)",
       "difficultyLabel": "Svårighetsgrad",
       "creating": "Skapar…",
       "createButton": "Skapa ämne",
@@ -250,10 +249,6 @@
         "description": "Förkunskaper krävs"
       },
       "ariaLabel": "Välj svårighetsgrad"
-    },
-    "duration": {
-      "ariaLabel": "Välj varaktighet i dagar",
-      "dayUnit": "d"
     },
     "fileUpload": {
       "ariaLabel": "Ladda upp PDF-fil, max {{maxSize}} MB",
