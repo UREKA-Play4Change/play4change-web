@@ -25,6 +25,7 @@ const LearningPathsPage = lazy(() => import('@/ui/pages/admin/LearningPathsPage'
 const ReportListPage = lazy(() => import('@/ui/pages/admin/ReportListPage'))
 const ReportDetailPage = lazy(() => import('@/ui/pages/admin/ReportDetailPage'))
 const UserListPage = lazy(() => import('@/ui/pages/admin/UserListPage'))
+const UserDetailPage = lazy(() => import('@/ui/pages/admin/UserDetailPage'))
 const BadgeOverviewPage = lazy(() => import('@/ui/pages/admin/BadgeOverviewPage'))
 const ProtectedRoute = lazy(() => import('@/ui/components/ProtectedRoute'))
 const AdminLayout = lazy(() => import('@/ui/layouts/AdminLayout'))
@@ -136,6 +137,7 @@ function App() {
                 <Route path={ROUTES.ADMIN_REPORTS} element={<ReportListPage />} />
                 <Route path={ROUTES.ADMIN_REPORT_DETAIL} element={<ReportDetailPage />} />
                 <Route path={ROUTES.ADMIN_USERS} element={<UserListPage />} />
+                <Route path={ROUTES.ADMIN_USER_DETAIL} element={<UserDetailPage />} />
                 <Route path={ROUTES.ADMIN_BADGES} element={<BadgeOverviewPage />} />
               </Route>
             </Route>

@@ -94,6 +94,12 @@ export default function TaskQuestionsPanel({ topicId }: Props) {
                             {task.stats.totalAttempts} attempts
                           </span>
                         )}
+                        {task.stats.struggleTriggerCount > 0 && (
+                          <span className="text-xs text-orange-500">
+                            {task.stats.struggleTriggerCount} struggle
+                            {task.stats.struggleTriggerCount !== 1 ? 's' : ''} triggered
+                          </span>
+                        )}
                       </div>
                       <p className="text-sm font-medium text-gray-900">{task.title}</p>
                       <p className="mt-0.5 text-xs text-gray-500 line-clamp-2">

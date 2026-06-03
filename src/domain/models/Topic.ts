@@ -46,6 +46,13 @@ export interface TaskQuestionStats {
   successCount: number
   successRate: number
   avgPointsAwarded: number
+  struggleTriggerCount: number
+}
+
+export interface StrugglePathStats {
+  originalTaskTemplateId: string
+  errorPattern: 'WRONG_CONCEPT' | 'PARTIAL_UNDERSTANDING' | 'READING_ERROR' | 'TIME_PRESSURE'
+  totalSessions: number
 }
 
 export interface TaskTemplate {

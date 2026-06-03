@@ -3,6 +3,7 @@ import type {
   CreateTopicFromUrlRequest,
   LearningGraph,
   PrerequisiteTopic,
+  StrugglePathStats,
   TaskTemplate,
   Topic,
   TopicBadgeStats,
@@ -18,6 +19,7 @@ export interface ITopicService {
   regenerateTopic(id: string): Promise<Topic>
   getTopicTasks(topicId: string): Promise<TaskTemplate[]>
   getTopicStruggleTasks(topicId: string): Promise<AdaptiveTaskAdmin[]>
+  getStrugglePathStats(topicId: string): Promise<StrugglePathStats[]>
   updateTask(templateId: string, request: UpdateTaskRequest): Promise<TaskTemplate>
   updateAdaptiveTask(taskId: string, request: UpdateTaskRequest): Promise<AdaptiveTaskAdmin>
   getPrerequisites(topicId: string): Promise<PrerequisiteTopic[]>

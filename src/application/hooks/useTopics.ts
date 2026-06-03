@@ -12,7 +12,8 @@ export function useTopics(status?: TopicStatus) {
   return useQuery({
     queryKey: ['topics', status],
     queryFn: () => topicService.listMyTopics(status),
-    staleTime: 30 * 1000, // 30 seconds
+    staleTime: 0,
+    refetchInterval: 30_000,
     select: data => (Array.isArray(data) ? data : []),
   })
 }
@@ -22,8 +23,8 @@ export function useTopic(id: string) {
     queryKey: ['topics', id],
     queryFn: () => topicService.getTopicById(id),
     enabled: Boolean(id),
-    staleTime: 30 * 1000,
-    refetchInterval: query => (query.state.data?.status === 'ACTIVE' ? 60_000 : false),
+    staleTime: 0,
+    refetchInterval: query => (query.state.data?.status === 'GENERATING' ? 10_000 : 30_000),
   })
 }
 
@@ -63,7 +64,8 @@ export function useTopicTasks(topicId: string) {
     queryKey: ['topic-tasks', topicId],
     queryFn: () => topicService.getTopicTasks(topicId),
     enabled: Boolean(topicId),
-    staleTime: 60 * 1000,
+    staleTime: 0,
+    refetchInterval: 30_000,
   })
 }
 
@@ -72,7 +74,18 @@ export function useTopicStruggleTasks(topicId: string) {
     queryKey: ['topic-struggle-tasks', topicId],
     queryFn: () => topicService.getTopicStruggleTasks(topicId),
     enabled: Boolean(topicId),
-    staleTime: 60 * 1000,
+    staleTime: 0,
+    refetchInterval: 30_000,
+  })
+}
+
+export function useStrugglePathStats(topicId: string) {
+  return useQuery({
+    queryKey: ['struggle-path-stats', topicId],
+    queryFn: () => topicService.getStrugglePathStats(topicId),
+    enabled: Boolean(topicId),
+    staleTime: 0,
+    refetchInterval: 30_000,
   })
 }
 

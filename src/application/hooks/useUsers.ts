@@ -20,3 +20,40 @@ export function usePromoteUser() {
     },
   })
 }
+
+export function useUserDetail(userId: string) {
+  return useQuery({
+    queryKey: ['user-detail', userId],
+    queryFn: () => userService.getUserById(userId),
+    enabled: Boolean(userId),
+    staleTime: 30 * 1000,
+  })
+}
+
+export function useUserEnrollments(userId: string) {
+  return useQuery({
+    queryKey: ['user-enrollments', userId],
+    queryFn: () => userService.getUserEnrollments(userId),
+    enabled: Boolean(userId),
+    staleTime: 0,
+    refetchInterval: 30_000,
+  })
+}
+
+export function useUserBadges(userId: string) {
+  return useQuery({
+    queryKey: ['user-badges', userId],
+    queryFn: () => userService.getUserBadges(userId),
+    enabled: Boolean(userId),
+    staleTime: 30 * 1000,
+  })
+}
+
+export function useUserEnrollmentRoadmap(userId: string, enrollmentId: string) {
+  return useQuery({
+    queryKey: ['user-roadmap', userId, enrollmentId],
+    queryFn: () => userService.getUserEnrollmentRoadmap(userId, enrollmentId),
+    enabled: Boolean(userId) && Boolean(enrollmentId),
+    staleTime: 0,
+  })
+}

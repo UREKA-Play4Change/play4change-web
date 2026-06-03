@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import { toast } from 'sonner'
-import { useTopicStruggleTasks, useUpdateAdaptiveTask } from '@/application/hooks/useTopics'
-import type { AdaptiveTaskAdmin, UpdateTaskRequest } from '@/domain/models/Topic'
+import {
+  useStrugglePathStats,
+  useTopicStruggleTasks,
+  useUpdateAdaptiveTask,
+} from '@/application/hooks/useTopics'
+import type { AdaptiveTaskAdmin, StrugglePathStats, UpdateTaskRequest } from '@/domain/models/Topic'
 import EditTaskModal from './EditTaskModal'
 
 interface Props {
@@ -27,9 +31,16 @@ interface PathGroup {
   originalTaskTitle: string
   errorPattern: AdaptiveTaskAdmin['errorPattern']
   tasks: AdaptiveTaskAdmin[]
+  totalSessions: number
+  adaptiveSuccessRate: number | null
 }
 
-function groupIntoPaths(tasks: AdaptiveTaskAdmin[]): PathGroup[] {
+function groupIntoPaths(tasks: AdaptiveTaskAdmin[], pathStats: StrugglePathStats[]): PathGroup[] {
+  const statsMap = new Map<string, number>()
+  for (const s of pathStats) {
+    statsMap.set(`${s.originalTaskTemplateId}::${s.errorPattern}`, s.totalSessions)
+  }
+
   const map = new Map<string, PathGroup>()
   for (const task of tasks) {
     const key = `${task.originalTaskTemplateId}::${task.errorPattern}`
@@ -39,16 +50,28 @@ function groupIntoPaths(tasks: AdaptiveTaskAdmin[]): PathGroup[] {
         originalTaskTitle: task.originalTaskTitle,
         errorPattern: task.errorPattern,
         tasks: [],
+        totalSessions: statsMap.get(key) ?? 0,
+        adaptiveSuccessRate: null,
       })
     }
     const group = map.get(key)
     if (group) group.tasks.push(task)
   }
+
+  // Compute adaptive success rate from completed tasks
+  for (const group of map.values()) {
+    const completed = group.tasks.filter(t => t.isCorrect !== null)
+    if (completed.length > 0) {
+      group.adaptiveSuccessRate = completed.filter(t => t.isCorrect).length / completed.length
+    }
+  }
+
   return Array.from(map.values())
 }
 
 export default function StruggleTasksPanel({ topicId }: Props) {
   const { data: tasks, isLoading, isError } = useTopicStruggleTasks(topicId)
+  const { data: pathStats } = useStrugglePathStats(topicId)
   const updateAdaptiveTask = useUpdateAdaptiveTask(topicId)
   const [editing, setEditing] = useState<AdaptiveTaskAdmin | null>(null)
   const [expanded, setExpanded] = useState<Set<string>>(new Set())
@@ -101,7 +124,7 @@ export default function StruggleTasksPanel({ topicId }: Props) {
     )
   }
 
-  const groups = groupIntoPaths(tasks)
+  const groups = groupIntoPaths(tasks, pathStats ?? [])
 
   return (
     <>
@@ -128,6 +151,16 @@ export default function StruggleTasksPanel({ topicId }: Props) {
                     <span className="text-xs text-gray-400">
                       {group.tasks.length} adaptive task{group.tasks.length !== 1 ? 's' : ''}
                     </span>
+                    <span className="text-xs text-gray-500">
+                      · used {group.totalSessions} time{group.totalSessions !== 1 ? 's' : ''}
+                    </span>
+                    {group.adaptiveSuccessRate !== null && (
+                      <span
+                        className={`text-xs font-medium ${group.adaptiveSuccessRate >= 0.6 ? 'text-green-600' : group.adaptiveSuccessRate >= 0.3 ? 'text-orange-500' : 'text-red-500'}`}
+                      >
+                        · {Math.round(group.adaptiveSuccessRate * 100)}% pass rate
+                      </span>
+                    )}
                   </div>
                   <p className="text-sm font-semibold text-gray-900">
                     Triggered by: {group.originalTaskTitle}

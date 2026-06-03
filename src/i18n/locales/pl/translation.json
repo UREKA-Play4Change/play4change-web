@@ -234,6 +234,40 @@
       "noEdges": "No prerequisite relationships defined yet. Open a topic and set its prerequisites from the Prerequisites tab.",
       "requires": "requires",
       "hint": "To edit prerequisites, open any topic and use the Prerequisites tab."
+    },
+    "badges": {
+      "heading": "Badges",
+      "subtitle": "Track badge issuance and completion rates across all topics.",
+      "colTopic": "Topic",
+      "colIssued": "Issued",
+      "colEnrolled": "Enrolled",
+      "colEarned": "% Earned",
+      "noEarners": "No earners yet",
+      "recentEarnersHeading": "Recent earners",
+      "noRecentEarners": "No recent earners yet.",
+      "loadError": "Failed to load badge data."
+    },
+    "users": {
+      "heading": "Users",
+      "subtitle": "Manage learners and their access to the platform.",
+      "loadError": "Failed to load users.",
+      "colEmail": "Email",
+      "colName": "Name",
+      "colRole": "Role",
+      "colTopics": "Topics",
+      "colJoined": "Joined",
+      "roleLabel": "Role",
+      "promoteButton": "Make admin",
+      "promotedSuccess": "User promoted to admin.",
+      "promoteDialogTitle": "Promote to admin?",
+      "promoteDialogBody": "This will give {{name}} full admin access. This action cannot be undone.",
+      "confirmPromote": "Confirm",
+      "promoting": "Promoting…",
+      "cancel": "Cancel",
+      "prevPage": "Previous",
+      "nextPage": "Next",
+      "pageOf": "Page {{current}} of {{total}}",
+      "paginationAriaLabel": "Pagination"
     }
   },
   "components": {

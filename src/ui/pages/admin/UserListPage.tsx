@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { useUsers, usePromoteUser } from '@/application/hooks/useUsers'
@@ -77,7 +78,14 @@ export default function UserListPage() {
           <tbody className="divide-y divide-gray-100">
             {users.map(user => (
               <tr key={user.id} className="transition-colors hover:bg-gray-50">
-                <td className="px-6 py-4 text-gray-900">{user.email}</td>
+                <td className="px-6 py-4 text-gray-900">
+                  <Link
+                    to={`/admin/users/${user.id}`}
+                    className="font-medium text-blue-600 hover:underline"
+                  >
+                    {user.email}
+                  </Link>
+                </td>
                 <td className="px-6 py-4 text-gray-500">{user.name ?? '—'}</td>
                 <td className="px-6 py-4">
                   <span

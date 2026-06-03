@@ -3,6 +3,7 @@ import type {
   CreateTopicFromUrlRequest,
   LearningGraph,
   PrerequisiteTopic,
+  StrugglePathStats,
   TaskTemplate,
   Topic,
   TopicBadgeStats,
@@ -59,6 +60,13 @@ export class TopicAdapter implements ITopicService {
   async getTopicStruggleTasks(topicId: string): Promise<AdaptiveTaskAdmin[]> {
     const response = await apiClient.get<AdaptiveTaskAdmin[]>(
       `/admin/topics/${topicId}/struggle-tasks`,
+    )
+    return response.data
+  }
+
+  async getStrugglePathStats(topicId: string): Promise<StrugglePathStats[]> {
+    const response = await apiClient.get<StrugglePathStats[]>(
+      `/admin/topics/${topicId}/struggle-path-stats`,
     )
     return response.data
   }
