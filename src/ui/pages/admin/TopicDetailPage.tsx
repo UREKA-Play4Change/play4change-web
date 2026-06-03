@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useQueryClient } from '@tanstack/react-query'
 import { useTopic, useRegenerateTopic } from '@/application/hooks/useTopics'
 import { useTopicProgress } from '@/application/hooks/useTopicProgress'
-import { formatDate, formatPercentage, formatScore } from '@/lib/formatters'
+import { formatDate, formatPercentage } from '@/lib/formatters'
 import { ROUTES } from '@/lib/constants'
 import type { PhaseLogEntry, TopicStats } from '@/domain/models/Topic'
 import ErrorState from '@/ui/components/ErrorState'
@@ -41,7 +41,7 @@ const STATUS_STYLES: Record<string, string> = {
 }
 
 function StatsGrid({ stats, t }: { stats: TopicStats; t: (key: string) => string }) {
-  const knownKeys = ['enrolledUsers', 'completionRate', 'averageScore', 'activeUsers']
+  const knownKeys = ['enrolledUsers', 'completionRate', 'totalScore', 'activeUsers']
   const extraKeys = Object.keys(stats).filter(k => !knownKeys.includes(k))
 
   return (
@@ -52,10 +52,7 @@ function StatsGrid({ stats, t }: { stats: TopicStats; t: (key: string) => string
         value={formatPercentage(stats.completionRate)}
         sub={t('admin.topicDetail.ofEnrolledUsers')}
       />
-      <StatCard
-        label={t('admin.topicDetail.averageScore')}
-        value={formatScore(stats.averageScore)}
-      />
+      <StatCard label={t('admin.topicDetail.totalScore')} value={stats.totalScore} />
       <StatCard
         label={t('admin.topicDetail.activeUsers')}
         value={stats.activeUsers}
@@ -71,7 +68,7 @@ function StatsGrid({ stats, t }: { stats: TopicStats; t: (key: string) => string
 const TABS: { id: Tab; label: string }[] = [
   { id: 'overview', label: 'Overview' },
   { id: 'questions', label: 'Questions' },
-  { id: 'struggle', label: 'Struggle Questions' },
+  { id: 'struggle', label: 'Adaptive Paths' },
   { id: 'log', label: 'Generation Log' },
   { id: 'prerequisites', label: 'Prerequisites' },
 ]
