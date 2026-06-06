@@ -22,7 +22,12 @@ function deleteCookie(name: string) {
 let accessToken: string | null = sessionStorage.getItem(SESSION_ACCESS_KEY)
 let refreshToken: string | null = getCookie(COOKIE_REFRESH_KEY)
 let isRefreshing = false
-let refreshSubscribers: ((token: string) => void)[] = []
+
+type RefreshSubscriber = {
+  resolve: (token: string) => void
+  reject: (reason: unknown) => void
+}
+let refreshSubscribers: RefreshSubscriber[] = []
 
 export function setTokens(tokens: { accessToken: string; refreshToken: string }) {
   accessToken = tokens.accessToken
@@ -46,20 +51,32 @@ export function getRefreshToken() {
   return refreshToken
 }
 
-function subscribeTokenRefresh(cb: (token: string) => void) {
-  refreshSubscribers.push(cb)
+function subscribeTokenRefresh(
+  resolve: (token: string) => void,
+  reject: (reason: unknown) => void,
+) {
+  refreshSubscribers.push({ resolve, reject })
 }
 
 function onTokenRefreshed(token: string) {
-  refreshSubscribers.forEach(cb => {
-    cb(token)
-  })
+  // Capture and clear before iterating so any callback that synchronously
+  // triggers a new subscription doesn't interfere with this batch.
+  const subscribers = refreshSubscribers
   refreshSubscribers = []
+  subscribers.forEach(({ resolve }) => {
+    resolve(token)
+  })
 }
 
-function onRefreshFailed() {
+function onRefreshFailed(error: unknown) {
+  // Reject every queued Promise so those requests fail immediately instead of
+  // hanging forever with no resolution.
+  const subscribers = refreshSubscribers
   refreshSubscribers = []
   clearTokens()
+  subscribers.forEach(({ reject }) => {
+    reject(error)
+  })
   // Dispatch a DOM event so the React tree can handle navigation via React Router
   // instead of a hard full-page redirect that breaks SPA routing.
   window.dispatchEvent(new CustomEvent('auth:session-expired'))
@@ -105,12 +122,13 @@ apiClient.interceptors.response.use(
       }
 
       if (isRefreshing) {
-        // Queue the request until refresh completes
-        return new Promise(resolve => {
+        // Queue the request until refresh completes. The promise is rejected if
+        // the refresh fails so these requests don't hang indefinitely.
+        return new Promise((resolve, reject) => {
           subscribeTokenRefresh(token => {
             originalRequest.headers.Authorization = `Bearer ${token}`
             resolve(apiClient(originalRequest))
-          })
+          }, reject)
         })
       }
 
@@ -130,9 +148,9 @@ apiClient.interceptors.response.use(
 
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
         return await apiClient(originalRequest)
-      } catch {
+      } catch (refreshError) {
         isRefreshing = false
-        onRefreshFailed()
+        onRefreshFailed(refreshError)
         return Promise.reject(error)
       }
     }
