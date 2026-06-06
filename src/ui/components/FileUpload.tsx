@@ -1,4 +1,4 @@
-import { DragEvent, useRef, useState } from 'react'
+import { DragEvent, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { validatePdfFile } from '@/lib/validators'
 import { MAX_PDF_SIZE_MB } from '@/lib/constants'
@@ -14,6 +14,12 @@ export default function FileUpload({ value, onChange, error }: FileUploadProps) 
   const inputRef = useRef<HTMLInputElement>(null)
   const [isDragging, setIsDragging] = useState(false)
   const [fileError, setFileError] = useState('')
+
+  // When the parent resets the value to null (e.g. form reset after submission),
+  // clear any local validation error so stale messages don't persist.
+  useEffect(() => {
+    if (!value) setFileError('')
+  }, [value])
 
   function handleFile(file: File | undefined) {
     if (!file) return
