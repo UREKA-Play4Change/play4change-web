@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useIntersectionObserver } from '@/ui/hooks/useIntersectionObserver'
 
-const ANDROID_APK_URL = import.meta.env.VITE_ANDROID_APK_URL as string | undefined
+const ANDROID_APK_URL = '/play4change.apk'
 
 const AndroidIcon = () => (
   <svg className="h-10 w-10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -60,7 +60,6 @@ function PlatformCard({
 }) {
   const { t } = useTranslation()
   const isAndroid = platform === 'android'
-  const accentColor = isAndroid ? 'green' : 'blue'
   const platformKey = isAndroid ? 'android' : 'ios'
 
   return (
@@ -89,7 +88,7 @@ function PlatformCard({
           {t(`download.${platformKey}.storeDescription`)}
         </p>
 
-        {isAndroid && ANDROID_APK_URL ? (
+        {isAndroid ? (
           <a
             href={ANDROID_APK_URL}
             download
@@ -103,7 +102,7 @@ function PlatformCard({
           <button
             disabled
             aria-label={t(`download.${platformKey}.comingSoonAriaLabel`)}
-            className={`mt-5 flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full border-2 ${accentColor === 'green' ? 'border-green-200 bg-green-50 text-green-600' : 'border-blue-200 bg-blue-50 text-blue-600'} px-6 py-3 text-sm font-semibold opacity-60`}
+            className="mt-5 flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full border-2 border-blue-200 bg-blue-50 px-6 py-3 text-sm font-semibold text-blue-600 opacity-60"
           >
             {t('download.comingSoon')}
           </button>
