@@ -7,6 +7,7 @@ import type {
   TaskTemplate,
   Topic,
   TopicBadgeStats,
+  TopicExplanationSession,
   TopicStatus,
   UpdateTaskRequest,
 } from '@/domain/models/Topic'
@@ -108,6 +109,13 @@ export class TopicAdapter implements ITopicService {
 
   async getTopicBadgeStats(topicId: string): Promise<TopicBadgeStats> {
     const response = await apiClient.get<TopicBadgeStats>(`/admin/topics/${topicId}/badges`)
+    return response.data
+  }
+
+  async getTopicExplanations(topicId: string): Promise<TopicExplanationSession[]> {
+    const response = await apiClient.get<TopicExplanationSession[]>(
+      `/admin/topics/${topicId}/explanations`,
+    )
     return response.data
   }
 }
