@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import type { Topic } from '@/domain/models/Topic'
-import { formatDate, formatPercentage, formatScore } from '@/lib/formatters'
+import { formatDate, formatPercentage } from '@/lib/formatters'
 import { ROUTES } from '@/lib/constants'
 
 const STATUS_STYLES: Record<Topic['status'], string> = {
@@ -68,7 +68,7 @@ export default function TopicCard({ topic }: TopicCardProps) {
           </div>
           <div>
             <p className="text-xs text-gray-400">{t('components.topicCard.avgScore')}</p>
-            <p className="font-semibold text-gray-900">{formatScore(topic.stats.averageScore)}</p>
+            <p className="font-semibold text-gray-900">{topic.stats.totalScore.toLocaleString()}</p>
           </div>
           <div>
             <p className="text-xs text-gray-400">{t('components.topicCard.activeNow')}</p>
