@@ -70,3 +70,14 @@ export interface AdminRoadmapNode {
   assignmentId: string | null
   pointsAwarded: number | null
 }
+
+export type ExplanationSessionStatus = 'GENERATING' | 'ACTIVE' | 'RESOLVED'
+
+export interface AdminExplanationSession {
+  sessionId: string
+  errorPattern: string
+  status: ExplanationSessionStatus
+  explanationText: string | null
+  generatedAt: string
+  resolvedAt: string | null
+}
