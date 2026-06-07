@@ -6,6 +6,7 @@ import {
   useUpdateAdaptiveTask,
 } from '@/application/hooks/useTopics'
 import type { AdaptiveTaskAdmin, StrugglePathStats, UpdateTaskRequest } from '@/domain/models/Topic'
+import { formatDate } from '@/lib/formatters'
 import EditTaskModal from './EditTaskModal'
 
 interface Props {
@@ -26,11 +27,26 @@ const PATTERN_COLOR: Record<string, string> = {
   TIME_PRESSURE: 'bg-blue-50 text-blue-700',
 }
 
+const SESSION_STATUS_COLOR: Record<string, string> = {
+  RESOLVED: 'text-green-600',
+  ABANDONED: 'text-gray-400',
+  OPEN: 'text-blue-500',
+}
+
+// One struggle session = one depth batch (tasks the learner was given in that attempt)
+interface SessionBatch {
+  sessionId: string
+  sessionDetectedAt: string
+  sessionStatus: AdaptiveTaskAdmin['sessionStatus']
+  depth: number
+  tasks: AdaptiveTaskAdmin[]
+}
+
 interface PathGroup {
   originalTaskTemplateId: string
   originalTaskTitle: string
   errorPattern: AdaptiveTaskAdmin['errorPattern']
-  tasks: AdaptiveTaskAdmin[]
+  sessions: SessionBatch[]
   totalSessions: number
   adaptiveSuccessRate: number | null
 }
@@ -41,32 +57,70 @@ function groupIntoPaths(tasks: AdaptiveTaskAdmin[], pathStats: StrugglePathStats
     statsMap.set(`${s.originalTaskTemplateId}::${s.errorPattern}`, s.totalSessions)
   }
 
-  const map = new Map<string, PathGroup>()
+  // Group tasks by path (templateId + errorPattern), then by session within each path.
+  const pathMap = new Map<string, Map<string, AdaptiveTaskAdmin[]>>()
+  const pathMeta = new Map<
+    string,
+    {
+      originalTaskTemplateId: string
+      originalTaskTitle: string
+      errorPattern: AdaptiveTaskAdmin['errorPattern']
+    }
+  >()
+
   for (const task of tasks) {
-    const key = `${task.originalTaskTemplateId}::${task.errorPattern}`
-    if (!map.has(key)) {
-      map.set(key, {
+    const pathKey = `${task.originalTaskTemplateId}::${task.errorPattern}`
+    if (!pathMap.has(pathKey)) {
+      pathMap.set(pathKey, new Map())
+      pathMeta.set(pathKey, {
         originalTaskTemplateId: task.originalTaskTemplateId,
         originalTaskTitle: task.originalTaskTitle,
         errorPattern: task.errorPattern,
-        tasks: [],
-        totalSessions: statsMap.get(key) ?? 0,
-        adaptiveSuccessRate: null,
       })
     }
-    const group = map.get(key)
-    if (group) group.tasks.push(task)
+    const sessionMap = pathMap.get(pathKey)
+    if (!sessionMap) continue
+    if (!sessionMap.has(task.sessionId)) sessionMap.set(task.sessionId, [])
+    const sessionTasks = sessionMap.get(task.sessionId)
+    if (sessionTasks) sessionTasks.push(task)
   }
 
-  // Compute adaptive success rate from completed tasks
-  for (const group of map.values()) {
-    const completed = group.tasks.filter(t => t.isCorrect !== null)
-    if (completed.length > 0) {
-      group.adaptiveSuccessRate = completed.filter(t => t.isCorrect).length / completed.length
-    }
+  const groups: PathGroup[] = []
+
+  for (const [pathKey, sessionMap] of pathMap.entries()) {
+    const meta = pathMeta.get(pathKey)
+    if (!meta) continue
+
+    // Build session batches sorted oldest→newest so depth 1 is the first attempt
+    const batches: SessionBatch[] = Array.from(sessionMap.entries())
+      .map(([sessionId, sessionTasks]) => ({
+        sessionId,
+        sessionDetectedAt: sessionTasks[0].sessionDetectedAt,
+        sessionStatus: sessionTasks[0].sessionStatus,
+        depth: 0, // filled below
+        tasks: [...sessionTasks].sort((a, b) => a.orderIndex - b.orderIndex),
+      }))
+      .sort((a, b) => a.sessionDetectedAt.localeCompare(b.sessionDetectedAt))
+
+    batches.forEach((b, i) => {
+      b.depth = i + 1
+    })
+
+    // Success rate across all tasks in all sessions of this path
+    const allTasks = batches.flatMap(b => b.tasks)
+    const completed = allTasks.filter(t => t.isCorrect !== null)
+    const adaptiveSuccessRate =
+      completed.length > 0 ? completed.filter(t => t.isCorrect).length / completed.length : null
+
+    groups.push({
+      ...meta,
+      sessions: batches,
+      totalSessions: statsMap.get(pathKey) ?? 0,
+      adaptiveSuccessRate,
+    })
   }
 
-  return Array.from(map.values())
+  return groups
 }
 
 export default function StruggleTasksPanel({ topicId }: Props) {
@@ -132,9 +186,10 @@ export default function StruggleTasksPanel({ topicId }: Props) {
         {groups.map(group => {
           const key = `${group.originalTaskTemplateId}::${group.errorPattern}`
           const isOpen = expanded.has(key)
+          const totalTasks = group.sessions.reduce((sum, s) => sum + s.tasks.length, 0)
           return (
             <div key={key} className="rounded-2xl border border-gray-100 bg-white shadow-sm">
-              {/* Group header — triggering question + struggle type */}
+              {/* Group header */}
               <button
                 className="flex w-full items-start justify-between gap-4 p-4 text-left"
                 onClick={() => {
@@ -149,7 +204,10 @@ export default function StruggleTasksPanel({ topicId }: Props) {
                       {PATTERN_LABEL[group.errorPattern] ?? group.errorPattern}
                     </span>
                     <span className="text-xs text-gray-400">
-                      {group.tasks.length} adaptive task{group.tasks.length !== 1 ? 's' : ''}
+                      {group.sessions.length} depth level{group.sessions.length !== 1 ? 's' : ''}
+                    </span>
+                    <span className="text-xs text-gray-400">
+                      · {totalTasks} task{totalTasks !== 1 ? 's' : ''}
                     </span>
                     <span className="text-xs text-gray-500">
                       · used {group.totalSessions} time{group.totalSessions !== 1 ? 's' : ''}
@@ -177,53 +235,92 @@ export default function StruggleTasksPanel({ topicId }: Props) {
                 </svg>
               </button>
 
-              {/* Adaptive tasks inside */}
+              {/* Session batches — each depth level is visually separated */}
               {isOpen && (
-                <div className="border-t border-gray-100 px-4 pb-4 pt-3 space-y-3">
-                  {group.tasks.map(task => (
-                    <div
-                      key={task.id}
-                      className="flex items-start justify-between gap-4 rounded-xl border border-gray-100 bg-gray-50 p-3"
-                    >
-                      <div className="min-w-0 flex-1">
-                        <div className="mb-1 flex flex-wrap items-center gap-2">
-                          <span className="text-xs text-gray-400">Task {task.orderIndex + 1}</span>
-                          {task.isCorrect !== null && (
+                <div className="border-t border-gray-100 px-4 pb-4 pt-3 space-y-4">
+                  {group.sessions.map(batch => {
+                    const batchPassRate =
+                      batch.tasks.filter(t => t.isCorrect !== null).length > 0
+                        ? batch.tasks.filter(t => t.isCorrect === true).length /
+                          batch.tasks.filter(t => t.isCorrect !== null).length
+                        : null
+
+                    return (
+                      <div key={batch.sessionId}>
+                        {/* Depth batch header */}
+                        <div className="mb-2 flex items-center gap-2">
+                          <span className="rounded-md bg-gray-100 px-2 py-0.5 text-xs font-semibold text-gray-600">
+                            Depth {batch.depth}
+                          </span>
+                          <span className="text-xs text-gray-400">
+                            {formatDate(batch.sessionDetectedAt)}
+                          </span>
+                          <span
+                            className={`text-xs font-medium capitalize ${SESSION_STATUS_COLOR[batch.sessionStatus] ?? 'text-gray-500'}`}
+                          >
+                            · {batch.sessionStatus.toLowerCase()}
+                          </span>
+                          {batchPassRate !== null && (
                             <span
-                              className={`text-xs font-medium ${task.isCorrect ? 'text-green-600' : 'text-red-500'}`}
+                              className={`text-xs font-medium ${batchPassRate >= 0.6 ? 'text-green-600' : batchPassRate >= 0.3 ? 'text-orange-500' : 'text-red-500'}`}
                             >
-                              {task.isCorrect ? '✓ Correct' : '✗ Incorrect'}
+                              · {Math.round(batchPassRate * 100)}% pass
                             </span>
                           )}
                         </div>
-                        <p className="text-sm font-medium text-gray-900">{task.title}</p>
-                        <p className="mt-0.5 text-xs text-gray-500 line-clamp-2">
-                          {task.description}
-                        </p>
-                        {task.options && (
-                          <ul className="mt-2 space-y-0.5">
-                            {task.options.map((opt, i) => (
-                              <li
-                                key={i}
-                                className={`text-xs ${i === task.correctAnswer ? 'font-semibold text-green-700' : 'text-gray-500'}`}
+
+                        {/* Tasks in this batch */}
+                        <div className="space-y-2">
+                          {batch.tasks.map(task => (
+                            <div
+                              key={task.id}
+                              className="flex items-start justify-between gap-4 rounded-xl border border-gray-100 bg-gray-50 p-3"
+                            >
+                              <div className="min-w-0 flex-1">
+                                <div className="mb-1 flex flex-wrap items-center gap-2">
+                                  <span className="text-xs text-gray-400">
+                                    Task {task.orderIndex + 1}
+                                  </span>
+                                  {task.isCorrect !== null && (
+                                    <span
+                                      className={`text-xs font-medium ${task.isCorrect ? 'text-green-600' : 'text-red-500'}`}
+                                    >
+                                      {task.isCorrect ? '✓ Correct' : '✗ Incorrect'}
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="text-sm font-medium text-gray-900">{task.title}</p>
+                                <p className="mt-0.5 text-xs text-gray-500 line-clamp-2">
+                                  {task.description}
+                                </p>
+                                {task.options && (
+                                  <ul className="mt-2 space-y-0.5">
+                                    {task.options.map((opt, i) => (
+                                      <li
+                                        key={i}
+                                        className={`text-xs ${i === task.correctAnswer ? 'font-semibold text-green-700' : 'text-gray-500'}`}
+                                      >
+                                        {i === task.correctAnswer ? '✓ ' : '· '}
+                                        {opt}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </div>
+                              <button
+                                onClick={() => {
+                                  setEditing(task)
+                                }}
+                                className="shrink-0 rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-white"
                               >
-                                {i === task.correctAnswer ? '✓ ' : '· '}
-                                {opt}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
+                                Edit
+                              </button>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                      <button
-                        onClick={() => {
-                          setEditing(task)
-                        }}
-                        className="shrink-0 rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-white"
-                      >
-                        Edit
-                      </button>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               )}
             </div>
