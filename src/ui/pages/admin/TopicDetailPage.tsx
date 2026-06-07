@@ -160,7 +160,13 @@ export default function TopicDetailPage() {
           onClick={() => {
             regenerate.mutate(topic.id)
           }}
-          disabled={regenerate.isPending || topic.status === 'GENERATING'}
+          disabled={
+            regenerate.isPending ||
+            !(
+              topic.status === 'FAILED' ||
+              (topic.status === 'ACTIVE' && (topic.stats?.enrolledUsers ?? 0) === 0)
+            )
+          }
           className="shrink-0 flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
         >
           <svg
