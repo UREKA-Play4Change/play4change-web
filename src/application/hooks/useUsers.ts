@@ -57,3 +57,12 @@ export function useUserEnrollmentRoadmap(userId: string, enrollmentId: string) {
     staleTime: 0,
   })
 }
+
+export function useUserEnrollmentExplanations(userId: string, enrollmentId: string) {
+  return useQuery({
+    queryKey: ['user-explanations', userId, enrollmentId],
+    queryFn: () => userService.getUserEnrollmentExplanations(userId, enrollmentId),
+    enabled: Boolean(userId) && Boolean(enrollmentId),
+    staleTime: 0,
+  })
+}
