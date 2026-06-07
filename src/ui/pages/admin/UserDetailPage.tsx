@@ -167,14 +167,19 @@ function ExplanationNode({ session }: { session: AdminExplanationSession }) {
 
         {open && (
           <div className="mt-2 rounded-xl border border-blue-100 bg-blue-50/60 p-3">
-            {session.messages.length === 0 ? (
-              session.explanationText ? (
-                <p className="text-xs leading-relaxed text-gray-700">{session.explanationText}</p>
-              ) : (
-                <p className="text-xs text-gray-400 italic">No conversation yet.</p>
-              )
+            {!session.explanationText && session.messages.length === 0 ? (
+              <p className="text-xs text-gray-400 italic">No conversation yet.</p>
             ) : (
               <div className="space-y-2">
+                {session.explanationText && (
+                  <MessageBubble
+                    msg={{
+                      role: 'AI',
+                      content: session.explanationText,
+                      sentAt: session.generatedAt,
+                    }}
+                  />
+                )}
                 {session.messages.map((msg, i) => (
                   <MessageBubble key={i} msg={msg} />
                 ))}
