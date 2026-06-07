@@ -100,9 +100,11 @@
     "description": "We're putting the finishing touches on our mobile apps. Be the first to know when they launch — sign up for early access below.",
     "android": {
       "platform": "Android",
-      "store": "Google Play Store",
-      "storeDescription": "Available for Android 8.0 and above. Download from the Google Play Store when it launches.",
-      "comingSoonAriaLabel": "Android app coming soon"
+      "store": "Android App",
+      "storeDescription": "Download directly as an APK — compatible with Android 8.0 and above.",
+      "comingSoonAriaLabel": "Android app coming soon",
+      "downloadButton": "Download APK",
+      "downloadAriaLabel": "Download Android APK"
     },
     "ios": {
       "platform": "iOS",

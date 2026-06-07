@@ -100,9 +100,11 @@
     "description": "Stiamo dando gli ultimi ritocchi alle nostre app mobili. Sii il primo a sapere quando saranno lanciate — registrati per l'accesso anticipato.",
     "android": {
       "platform": "Android",
-      "store": "Google Play Store",
-      "storeDescription": "Disponibile per Android 8.0 e superiori. Scaricala dal Google Play Store al lancio.",
-      "comingSoonAriaLabel": "App Android prossimamente"
+      "store": "App Android",
+      "storeDescription": "Scarica direttamente come APK — compatibile con Android 8.0 e versioni successive.",
+      "comingSoonAriaLabel": "App Android prossimamente",
+      "downloadButton": "Scarica APK",
+      "downloadAriaLabel": "Scarica APK Android"
     },
     "ios": {
       "platform": "iOS",

@@ -100,9 +100,11 @@
     "description": "We leggen de laatste hand aan onze mobiele apps. Wees de eerste die weet wanneer ze worden gelanceerd — meld je aan voor vroege toegang.",
     "android": {
       "platform": "Android",
-      "store": "Google Play Store",
-      "storeDescription": "Beschikbaar voor Android 8.0 en hoger. Download van de Google Play Store bij lancering.",
-      "comingSoonAriaLabel": "Android-app binnenkort beschikbaar"
+      "store": "Android-app",
+      "storeDescription": "Download direct als APK — compatibel met Android 8.0 en hoger.",
+      "comingSoonAriaLabel": "Android-app binnenkort beschikbaar",
+      "downloadButton": "APK downloaden",
+      "downloadAriaLabel": "Android APK downloaden"
     },
     "ios": {
       "platform": "iOS",

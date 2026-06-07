@@ -100,9 +100,11 @@
     "description": "Vi lägger sista handen på våra mobilappar. Bli den första att veta när de lanseras — registrera dig för tidig åtkomst.",
     "android": {
       "platform": "Android",
-      "store": "Google Play Store",
-      "storeDescription": "Tillgänglig för Android 8.0 och senare. Ladda ner från Google Play Store vid lansering.",
-      "comingSoonAriaLabel": "Android-appen kommer snart"
+      "store": "Android-app",
+      "storeDescription": "Ladda ned direkt som APK — kompatibel med Android 8.0 och senare.",
+      "comingSoonAriaLabel": "Android-appen kommer snart",
+      "downloadButton": "Ladda ned APK",
+      "downloadAriaLabel": "Ladda ned Android APK"
     },
     "ios": {
       "platform": "iOS",

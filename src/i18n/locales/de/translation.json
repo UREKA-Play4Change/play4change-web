@@ -100,9 +100,11 @@
     "description": "Wir geben unseren mobilen Apps den letzten Schliff. Erfahre als Erste/r, wann sie erscheinen — melde dich für den Early Access an.",
     "android": {
       "platform": "Android",
-      "store": "Google Play Store",
-      "storeDescription": "Verfügbar für Android 8.0 und höher. Lade die App beim Launch aus dem Google Play Store herunter.",
-      "comingSoonAriaLabel": "Android-App kommt demnächst"
+      "store": "Android-App",
+      "storeDescription": "Direkt als APK herunterladen — kompatibel mit Android 8.0 und höher.",
+      "comingSoonAriaLabel": "Android-App kommt demnächst",
+      "downloadButton": "APK herunterladen",
+      "downloadAriaLabel": "Android APK herunterladen"
     },
     "ios": {
       "platform": "iOS",
