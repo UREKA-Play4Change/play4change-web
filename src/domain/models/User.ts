@@ -69,6 +69,12 @@ export interface AdminRoadmapNode {
   isAdaptive: boolean
   assignmentId: string | null
   pointsAwarded: number | null
+  description?: string | null
+  hint?: string | null
+  options?: string[] | null
+  selectedOption?: number | null
+  correctAnswer?: number | null
+  isCorrect?: boolean | null
 }
 
 export type ExplanationSessionStatus = 'GENERATING' | 'ACTIVE' | 'RESOLVED'
