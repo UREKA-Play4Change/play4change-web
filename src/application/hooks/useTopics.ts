@@ -151,3 +151,12 @@ export function useAllTopicBadgeStats(topicIds: string[]) {
     staleTime: 60 * 1000,
   })
 }
+
+export function useTopicExplanations(topicId: string) {
+  return useQuery({
+    queryKey: ['topic-explanations', topicId],
+    queryFn: () => topicService.getTopicExplanations(topicId),
+    enabled: Boolean(topicId),
+    staleTime: 0,
+  })
+}
