@@ -5,9 +5,14 @@ import {
   useUserEnrollments,
   useUserBadges,
   useUserEnrollmentRoadmap,
+  useUserEnrollmentExplanations,
 } from '@/application/hooks/useUsers'
 import { ROUTES } from '@/lib/constants'
-import type { AdminUserEnrollment, RoadmapNodeStatus } from '@/domain/models/User'
+import type {
+  AdminExplanationSession,
+  AdminUserEnrollment,
+  RoadmapNodeStatus,
+} from '@/domain/models/User'
 
 // ── Status helpers ────────────────────────────────────────────────────────────
 
@@ -60,10 +65,72 @@ function lineColorClass(status: RoadmapNodeStatus, isAdaptive: boolean): string 
   }
 }
 
+// ── Explanation pattern label ──────────────────────────────────────────────────
+
+function patternLabel(pattern: string): string {
+  switch (pattern) {
+    case 'WRONG_CONCEPT':
+    case 'CONCEPTUAL_MISUNDERSTANDING':
+      return 'Concept misunderstanding'
+    case 'PARTIAL_UNDERSTANDING':
+      return 'Partial understanding'
+    case 'READING_ERROR':
+      return 'Reading error'
+    case 'TIME_PRESSURE':
+      return 'Time pressure'
+    default:
+      return pattern.replace(/_/g, ' ').toLowerCase()
+  }
+}
+
+// ── Explanation panel ──────────────────────────────────────────────────────────
+
+function ExplanationPanel({ sessions }: { sessions: AdminExplanationSession[] }) {
+  if (sessions.length === 0) return null
+  return (
+    <div className="mt-3 space-y-2">
+      <p className="text-[10px] font-semibold uppercase tracking-wider text-purple-500">
+        AI Explanations
+      </p>
+      {sessions.map(s => (
+        <div
+          key={s.sessionId}
+          className="rounded-xl border border-purple-100 bg-purple-50 p-3 text-xs"
+        >
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-semibold text-purple-700">{patternLabel(s.errorPattern)}</span>
+            <span
+              className={`rounded-full px-2 py-0.5 font-medium ${
+                s.status === 'RESOLVED'
+                  ? 'bg-green-100 text-green-700'
+                  : s.status === 'ACTIVE'
+                    ? 'bg-purple-200 text-purple-700'
+                    : 'bg-gray-100 text-gray-500'
+              }`}
+            >
+              {s.status}
+            </span>
+            <span className="text-gray-400">{new Date(s.generatedAt).toLocaleString()}</span>
+            {s.resolvedAt && (
+              <span className="text-green-600">
+                Resolved {new Date(s.resolvedAt).toLocaleString()}
+              </span>
+            )}
+          </div>
+          {s.explanationText && (
+            <p className="mt-1.5 leading-relaxed text-gray-600 line-clamp-3">{s.explanationText}</p>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 // ── Roadmap panel ─────────────────────────────────────────────────────────────
 
 function RoadmapPanel({ userId, enrollment }: { userId: string; enrollment: AdminUserEnrollment }) {
   const { data: nodes, isLoading } = useUserEnrollmentRoadmap(userId, enrollment.enrollmentId)
+  const { data: explanations = [] } = useUserEnrollmentExplanations(userId, enrollment.enrollmentId)
 
   if (isLoading) {
     return (
@@ -138,6 +205,7 @@ function RoadmapPanel({ userId, enrollment }: { userId: string; enrollment: Admi
           )
         })}
       </ol>
+      <ExplanationPanel sessions={explanations} />
     </div>
   )
 }
