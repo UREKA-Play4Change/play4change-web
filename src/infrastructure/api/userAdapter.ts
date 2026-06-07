@@ -1,6 +1,7 @@
 import apiClient from './apiClient'
 import type { IUserService } from '@/domain/ports/UserPort'
 import type {
+  AdminExplanationSession,
   AdminRoadmapNode,
   AdminUserBadge,
   AdminUserDetail,
@@ -45,6 +46,16 @@ export class UserAdapter implements IUserService {
   ): Promise<AdminRoadmapNode[]> {
     const { data } = await apiClient.get<AdminRoadmapNode[]>(
       `/admin/users/${userId}/enrollments/${enrollmentId}/roadmap`,
+    )
+    return data
+  }
+
+  async getUserEnrollmentExplanations(
+    userId: string,
+    enrollmentId: string,
+  ): Promise<AdminExplanationSession[]> {
+    const { data } = await apiClient.get<AdminExplanationSession[]>(
+      `/admin/users/${userId}/enrollments/${enrollmentId}/explanations`,
     )
     return data
   }
