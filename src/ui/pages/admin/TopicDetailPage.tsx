@@ -14,8 +14,9 @@ import TaskQuestionsPanel from '@/ui/components/TaskQuestionsPanel'
 import StruggleTasksPanel from '@/ui/components/StruggleTasksPanel'
 import GenerationLogPanel from '@/ui/components/GenerationLogPanel'
 import PrerequisiteSelector from '@/ui/components/PrerequisiteSelector'
+import TopicExplanationsPanel from '@/ui/components/TopicExplanationsPanel'
 
-type Tab = 'overview' | 'questions' | 'struggle' | 'log' | 'prerequisites'
+type Tab = 'overview' | 'questions' | 'struggle' | 'log' | 'prerequisites' | 'explanations'
 
 interface StatCardProps {
   label: string
@@ -69,6 +70,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: 'overview', label: 'Overview' },
   { id: 'questions', label: 'Questions' },
   { id: 'struggle', label: 'Adaptive Paths' },
+  { id: 'explanations', label: 'Explanations' },
   { id: 'log', label: 'Generation Log' },
   { id: 'prerequisites', label: 'Prerequisites' },
 ]
@@ -227,6 +229,8 @@ export default function TopicDetailPage() {
       {activeTab === 'questions' && <TaskQuestionsPanel topicId={topic.id} />}
 
       {activeTab === 'struggle' && <StruggleTasksPanel topicId={topic.id} />}
+
+      {activeTab === 'explanations' && <TopicExplanationsPanel topicId={topic.id} />}
 
       {activeTab === 'log' && <GenerationLogPanel log={generationLog} />}
 
