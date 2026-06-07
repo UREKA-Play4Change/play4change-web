@@ -9,6 +9,7 @@ import {
 } from '@/application/hooks/useUsers'
 import { ROUTES } from '@/lib/constants'
 import type {
+  AdminExplanationMessage,
   AdminExplanationSession,
   AdminUserEnrollment,
   RoadmapNodeStatus,
@@ -65,7 +66,7 @@ function lineColorClass(status: RoadmapNodeStatus, isAdaptive: boolean): string 
   }
 }
 
-// ── Explanation pattern label ──────────────────────────────────────────────────
+// ── Explanation helpers ────────────────────────────────────────────────────────
 
 function patternLabel(pattern: string): string {
   switch (pattern) {
@@ -83,46 +84,111 @@ function patternLabel(pattern: string): string {
   }
 }
 
-// ── Explanation panel ──────────────────────────────────────────────────────────
+// ── Conversation bubble ────────────────────────────────────────────────────────
 
-function ExplanationPanel({ sessions }: { sessions: AdminExplanationSession[] }) {
-  if (sessions.length === 0) return null
+function MessageBubble({ msg }: { msg: AdminExplanationMessage }) {
+  const isAI = msg.role === 'AI'
   return (
-    <div className="mt-3 space-y-2">
-      <p className="text-[10px] font-semibold uppercase tracking-wider text-purple-500">
-        AI Explanations
-      </p>
-      {sessions.map(s => (
-        <div
-          key={s.sessionId}
-          className="rounded-xl border border-purple-100 bg-purple-50 p-3 text-xs"
+    <div className={`flex ${isAI ? 'justify-start' : 'justify-end'}`}>
+      <div
+        className={`max-w-[85%] rounded-2xl px-3 py-2 text-xs leading-relaxed ${
+          isAI ? 'rounded-tl-sm bg-blue-50 text-gray-700' : 'rounded-tr-sm bg-blue-600 text-white'
+        }`}
+      >
+        {msg.content}
+      </div>
+    </div>
+  )
+}
+
+// ── Explanation node (blue, inline in roadmap) ─────────────────────────────────
+
+function ExplanationNode({ session }: { session: AdminExplanationSession }) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <li className="relative flex gap-4">
+      {/* Vertical connector from explanation node downward (shown as blue) */}
+      <div
+        className="absolute left-[15px] top-8 w-0.5 bg-blue-200"
+        style={{ height: 'calc(100% - 8px)' }}
+      />
+
+      {/* Blue circle node */}
+      <div className="relative z-10 flex-shrink-0">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-blue-500 bg-blue-500 text-white text-[9px] font-bold">
+          AI
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="mb-4 flex-1 min-w-0">
+        <button
+          type="button"
+          onClick={() => {
+            setOpen(v => !v)
+          }}
+          className="flex w-full items-start gap-2 text-left"
         >
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="font-semibold text-purple-700">{patternLabel(s.errorPattern)}</span>
-            <span
-              className={`rounded-full px-2 py-0.5 font-medium ${
-                s.status === 'RESOLVED'
-                  ? 'bg-green-100 text-green-700'
-                  : s.status === 'ACTIVE'
-                    ? 'bg-purple-200 text-purple-700'
-                    : 'bg-gray-100 text-gray-500'
-              }`}
-            >
-              {s.status}
-            </span>
-            <span className="text-gray-400">{new Date(s.generatedAt).toLocaleString()}</span>
-            {s.resolvedAt && (
-              <span className="text-green-600">
-                Resolved {new Date(s.resolvedAt).toLocaleString()}
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-blue-50 text-blue-600">
+                AI Explanation
               </span>
+              <span
+                className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${
+                  session.status === 'RESOLVED'
+                    ? 'bg-green-100 text-green-700'
+                    : session.status === 'ACTIVE'
+                      ? 'bg-blue-100 text-blue-700'
+                      : 'bg-gray-100 text-gray-500'
+                }`}
+              >
+                {session.status}
+              </span>
+              <span className="text-[10px] text-gray-400">
+                {new Date(session.generatedAt).toLocaleString()}
+              </span>
+            </div>
+            <p className="mt-0.5 text-sm font-medium text-blue-700">
+              {patternLabel(session.errorPattern)}
+            </p>
+          </div>
+          <svg
+            className={`mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-blue-400 transition-transform ${open ? 'rotate-180' : ''}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        {open && (
+          <div className="mt-2 rounded-xl border border-blue-100 bg-blue-50/60 p-3">
+            {session.messages.length === 0 ? (
+              session.explanationText ? (
+                <p className="text-xs leading-relaxed text-gray-700">{session.explanationText}</p>
+              ) : (
+                <p className="text-xs text-gray-400 italic">No conversation yet.</p>
+              )
+            ) : (
+              <div className="space-y-2">
+                {session.messages.map((msg, i) => (
+                  <MessageBubble key={i} msg={msg} />
+                ))}
+              </div>
+            )}
+            {session.resolvedAt && (
+              <p className="mt-2 text-[10px] text-green-600">
+                Resolved {new Date(session.resolvedAt).toLocaleString()}
+              </p>
             )}
           </div>
-          {s.explanationText && (
-            <p className="mt-1.5 leading-relaxed text-gray-600 line-clamp-3">{s.explanationText}</p>
-          )}
-        </div>
-      ))}
-    </div>
+        )}
+      </div>
+    </li>
   )
 }
 
@@ -149,11 +215,20 @@ function RoadmapPanel({ userId, enrollment }: { userId: string; enrollment: Admi
     return <p className="p-4 text-sm text-gray-400">No roadmap data yet.</p>
   }
 
+  // Group explanation sessions by dayIndex
+  const explanationsByDay = new Map<number, AdminExplanationSession[]>()
+  for (const s of explanations) {
+    const list = explanationsByDay.get(s.dayIndex) ?? []
+    explanationsByDay.set(s.dayIndex, [...list, s])
+  }
+
   return (
     <div className="p-4">
       <ol className="relative">
         {nodes.map((node, i) => {
-          const isLast = i === nodes.length - 1
+          const isLastOfDay = i === nodes.length - 1 || nodes[i + 1].dayIndex !== node.dayIndex
+          const sessionsForDay = isLastOfDay ? (explanationsByDay.get(node.dayIndex) ?? []) : []
+          const isLast = i === nodes.length - 1 && sessionsForDay.length === 0
           const color = nodeColorClass(node.status, node.isAdaptive)
           const lineColor = lineColorClass(node.status, node.isAdaptive)
 
@@ -200,12 +275,20 @@ function RoadmapPanel({ userId, enrollment }: { userId: string; enrollment: Admi
                 >
                   {node.title}
                 </p>
+
+                {/* Inject explanation nodes after last node of this dayIndex */}
+                {sessionsForDay.length > 0 && (
+                  <ol className="mt-3 relative">
+                    {sessionsForDay.map(s => (
+                      <ExplanationNode key={s.sessionId} session={s} />
+                    ))}
+                  </ol>
+                )}
               </div>
             </li>
           )
         })}
       </ol>
-      <ExplanationPanel sessions={explanations} />
     </div>
   )
 }
