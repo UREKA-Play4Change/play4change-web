@@ -128,3 +128,26 @@ export interface TopicBadgeStats {
   earnedPercentage: number
   recentEarners: RecentEarner[]
 }
+
+export type TopicExplanationStatus = 'GENERATING' | 'ACTIVE' | 'RESOLVED'
+
+export interface TopicExplanationMessage {
+  role: 'USER' | 'AI'
+  content: string
+  sentAt: string
+}
+
+export interface TopicExplanationSession {
+  sessionId: string
+  userId: string
+  userEmail: string
+  userName: string | null
+  dayIndex: number
+  originalTaskTitle: string
+  errorPattern: string
+  status: TopicExplanationStatus
+  explanationText: string | null
+  generatedAt: string
+  resolvedAt: string | null
+  messages: TopicExplanationMessage[]
+}
