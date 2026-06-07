@@ -11,6 +11,7 @@ import { ROUTES } from '@/lib/constants'
 import type {
   AdminExplanationMessage,
   AdminExplanationSession,
+  AdminRoadmapNode,
   AdminUserEnrollment,
   RoadmapNodeStatus,
 } from '@/domain/models/User'
@@ -197,11 +198,61 @@ function ExplanationNode({ session }: { session: AdminExplanationSession }) {
   )
 }
 
+// ── Node detail panel ─────────────────────────────────────────────────────────
+
+function NodeDetailPanel({ node }: { node: AdminRoadmapNode }) {
+  const hasContent = node.description || (node.options && node.options.length > 0)
+  if (!hasContent) return null
+
+  return (
+    <div className="mt-2 rounded-xl border border-gray-100 bg-gray-50 p-3 space-y-2">
+      {node.description && (
+        <p className="text-xs text-gray-700 leading-relaxed">{node.description}</p>
+      )}
+      {node.options && node.options.length > 0 && (
+        <ul className="space-y-1">
+          {node.options.map((opt, idx) => {
+            const isSelected = node.selectedOption === idx
+            const isCorrect = node.correctAnswer === idx
+            let cls = 'rounded-lg px-2.5 py-1.5 text-xs border '
+            if (isSelected && isCorrect) {
+              cls += 'bg-green-50 border-green-400 text-green-800 font-medium'
+            } else if (isSelected && !isCorrect) {
+              cls += 'bg-red-50 border-red-400 text-red-800 font-medium'
+            } else if (isCorrect && node.selectedOption != null) {
+              cls += 'bg-green-50 border-green-300 text-green-700'
+            } else {
+              cls += 'bg-white border-gray-200 text-gray-600'
+            }
+            return (
+              <li key={idx} className={cls}>
+                <span className="mr-1.5 font-semibold">{String.fromCharCode(65 + idx)}.</span>
+                {opt}
+                {isSelected && isCorrect && (
+                  <span className="ml-1.5 text-[10px] font-semibold text-green-600">✓ Correct</span>
+                )}
+                {isSelected && !isCorrect && (
+                  <span className="ml-1.5 text-[10px] font-semibold text-red-500">✗ Wrong</span>
+                )}
+                {!isSelected && isCorrect && node.selectedOption != null && (
+                  <span className="ml-1.5 text-[10px] text-green-600">(correct answer)</span>
+                )}
+              </li>
+            )
+          })}
+        </ul>
+      )}
+      {node.hint && <p className="text-[10px] text-gray-400 italic">Hint: {node.hint}</p>}
+    </div>
+  )
+}
+
 // ── Roadmap panel ─────────────────────────────────────────────────────────────
 
 function RoadmapPanel({ userId, enrollment }: { userId: string; enrollment: AdminUserEnrollment }) {
   const { data: nodes, isLoading } = useUserEnrollmentRoadmap(userId, enrollment.enrollmentId)
   const { data: explanations = [] } = useUserEnrollmentExplanations(userId, enrollment.enrollmentId)
+  const [expandedIdx, setExpandedIdx] = useState<number | null>(null)
 
   if (isLoading) {
     return (
@@ -237,6 +288,9 @@ function RoadmapPanel({ userId, enrollment }: { userId: string; enrollment: Admi
           const color = nodeColorClass(node.status, node.isAdaptive)
           const lineColor = lineColorClass(node.status, node.isAdaptive)
 
+          const isExpanded = expandedIdx === i
+          const hasDetail = !!(node.description || (node.options && node.options.length > 0))
+
           return (
             <li key={`${node.dayIndex}-${i}`} className="relative flex gap-4">
               {/* Vertical connector line */}
@@ -258,28 +312,54 @@ function RoadmapPanel({ userId, enrollment }: { userId: string; enrollment: Admi
 
               {/* Node content */}
               <div className="mb-4 flex-1 min-w-0">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span
-                    className={`text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded ${
-                      node.isAdaptive ? 'bg-orange-50 text-orange-600' : 'bg-gray-50 text-gray-500'
-                    }`}
-                  >
-                    {node.isAdaptive ? 'Adaptive' : `Day ${node.dayIndex + 1}`}
-                  </span>
-                  <span className="text-[10px] text-gray-400">{STATUS_LABEL[node.status]}</span>
-                  {node.pointsAwarded != null && node.pointsAwarded > 0 && (
-                    <span className="text-[10px] font-medium text-green-600">
-                      +{node.pointsAwarded} pts
-                    </span>
-                  )}
-                </div>
-                <p
-                  className={`mt-0.5 text-sm font-medium leading-snug ${
-                    node.status === 'LOCKED' ? 'text-gray-400' : 'text-gray-800'
-                  }`}
+                <button
+                  type="button"
+                  disabled={!hasDetail}
+                  onClick={() => {
+                    setExpandedIdx(isExpanded ? null : i)
+                  }}
+                  className={`flex w-full items-start gap-1 text-left ${hasDetail ? 'cursor-pointer' : 'cursor-default'}`}
                 >
-                  {node.title}
-                </p>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className={`text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded ${
+                          node.isAdaptive
+                            ? 'bg-orange-50 text-orange-600'
+                            : 'bg-gray-50 text-gray-500'
+                        }`}
+                      >
+                        {node.isAdaptive ? 'Adaptive' : `Day ${node.dayIndex + 1}`}
+                      </span>
+                      <span className="text-[10px] text-gray-400">{STATUS_LABEL[node.status]}</span>
+                      {node.pointsAwarded != null && node.pointsAwarded > 0 && (
+                        <span className="text-[10px] font-medium text-green-600">
+                          +{node.pointsAwarded} pts
+                        </span>
+                      )}
+                    </div>
+                    <p
+                      className={`mt-0.5 text-sm font-medium leading-snug ${
+                        node.status === 'LOCKED' ? 'text-gray-400' : 'text-gray-800'
+                      }`}
+                    >
+                      {node.title}
+                    </p>
+                  </div>
+                  {hasDetail && (
+                    <svg
+                      className={`mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  )}
+                </button>
+
+                {isExpanded && <NodeDetailPanel node={node} />}
 
                 {/* Inject explanation nodes after last node of this dayIndex */}
                 {sessionsForDay.length > 0 && (
