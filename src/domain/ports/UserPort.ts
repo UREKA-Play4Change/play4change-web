@@ -1,4 +1,5 @@
 import type {
+  AdminExplanationSession,
   AdminRoadmapNode,
   AdminUserBadge,
   AdminUserDetail,
@@ -14,4 +15,8 @@ export interface IUserService {
   getUserEnrollments(userId: string): Promise<AdminUserEnrollment[]>
   getUserBadges(userId: string): Promise<AdminUserBadge[]>
   getUserEnrollmentRoadmap(userId: string, enrollmentId: string): Promise<AdminRoadmapNode[]>
+  getUserEnrollmentExplanations(
+    userId: string,
+    enrollmentId: string,
+  ): Promise<AdminExplanationSession[]>
 }
