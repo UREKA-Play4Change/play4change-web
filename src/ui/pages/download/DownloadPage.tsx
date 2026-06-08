@@ -91,7 +91,9 @@ function PlatformCard({
         {isAndroid ? (
           <a
             href={ANDROID_APK_URL}
-            download
+            download="play4change.apk"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label={t('download.android.downloadAriaLabel')}
             className="mt-5 flex w-full items-center justify-center gap-2 rounded-full border-2 border-green-500 bg-green-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-green-600 hover:border-green-600"
           >
