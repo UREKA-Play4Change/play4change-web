@@ -344,7 +344,13 @@ export default function StruggleTasksPanel({ topicId }: Props) {
             version: 1,
             language: '',
             createdAt: '',
-            stats: { totalAttempts: 0, successCount: 0, successRate: 0, avgPointsAwarded: 0 },
+            stats: {
+              totalAttempts: 0,
+              successCount: 0,
+              successRate: 0,
+              avgPointsAwarded: 0,
+              struggleTriggerCount: 0,
+            },
           }}
           onSave={handleSave}
           onClose={() => {

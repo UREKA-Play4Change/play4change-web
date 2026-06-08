@@ -33,7 +33,7 @@ const MOCK_TOPICS: Topic[] = [
     language: 'en',
     category: 'Sustainability',
     createdAt: '2026-01-10T09:00:00Z',
-    stats: { enrolledUsers: 100, completionRate: 0.5, averageScore: 80, activeUsers: 20 },
+    stats: { enrolledUsers: 100, completionRate: 0.5, totalScore: 80, activeUsers: 20 },
   },
   {
     id: 'topic-002',
@@ -45,7 +45,7 @@ const MOCK_TOPICS: Topic[] = [
     language: 'en',
     category: 'Digital Literacy',
     createdAt: '2026-02-01T09:00:00Z',
-    stats: { enrolledUsers: 50, completionRate: 0, averageScore: 0, activeUsers: 0 },
+    stats: { enrolledUsers: 50, completionRate: 0, totalScore: 0, activeUsers: 0 },
   },
 ]
 

@@ -3,9 +3,11 @@ import type {
   CreateTopicFromUrlRequest,
   LearningGraph,
   PrerequisiteTopic,
+  StrugglePathStats,
   TaskTemplate,
   Topic,
   TopicBadgeStats,
+  TopicExplanationSession,
   TopicStatus,
   UpdateTaskRequest,
 } from '@/domain/models/Topic'
@@ -28,7 +30,7 @@ const MOCK_TOPICS: Topic[] = [
     stats: {
       enrolledUsers: 342,
       completionRate: 0.68,
-      averageScore: 82.4,
+      totalScore: 70000,
       activeUsers: 89,
     },
   },
@@ -46,7 +48,7 @@ const MOCK_TOPICS: Topic[] = [
     stats: {
       enrolledUsers: 518,
       completionRate: 0.71,
-      averageScore: 78.9,
+      totalScore: 110000,
       activeUsers: 134,
     },
   },
@@ -64,7 +66,7 @@ const MOCK_TOPICS: Topic[] = [
     stats: {
       enrolledUsers: 203,
       completionRate: 0.55,
-      averageScore: 74.2,
+      totalScore: 33500,
       activeUsers: 61,
     },
   },
@@ -82,7 +84,7 @@ const MOCK_TOPICS: Topic[] = [
     stats: {
       enrolledUsers: 0,
       completionRate: 0,
-      averageScore: 0,
+      totalScore: 0,
       activeUsers: 0,
     },
   },
@@ -100,7 +102,7 @@ const MOCK_TOPICS: Topic[] = [
     stats: {
       enrolledUsers: 156,
       completionRate: 0.42,
-      averageScore: 71.8,
+      totalScore: 19600,
       activeUsers: 43,
     },
   },
@@ -118,7 +120,7 @@ const MOCK_TOPICS: Topic[] = [
     stats: {
       enrolledUsers: 0,
       completionRate: 0,
-      averageScore: 0,
+      totalScore: 0,
       activeUsers: 0,
     },
   },
@@ -136,7 +138,7 @@ const MOCK_TOPICS: Topic[] = [
     stats: {
       enrolledUsers: 0,
       completionRate: 0,
-      averageScore: 0,
+      totalScore: 0,
       activeUsers: 0,
     },
   },
@@ -163,7 +165,13 @@ const MOCK_TASKS: Record<string, TaskTemplate[]> = {
       version: 1,
       language: 'en',
       createdAt: '2025-01-15T10:05:00Z',
-      stats: { totalAttempts: 312, successCount: 289, successRate: 0.926, avgPointsAwarded: 18.5 },
+      stats: {
+        totalAttempts: 312,
+        successCount: 289,
+        successRate: 0.926,
+        avgPointsAwarded: 18.5,
+        struggleTriggerCount: 12,
+      },
     },
     {
       id: 'tpl-001-2',
@@ -179,7 +187,13 @@ const MOCK_TASKS: Record<string, TaskTemplate[]> = {
       version: 1,
       language: 'en',
       createdAt: '2025-01-15T10:06:00Z',
-      stats: { totalAttempts: 298, successCount: 261, successRate: 0.876, avgPointsAwarded: 17.5 },
+      stats: {
+        totalAttempts: 298,
+        successCount: 261,
+        successRate: 0.876,
+        avgPointsAwarded: 17.5,
+        struggleTriggerCount: 8,
+      },
     },
     {
       id: 'tpl-001-3',
@@ -195,7 +209,13 @@ const MOCK_TASKS: Record<string, TaskTemplate[]> = {
       version: 2,
       language: 'en',
       createdAt: '2025-01-15T10:07:00Z',
-      stats: { totalAttempts: 267, successCount: 198, successRate: 0.741, avgPointsAwarded: 14.8 },
+      stats: {
+        totalAttempts: 267,
+        successCount: 198,
+        successRate: 0.741,
+        avgPointsAwarded: 14.8,
+        struggleTriggerCount: 22,
+      },
     },
   ],
   'topic-003': [
@@ -218,12 +238,18 @@ const MOCK_TASKS: Record<string, TaskTemplate[]> = {
       version: 1,
       language: 'en',
       createdAt: '2025-02-01T14:05:00Z',
-      stats: { totalAttempts: 183, successCount: 129, successRate: 0.705, avgPointsAwarded: 14.1 },
+      stats: {
+        totalAttempts: 183,
+        successCount: 129,
+        successRate: 0.705,
+        avgPointsAwarded: 14.1,
+        struggleTriggerCount: 15,
+      },
     },
   ],
 }
 
-const MOCK_STRUGGLE_TASKS: Record<string, AdaptiveTaskAdmin[]> = {
+let struggleTaskStore: Record<string, AdaptiveTaskAdmin[]> = {
   'topic-001': [
     {
       id: 'adp-001-1',
@@ -232,11 +258,12 @@ const MOCK_STRUGGLE_TASKS: Record<string, AdaptiveTaskAdmin[]> = {
       errorPattern: 'WRONG_CONCEPT',
       sessionDetectedAt: '2025-03-10T14:22:00Z',
       enrollmentId: 'enr-001',
+      originalTaskTemplateId: 'tpl-001-1',
+      originalTaskTitle: 'What does SDG stand for?',
       title: 'Simpler: What does SDG stand for?',
       description:
         'The letters S, D, G — what do they mean in the context of the United Nations agenda?',
       hint: 'Each letter is the first letter of a word in the phrase.',
-      pointsReward: 10,
       orderIndex: 0,
       options: ['Sustainable Development Goals', 'Shared Design Guidelines'],
       correctAnswer: 0,
@@ -250,10 +277,11 @@ const MOCK_STRUGGLE_TASKS: Record<string, AdaptiveTaskAdmin[]> = {
       errorPattern: 'PARTIAL_UNDERSTANDING',
       sessionDetectedAt: '2025-04-01T09:10:00Z',
       enrollmentId: 'enr-042',
+      originalTaskTemplateId: 'tpl-001-2',
+      originalTaskTitle: 'How many SDGs are there?',
       title: 'Which goal deals with life on land?',
       description: 'Choose the SDG that specifically addresses terrestrial ecosystems.',
       hint: 'It is one of the last goals in the list.',
-      pointsReward: 10,
       orderIndex: 0,
       options: ['SDG 13', 'SDG 15', 'SDG 17'],
       correctAnswer: 1,
@@ -290,7 +318,7 @@ export class MockTopicAdapter implements ITopicService {
       stats: {
         enrolledUsers: 0,
         completionRate: 0,
-        averageScore: 0,
+        totalScore: 0,
         activeUsers: 0,
       },
     }
@@ -313,7 +341,7 @@ export class MockTopicAdapter implements ITopicService {
       stats: {
         enrolledUsers: 0,
         completionRate: 0,
-        averageScore: 0,
+        totalScore: 0,
         activeUsers: 0,
       },
     }
@@ -352,7 +380,26 @@ export class MockTopicAdapter implements ITopicService {
 
   async getTopicStruggleTasks(topicId: string): Promise<AdaptiveTaskAdmin[]> {
     await delay(400)
-    return MOCK_STRUGGLE_TASKS[topicId] ?? []
+    return struggleTaskStore[topicId] ?? []
+  }
+
+  async getStrugglePathStats(topicId: string): Promise<StrugglePathStats[]> {
+    await delay(400)
+    if (topicId === 'topic-001') {
+      return [
+        {
+          originalTaskTemplateId: 'tpl-001-1',
+          errorPattern: 'WRONG_CONCEPT',
+          totalSessions: 3,
+        },
+        {
+          originalTaskTemplateId: 'tpl-001-2',
+          errorPattern: 'PARTIAL_UNDERSTANDING',
+          totalSessions: 1,
+        },
+      ]
+    }
+    return []
   }
 
   async updateTask(templateId: string, request: UpdateTaskRequest): Promise<TaskTemplate> {
@@ -378,6 +425,30 @@ export class MockTopicAdapter implements ITopicService {
       }
     }
     throw new Error(`TaskTemplate not found: ${templateId}`)
+  }
+
+  async updateAdaptiveTask(taskId: string, request: UpdateTaskRequest): Promise<AdaptiveTaskAdmin> {
+    await delay(600)
+    for (const topicId of Object.keys(struggleTaskStore)) {
+      const idx = struggleTaskStore[topicId].findIndex(t => t.id === taskId)
+      if (idx !== -1) {
+        const existing = struggleTaskStore[topicId][idx]
+        const updated: AdaptiveTaskAdmin = {
+          ...existing,
+          title: request.title,
+          description: request.description,
+          hint: request.hint,
+          options: request.options,
+          correctAnswer: request.correctAnswer,
+        }
+        struggleTaskStore = {
+          ...struggleTaskStore,
+          [topicId]: struggleTaskStore[topicId].map(t => (t.id === taskId ? updated : t)),
+        }
+        return updated
+      }
+    }
+    throw new Error(`AdaptiveTask not found: ${taskId}`)
   }
 
   async getPrerequisites(topicId: string): Promise<PrerequisiteTopic[]> {
@@ -426,5 +497,10 @@ export class MockTopicAdapter implements ITopicService {
             ]
           : [],
     }
+  }
+
+  async getTopicExplanations(_topicId: string): Promise<TopicExplanationSession[]> {
+    await delay(400)
+    return []
   }
 }

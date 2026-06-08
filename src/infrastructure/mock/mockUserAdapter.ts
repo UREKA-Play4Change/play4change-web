@@ -1,5 +1,13 @@
 import type { IUserService } from '@/domain/ports/UserPort'
-import type { AdminUserFull, AdminUserPage } from '@/domain/models/User'
+import type {
+  AdminExplanationSession,
+  AdminRoadmapNode,
+  AdminUserBadge,
+  AdminUserDetail,
+  AdminUserEnrollment,
+  AdminUserFull,
+  AdminUserPage,
+} from '@/domain/models/User'
 
 const delay = (ms = 300) => new Promise(r => setTimeout(r, ms))
 
@@ -51,5 +59,47 @@ export class MockUserAdapter implements IUserService {
     if (!user) throw new Error(`User ${userId} not found`)
     user.role = 'ADMIN'
     return user
+  }
+
+  async getUserById(userId: string): Promise<AdminUserDetail> {
+    await delay()
+    const user = this.users.find(u => u.id === userId)
+    if (!user) throw new Error(`User ${userId} not found`)
+    return {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role,
+      createdAt: user.createdAt,
+      enrollmentCount: user.enrollmentCount,
+      totalPoints: 0,
+      streakDays: 0,
+    }
+  }
+
+  async getUserEnrollments(_userId: string): Promise<AdminUserEnrollment[]> {
+    await delay()
+    return []
+  }
+
+  async getUserBadges(_userId: string): Promise<AdminUserBadge[]> {
+    await delay()
+    return []
+  }
+
+  async getUserEnrollmentRoadmap(
+    _userId: string,
+    _enrollmentId: string,
+  ): Promise<AdminRoadmapNode[]> {
+    await delay()
+    return []
+  }
+
+  async getUserEnrollmentExplanations(
+    _userId: string,
+    _enrollmentId: string,
+  ): Promise<AdminExplanationSession[]> {
+    await delay()
+    return []
   }
 }
