@@ -1,14 +1,16 @@
 import HeroSection from './HeroSection'
-import MissionSection from './MissionSection'
+import ChallengeSection from './ChallengeSection'
+import PillarsSection from './PillarsSection'
+import TrustSection from './TrustSection'
 import ProductSection from './ProductSection'
-import StatsSection from './StatsSection'
 
 export default function LandingPage() {
   return (
     <>
       <HeroSection />
-      <MissionSection />
-      <StatsSection />
+      <ChallengeSection />
+      <PillarsSection />
+      <TrustSection />
       <ProductSection />
     </>
   )

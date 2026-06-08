@@ -11,85 +11,103 @@
     "urekaAlt": "U!REKA Europese Universiteit"
   },
   "hero": {
-    "tagline": "Adaptief leren aangedreven door AI.",
-    "taglineStrong": "Dagelijkse gamified uitdagingen voor duurzaamheid en digitale geletterdheid.",
-    "ctaDownload": "Downloaden",
-    "ctaLearnMore": "Meer weten",
-    "features": {
-      "aiContent": {
-        "label": "AI-gegenereerde inhoud",
-        "description": "Upload een PDF of URL en onze AI bouwt direct gestructureerde dagelijkse uitdagingen op maat van uw onderwerp."
+    "heading": "Vaardigheden voor de steden",
+    "headingHighlight": "van morgen",
+    "tagline": "Europese steden transformeren. Play4Change bereidt burgers voor met de digitale competenties om die verandering te leiden.",
+    "ctaDownload": "Download de app",
+    "ctaLearnMore": "Ontdek waarom",
+    "pillars": {
+      "engagement": {
+        "label": "Betrokkenheid",
+        "description": "Gamified uitdagingen, reeksen en peer reviews houden leren elke dag actief en motiverend."
       },
-      "adaptiveLearning": {
-        "label": "Adaptief leren",
-        "description": "De moeilijkheidsgraad past zich in realtime aan op basis van prestaties, zodat elke leerling in zijn optimale leerzone blijft."
+      "personalisation": {
+        "label": "Personalisatie",
+        "description": "De AI past zich in realtime aan het tempo van elke burger aan — nooit te makkelijk, nooit te moeilijk."
       },
-      "gamification": {
-        "label": "Gamification & Peer review",
-        "description": "Reeksen, badges en ranglijsten stimuleren motivatie, terwijl peer review dieper collaboratief begrip bevordert."
+      "recognition": {
+        "label": "Erkenning",
+        "description": "Verdien verifieerbare badges die digitale micro-competenties aantonen volgens Europese normen."
+      }
+    }
+  },
+  "challenge": {
+    "label": "De uitdaging",
+    "heading": "Slimme steden hebben",
+    "headingHighlight": "slimme burgers nodig",
+    "description": "Europese steden ondergaan een ingrijpende digitale transformatie — van infrastructuur en energie tot mobiliteit en bestuur. Technologie alleen creëert geen verandering. Mensen wel.",
+    "cards": {
+      "infrastructure": {
+        "title": "Infrastructuurcomplexiteit",
+        "description": "Smart city-systemen vereisen burgers die vertrouwd zijn met digitale tools en diensten."
       },
-      "sustainability": {
-        "label": "Focus op duurzaamheid",
-        "description": "Gebouwd voor duurzaamheid en digitale geletterdheid — dagelijks microleren omzetten in blijvende gedragsverandering."
+      "governance": {
+        "title": "Bestuurstekorten",
+        "description": "Zinvolle deelname aan smart city-beslissingen vereist digitaal vaardige, geïnformeerde burgers."
+      },
+      "skills": {
+        "title": "Vaardighedentekort",
+        "description": "In heel Europa missen miljoenen volwassenen de digitale competenties voor een steeds verbonden wereld."
       }
     },
-    "carousel": {
-      "goTo": "Ga naar {{feature}}"
+    "digcomp": "Afgestemd op DigComp 2.2 — het Europees Kader voor Digitale Competenties",
+    "researchLink": "Lees het JRC-onderzoek →"
+  },
+  "pillars": {
+    "label": "Onze aanpak",
+    "heading": "Leren gebaseerd op",
+    "headingHighlight": "drie pijlers",
+    "description": "Elke functie van Play4Change dient een van drie op bewijs gebaseerde principes die aantoonbaar leiden tot blijvende gedragsverandering.",
+    "engagement": {
+      "number": "01",
+      "title": "Betrokkenheid",
+      "description": "Gamification maakt leren een dagelijkse gewoonte. Reeksen, ranglijsten en peer reviews bouwen motivatie en gemeenschap op.",
+      "tag": "Gamified ervaring"
+    },
+    "personalisation": {
+      "number": "02",
+      "title": "Personalisatie",
+      "description": "Geen twee burgers zijn hetzelfde. Onze AI past de moeilijkheidsgraad continu aan op individuele prestaties.",
+      "tag": "Adaptieve AI"
+    },
+    "recognition": {
+      "number": "03",
+      "title": "Erkenning",
+      "description": "Competentie heeft bewijs nodig. Leerlingen verdienen digitale badges afgestemd op DigComp 2.2 — verifieerbare micro-accreditaties erkend in heel Europa.",
+      "tag": "Micro-accreditaties"
     }
   },
-  "mission": {
-    "label": "Onze missie",
-    "heading": "Leren dat",
-    "headingHighlight": "echte verandering creëert",
-    "description": "Play4Change transformeert passieve kennis in actieve betrokkenheid. Ons platform maakt duurzaamheidseducatie en digitale geletterdheid toegankelijk, verslavend en impactvol — één dagelijkse uitdaging tegelijk.",
-    "features": {
-      "aiContent": {
-        "title": "AI-gegenereerde inhoud",
-        "description": "Onderwerpen worden door docenten gemaakt en verrijkt door AI — automatisch quizzen, uitdagingen en dagelijkse taken genereren afgestemd op het onderwerp."
-      },
-      "adaptiveLearning": {
-        "title": "Adaptief leren",
-        "description": "Het platform past zich aan aan het tempo en de prestaties van elke leerling, zodat iedereen op het juiste niveau wordt uitgedaagd."
-      },
-      "gamification": {
-        "title": "Gamification & Peer review",
-        "description": "Dagelijkse reeksen, ranglijsten en badges houden leerlingen gemotiveerd. Peer review-taken ontwikkelen kritisch denken en gemeenschapskennis."
-      },
-      "sustainability": {
-        "title": "Focus op duurzaamheid",
-        "description": "Onderwerpen zijn samengesteld rond de VN-duurzaamheidsdoelen en digitaal burgerschap — voor de volgende generatie verantwoordelijke veranderaars."
-      }
-    }
-  },
-  "stats": {
-    "label": "Live statistieken",
-    "heading": "Word lid van een groeiende gemeenschap",
-    "learnersWorldwide": "Leerlingen wereldwijd",
-    "activeTopics": "Actieve onderwerpen",
-    "tasksCompleted": "Voltooide taken"
+  "trust": {
+    "label": "Gebaseerd op bewijs",
+    "heading": "Verankerd in het Europees Kader voor Digitale Competenties",
+    "description": "Play4Change is gebouwd op DigComp 2.2, het referentiekader van de Europese Commissie voor digitale competentie, ontwikkeld in samenwerking met ISEL en U!REKA.",
+    "digcompBadge": "DigComp 2.2",
+    "digcompSub": "21 competenties · 5 gebieden · Europese standaard",
+    "partnersLabel": "Academische partners",
+    "researchCta": "Lees het JRC-onderzoek →"
   },
   "product": {
     "label": "Hoe het werkt",
-    "heading": "Van inhoud naar kennis in",
+    "heading": "Jouw leerreis in",
     "headingHighlight": "4 stappen",
-    "description": "Play4Change overbrugt de kloof tussen educatieve inhoud en echte gedragsverandering — elke resource omzetten in een boeiende, adaptieve leerreis.",
-    "cta": "Begin vandaag nog met leren",
+    "description": "Van ontdekking tot digitale competentie — Play4Change begeleidt elke burger op een gestructureerd, gepersonaliseerd pad.",
+    "cta": "Download de app",
     "steps": {
       "step1": {
-        "title": "Docenten maken onderwerpen",
-        "description": "Admins laden PDF-materialen up of geven URL's op. Onze AI verwerkt de inhoud en genereert een gestructureerd leerpad met dagelijkse uitdagingen."
+        "title": "Ontdek een onderwerp dat ertoe doet",
+        "description": "Blader door uitdagingen rondom smart city-thema's — digitale diensten, duurzame mobiliteit, gegevensprivacy en meer."
       },
       "step2": {
-        "title": "Leerlingen schrijven zich in",
-        "description": "Studenten ontdekken onderwerpen, schrijven zich in seconden in en beginnen dagelijks één uitdaging te ontvangen — compacte taken voor elk schema."
+        "title": "Neem dagelijkse micro-uitdagingen aan",
+        "description": "Één uitdaging per dag, 5–10 minuten. Quizzen, reflecties en peer-taken ontworpen voor elk schema."
       },
       "step3": {
-        "title": "Voortgang door uitdagingen",
-        "description": "Elke dag brengt nieuwe quizzen, reflectievragen en peer-taken. De AI past de moeilijkheidsgraad aan om leerlingen in de flow-staat te houden."
+        "title": "De AI past zich aan jouw tempo aan",
+        "description": "Het platform past de moeilijkheidsgraad aan op basis van jouw prestaties — elke dag in jouw optimale leerzone."
       },
       "step4": {
-        "title": "Prestaties behalen & groeien",
-        "description": "Reeksen voltooien, badges verdienen en ranglijsten beklimmen. Peer reviews van de community bevorderen dieper begrip en collaboratief leren."
+        "title": "Verdien badges die jouw competenties bewijzen",
+        "description": "Voltooi een onderwerp en verdien een verifieerbare badge afgestemd op DigComp 2.2. Deel het, toon het — jouw vaardigheden zijn nu zichtbaar."
       }
     }
   },

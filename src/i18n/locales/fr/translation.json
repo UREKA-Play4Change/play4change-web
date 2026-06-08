@@ -11,85 +11,103 @@
     "urekaAlt": "U!REKA Université Européenne"
   },
   "hero": {
-    "tagline": "Apprentissage adaptatif propulsé par l'IA.",
-    "taglineStrong": "Défis quotidiens gamifiés pour le développement durable et la littératie numérique.",
-    "ctaDownload": "Télécharger",
-    "ctaLearnMore": "En savoir plus",
-    "features": {
-      "aiContent": {
-        "label": "Contenu généré par IA",
-        "description": "Téléchargez un PDF ou une URL et notre IA génère instantanément des défis quotidiens structurés adaptés à votre sujet."
+    "heading": "Des compétences pour les villes",
+    "headingHighlight": "de demain",
+    "tagline": "Les villes européennes se transforment. Play4Change prépare les citoyens avec les compétences numériques pour mener ce changement.",
+    "ctaDownload": "Obtenir l'app",
+    "ctaLearnMore": "Découvrir pourquoi",
+    "pillars": {
+      "engagement": {
+        "label": "Engagement",
+        "description": "Des défis gamifiés, des séries et des évaluations par les pairs maintiennent l'apprentissage actif et motivant chaque jour."
       },
-      "adaptiveLearning": {
-        "label": "Apprentissage adaptatif",
-        "description": "La difficulté s'ajuste en temps réel selon les performances, maintenant chaque apprenant dans sa zone d'apprentissage optimale."
+      "personalisation": {
+        "label": "Personnalisation",
+        "description": "L'IA s'adapte en temps réel au rythme de chaque citoyen — jamais trop facile, jamais trop difficile."
       },
-      "gamification": {
-        "label": "Gamification & Évaluation par les pairs",
-        "description": "Les séries, badges et classements stimulent la motivation tandis que l'évaluation par les pairs favorise une compréhension collaborative plus profonde."
+      "recognition": {
+        "label": "Reconnaissance",
+        "description": "Obtenez des badges vérifiables prouvant vos micro-compétences numériques alignées sur les normes européennes."
+      }
+    }
+  },
+  "challenge": {
+    "label": "Le défi",
+    "heading": "Les villes intelligentes ont besoin de",
+    "headingHighlight": "citoyens intelligents",
+    "description": "Les villes européennes traversent une profonde transformation numérique — de l'infrastructure et de l'énergie à la mobilité et à la gouvernance. La technologie seule ne crée pas le changement. Les personnes, si.",
+    "cards": {
+      "infrastructure": {
+        "title": "Complexité des infrastructures",
+        "description": "Les systèmes de villes intelligentes exigent des citoyens capables d'interagir avec confiance avec les outils et services numériques."
       },
-      "sustainability": {
-        "label": "Axé sur la durabilité",
-        "description": "Conçu spécifiquement pour le développement durable et la littératie numérique — transformer le micro-apprentissage quotidien en changement de comportement durable."
+      "governance": {
+        "title": "Lacunes de gouvernance",
+        "description": "Une participation significative aux décisions de la ville intelligente nécessite des citoyens informés et dotés de culture numérique."
+      },
+      "skills": {
+        "title": "Déficit de compétences",
+        "description": "Dans toute l'Europe, des millions d'adultes manquent des compétences numériques nécessaires pour un monde de plus en plus connecté."
       }
     },
-    "carousel": {
-      "goTo": "Aller à {{feature}}"
+    "digcomp": "Aligné sur DigComp 2.2 — le Cadre européen des compétences numériques",
+    "researchLink": "Lire la recherche JRC →"
+  },
+  "pillars": {
+    "label": "Notre approche",
+    "heading": "Un apprentissage fondé sur",
+    "headingHighlight": "trois piliers",
+    "description": "Chaque fonctionnalité de Play4Change sert l'un des trois principes fondés sur des preuves pour induire un changement de comportement durable.",
+    "engagement": {
+      "number": "01",
+      "title": "Engagement",
+      "description": "La gamification transforme l'apprentissage en habitude quotidienne. Les séries, classements et évaluations par les pairs créent motivation et communauté.",
+      "tag": "Expérience gamifiée"
+    },
+    "personalisation": {
+      "number": "02",
+      "title": "Personnalisation",
+      "description": "Chaque citoyen est unique. Notre IA adapte continuellement la difficulté des défis à chaque performance individuelle, maintenant chacun dans sa zone optimale.",
+      "tag": "IA adaptative"
+    },
+    "recognition": {
+      "number": "03",
+      "title": "Reconnaissance",
+      "description": "La compétence a besoin de preuve. Les apprenants obtiennent des badges numériques alignés sur DigComp 2.2 — des micro-accréditations vérifiables reconnues dans toute l'Europe.",
+      "tag": "Micro-accréditations"
     }
   },
-  "mission": {
-    "label": "Notre mission",
-    "heading": "Un apprentissage qui crée",
-    "headingHighlight": "un vrai changement",
-    "description": "Play4Change transforme la connaissance passive en engagement actif. Notre plateforme rend l'éducation au développement durable et la littératie numérique accessibles, engageantes et impactantes — un défi quotidien à la fois.",
-    "features": {
-      "aiContent": {
-        "title": "Contenu généré par IA",
-        "description": "Les sujets sont créés par des éducateurs et enrichis par l'IA — générant automatiquement des quiz, défis et tâches quotidiennes adaptés au sujet."
-      },
-      "adaptiveLearning": {
-        "title": "Apprentissage adaptatif",
-        "description": "La plateforme s'adapte au rythme et aux performances de chaque apprenant, garantissant que chacun est challengé au bon niveau."
-      },
-      "gamification": {
-        "title": "Gamification & Évaluation par les pairs",
-        "description": "Les séries, classements et badges quotidiens maintiennent la motivation. Les tâches d'évaluation par les pairs développent la pensée critique et les connaissances communautaires."
-      },
-      "sustainability": {
-        "title": "Axé sur la durabilité",
-        "description": "Les sujets sont organisés autour des Objectifs de Développement Durable de l'ONU et de la citoyenneté numérique — pour la prochaine génération de acteurs responsables."
-      }
-    }
-  },
-  "stats": {
-    "label": "Statistiques en direct",
-    "heading": "Rejoignez une communauté en pleine croissance",
-    "learnersWorldwide": "Apprenants dans le monde",
-    "activeTopics": "Sujets actifs",
-    "tasksCompleted": "Tâches accomplies"
+  "trust": {
+    "label": "Fondé sur des preuves",
+    "heading": "Ancré dans le Cadre européen des compétences numériques",
+    "description": "Play4Change est construit sur DigComp 2.2, le cadre de référence de la Commission européenne pour la compétence numérique, développé en partenariat avec l'ISEL et U!REKA.",
+    "digcompBadge": "DigComp 2.2",
+    "digcompSub": "21 compétences · 5 domaines · Norme européenne",
+    "partnersLabel": "Partenaires académiques",
+    "researchCta": "Lire la recherche JRC →"
   },
   "product": {
     "label": "Comment ça marche",
-    "heading": "Du contenu à la connaissance en",
+    "heading": "Votre parcours d'apprentissage en",
     "headingHighlight": "4 étapes",
-    "description": "Play4Change comble le fossé entre le contenu éducatif et le changement de comportement réel — transformant toute ressource en un parcours d'apprentissage adaptatif et engageant.",
-    "cta": "Commencer à apprendre aujourd'hui",
+    "description": "De la découverte à la compétence numérique — Play4Change guide chaque citoyen sur un parcours structuré et personnalisé.",
+    "cta": "Obtenir l'app",
     "steps": {
       "step1": {
-        "title": "Les éducateurs créent des sujets",
-        "description": "Les administrateurs téléchargent des PDF ou fournissent des URL. Notre IA traite le contenu et génère un parcours d'apprentissage structuré avec des défis quotidiens."
+        "title": "Découvrez un sujet qui vous parle",
+        "description": "Parcourez des défis construits autour des thèmes de la ville intelligente — services numériques, mobilité durable, confidentialité des données et plus encore."
       },
       "step2": {
-        "title": "Les apprenants s'inscrivent et commencent",
-        "description": "Les étudiants découvrent les sujets, s'inscrivent en quelques secondes et reçoivent un défi par jour — des tâches courtes adaptées à tous les emplois du temps."
+        "title": "Relevez des micro-défis quotidiens",
+        "description": "Un défi par jour, 5 à 10 minutes. Quiz, réflexions et tâches entre pairs conçus pour s'adapter à tout emploi du temps."
       },
       "step3": {
-        "title": "Progresser à travers les défis",
-        "description": "Chaque jour apporte de nouveaux quiz, invites de réflexion et tâches entre pairs. L'IA adapte la difficulté selon les performances pour maintenir l'état de flow."
+        "title": "L'IA s'adapte à votre rythme",
+        "description": "La plateforme ajuste la difficulté selon vos performances — vous maintenant dans votre zone d'apprentissage optimale chaque jour."
       },
       "step4": {
-        "title": "Gagner des succès et progresser",
-        "description": "Compléter des séries, gagner des badges et grimper dans les classements. Les évaluations entre pairs de la communauté renforcent la compréhension et l'apprentissage collaboratif."
+        "title": "Obtenez des badges qui prouvent vos compétences",
+        "description": "Complétez un sujet et obtenez un badge vérifiable aligné sur DigComp 2.2. Partagez-le, valorisez-le — vos compétences sont désormais visibles."
       }
     }
   },

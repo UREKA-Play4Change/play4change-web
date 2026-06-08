@@ -11,85 +11,103 @@
     "urekaAlt": "U!REKA Universidade Europeia"
   },
   "hero": {
-    "tagline": "Aprendizagem adaptativa impulsionada por IA.",
-    "taglineStrong": "Desafios diários gamificados para sustentabilidade e literacia digital.",
-    "ctaDownload": "Transferir",
-    "ctaLearnMore": "Saber mais",
-    "features": {
-      "aiContent": {
-        "label": "Conteúdo gerado por IA",
-        "description": "Carregue qualquer PDF ou URL e a nossa IA cria instantaneamente desafios diários estruturados adaptados ao seu tema."
+    "heading": "Competências para as cidades",
+    "headingHighlight": "do amanhã",
+    "tagline": "As cidades europeias estão a transformar-se. O Play4Change prepara os cidadãos com as competências digitais para liderar essa mudança.",
+    "ctaDownload": "Obter a app",
+    "ctaLearnMore": "Saber porquê",
+    "pillars": {
+      "engagement": {
+        "label": "Envolvimento",
+        "description": "Desafios gamificados, sequências e revisão por pares mantêm a aprendizagem ativa e motivadora todos os dias."
       },
-      "adaptiveLearning": {
-        "label": "Aprendizagem adaptativa",
-        "description": "A dificuldade ajusta-se em tempo real com base no desempenho, mantendo cada aprendente na sua zona de aprendizagem ideal."
+      "personalisation": {
+        "label": "Personalização",
+        "description": "A IA adapta-se em tempo real ao ritmo de cada cidadão — nunca demasiado fácil, nunca demasiado difícil."
       },
-      "gamification": {
-        "label": "Gamificação e revisão por pares",
-        "description": "Sequências, distintivos e tabelas de classificação impulsionam a motivação enquanto a revisão por pares constrói uma compreensão colaborativa mais profunda."
+      "recognition": {
+        "label": "Reconhecimento",
+        "description": "Ganhe distintivos verificáveis que comprovam micro-competências digitais alinhadas com normas europeias."
+      }
+    }
+  },
+  "challenge": {
+    "label": "O desafio",
+    "heading": "As cidades inteligentes precisam de",
+    "headingHighlight": "cidadãos inteligentes",
+    "description": "As cidades europeias estão a atravessar uma profunda transformação digital — da infraestrutura e energia à mobilidade e governação. A tecnologia por si só não cria mudança. As pessoas sim.",
+    "cards": {
+      "infrastructure": {
+        "title": "Complexidade da infraestrutura",
+        "description": "Os sistemas de cidades inteligentes exigem cidadãos que consigam interagir com confiança com ferramentas e serviços digitais."
       },
-      "sustainability": {
-        "label": "Foco na sustentabilidade",
-        "description": "Criado especificamente para a sustentabilidade e literacia digital — transformando a microaprendizagem diária em mudança comportamental duradoura."
+      "governance": {
+        "title": "Lacunas na governação",
+        "description": "A participação significativa nas decisões da cidade inteligente requer cidadãos informados e com literacia digital."
+      },
+      "skills": {
+        "title": "Défice de competências",
+        "description": "Em toda a Europa, milhões de adultos carecem das competências digitais necessárias para um mundo cada vez mais conectado."
       }
     },
-    "carousel": {
-      "goTo": "Ir para {{feature}}"
+    "digcomp": "Alinhado com o DigComp 2.2 — o Quadro Europeu de Competências Digitais",
+    "researchLink": "Ler a investigação JRC →"
+  },
+  "pillars": {
+    "label": "A nossa abordagem",
+    "heading": "Aprendizagem assente em",
+    "headingHighlight": "três pilares",
+    "description": "Cada funcionalidade do Play4Change serve um de três princípios baseados em evidências, comprovados para gerar mudança comportamental duradoura.",
+    "engagement": {
+      "number": "01",
+      "title": "Envolvimento",
+      "description": "A gamificação transforma a aprendizagem num hábito diário. Sequências, tabelas de classificação e revisão por pares constroem motivação e comunidade.",
+      "tag": "Experiência gamificada"
+    },
+    "personalisation": {
+      "number": "02",
+      "title": "Personalização",
+      "description": "Não há dois cidadãos iguais. A nossa IA adapta continuamente a dificuldade dos desafios ao desempenho individual, mantendo cada aprendente na sua zona ideal.",
+      "tag": "IA adaptativa"
+    },
+    "recognition": {
+      "number": "03",
+      "title": "Reconhecimento",
+      "description": "A competência precisa de prova. Os aprendentes ganham distintivos digitais alinhados com o DigComp 2.2 — micro-credenciais verificáveis reconhecidas em toda a Europa.",
+      "tag": "Micro-credenciais"
     }
   },
-  "mission": {
-    "label": "A nossa missão",
-    "heading": "Aprendizagem que cria",
-    "headingHighlight": "mudança real",
-    "description": "O Play4Change transforma o conhecimento passivo em envolvimento ativo. A nossa plataforma torna a educação para a sustentabilidade e a literacia digital acessíveis, cativantes e impactantes — um desafio diário de cada vez.",
-    "features": {
-      "aiContent": {
-        "title": "Conteúdo gerado por IA",
-        "description": "Os temas são criados por educadores e enriquecidos pela IA — gerando automaticamente questionários, desafios e tarefas diárias adaptadas ao tema."
-      },
-      "adaptiveLearning": {
-        "title": "Aprendizagem adaptativa",
-        "description": "A plataforma adapta-se ao ritmo e ao desempenho de cada aprendente, garantindo que todos são desafiados ao nível certo."
-      },
-      "gamification": {
-        "title": "Gamificação e revisão por pares",
-        "description": "Sequências diárias, tabelas de classificação e distintivos mantêm os aprendentes motivados. As tarefas de revisão por pares desenvolvem o pensamento crítico e o conhecimento comunitário."
-      },
-      "sustainability": {
-        "title": "Foco na sustentabilidade",
-        "description": "Os temas são organizados em torno dos Objetivos de Desenvolvimento Sustentável da ONU e da cidadania digital — para a próxima geração de agentes de mudança responsáveis."
-      }
-    }
-  },
-  "stats": {
-    "label": "Estatísticas em direto",
-    "heading": "Junte-se a uma comunidade em crescimento",
-    "learnersWorldwide": "Aprendentes em todo o mundo",
-    "activeTopics": "Temas ativos",
-    "tasksCompleted": "Tarefas concluídas"
+  "trust": {
+    "label": "Baseado em evidências",
+    "heading": "Fundamentado no Quadro Europeu de Competências Digitais",
+    "description": "O Play4Change é construído sobre o DigComp 2.2, o quadro de referência da Comissão Europeia para a competência digital, desenvolvido em parceria com o ISEL e a U!REKA.",
+    "digcompBadge": "DigComp 2.2",
+    "digcompSub": "21 competências · 5 áreas · Norma europeia",
+    "partnersLabel": "Parceiros académicos",
+    "researchCta": "Ler a investigação JRC →"
   },
   "product": {
     "label": "Como funciona",
-    "heading": "Do conteúdo ao conhecimento em",
+    "heading": "A sua jornada de aprendizagem em",
     "headingHighlight": "4 passos",
-    "description": "O Play4Change elimina a lacuna entre conteúdo educativo e mudança comportamental real — transformando qualquer recurso numa viagem de aprendizagem adaptativa e envolvente.",
-    "cta": "Começar a aprender hoje",
+    "description": "Da descoberta à competência digital — o Play4Change guia cada cidadão por um percurso estruturado e personalizado.",
+    "cta": "Obter a app",
     "steps": {
       "step1": {
-        "title": "Os educadores criam temas",
-        "description": "Os administradores carregam materiais PDF ou fornecem URLs. A nossa IA processa o conteúdo e gera um percurso de aprendizagem estruturado com desafios diários."
+        "title": "Descubra um tema que importa",
+        "description": "Explore desafios construídos em torno de temas de cidades inteligentes — serviços digitais, mobilidade sustentável, privacidade de dados e muito mais."
       },
       "step2": {
-        "title": "Os aprendentes inscrevem-se e começam",
-        "description": "Os estudantes descobrem temas, inscrevem-se em segundos e começam a receber um desafio por dia — tarefas compactas que se adaptam a qualquer horário."
+        "title": "Realize micro-desafios diários",
+        "description": "Um desafio por dia, 5 a 10 minutos. Questionários, reflexões e tarefas entre pares concebidos para se adaptarem a qualquer horário."
       },
       "step3": {
-        "title": "Progredir através dos desafios",
-        "description": "Cada dia traz novos questionários, reflexões e tarefas entre pares. A IA adapta a dificuldade com base no desempenho para manter os aprendentes no estado de fluxo."
+        "title": "A IA adapta-se ao seu ritmo",
+        "description": "A plataforma ajusta a dificuldade dos desafios com base no seu desempenho — mantendo-o na zona de aprendizagem ideal todos os dias."
       },
       "step4": {
-        "title": "Conquistar realizações e crescer",
-        "description": "Concluir sequências, ganhar distintivos e subir nas tabelas de classificação. As revisões por pares da comunidade constroem uma compreensão mais profunda e aprendizagem colaborativa."
+        "title": "Ganhe distintivos que comprovam as suas competências",
+        "description": "Conclua um tema e ganhe um distintivo verificável alinhado com o DigComp 2.2. Partilhe-o, mostre-o — as suas competências são agora visíveis."
       }
     }
   },

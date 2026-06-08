@@ -11,85 +11,103 @@
     "urekaAlt": "U!REKA Europeiskt Universitet"
   },
   "hero": {
-    "tagline": "Adaptivt lärande drivet av AI.",
-    "taglineStrong": "Gamifierade dagliga utmaningar för hållbarhet och digital kompetens.",
-    "ctaDownload": "Ladda ner",
-    "ctaLearnMore": "Läs mer",
-    "features": {
-      "aiContent": {
-        "label": "AI-genererat innehåll",
-        "description": "Ladda upp en PDF eller URL och vår AI skapar omedelbart strukturerade dagliga utmaningar anpassade till ditt ämne."
+    "heading": "Kompetenser för städerna",
+    "headingHighlight": "i morgon",
+    "tagline": "Europas städer förändras. Play4Change förbereder medborgare med de digitala kompetenser som krävs för att leda den förändringen.",
+    "ctaDownload": "Hämta appen",
+    "ctaLearnMore": "Upptäck varför",
+    "pillars": {
+      "engagement": {
+        "label": "Engagemang",
+        "description": "Gamifierade utmaningar, serier och peer reviews håller lärandet aktivt och motiverande varje dag."
       },
-      "adaptiveLearning": {
-        "label": "Adaptivt lärande",
-        "description": "Svårigheten anpassas i realtid baserat på prestationer, vilket håller varje elev i sin optimala lärandezon."
+      "personalisation": {
+        "label": "Personalisering",
+        "description": "AI anpassar sig i realtid till varje medborgares tempo — aldrig för enkelt, aldrig för svårt."
       },
-      "gamification": {
-        "label": "Gamification och peer review",
-        "description": "Serier, märken och rankningslistor driver motivation medan peer review bygger djupare samarbetsförståelse."
+      "recognition": {
+        "label": "Erkännande",
+        "description": "Tjäna verifierbara märken som bevisar digitala mikrokompetenser i linje med europeiska standarder."
+      }
+    }
+  },
+  "challenge": {
+    "label": "Utmaningen",
+    "heading": "Smarta städer behöver",
+    "headingHighlight": "smarta medborgare",
+    "description": "Europas städer genomgår en djupgående digital transformation — från infrastruktur och energi till mobilitet och styrning. Teknik skapar inte förändring på egen hand. Det gör människor.",
+    "cards": {
+      "infrastructure": {
+        "title": "Infrastrukturkomplexitet",
+        "description": "Smarta stadssystem kräver medborgare som tryggt kan använda digitala verktyg och tjänster."
       },
-      "sustainability": {
-        "label": "Hållbarhetsfokus",
-        "description": "Byggt för hållbarhet och digital kompetens — dagligt mikrolärande som skapar varaktig beteendeförändring."
+      "governance": {
+        "title": "Styrningsluckor",
+        "description": "Meningsfullt deltagande i beslut om smarta städer kräver digitalt kunniga, välunderrättade medborgare."
+      },
+      "skills": {
+        "title": "Kompetensbrist",
+        "description": "I hela Europa saknar miljontals vuxna de digitala kompetenser som behövs i en alltmer uppkopplad värld."
       }
     },
-    "carousel": {
-      "goTo": "Gå till {{feature}}"
+    "digcomp": "I linje med DigComp 2.2 — det europeiska ramverket för digital kompetens",
+    "researchLink": "Läs JRC-forskningen →"
+  },
+  "pillars": {
+    "label": "Vårt tillvägagångssätt",
+    "heading": "Lärande byggt på",
+    "headingHighlight": "tre pelare",
+    "description": "Varje funktion i Play4Change tjänar en av tre evidensbaserade principer som bevisligen driver varaktig beteendeförändring.",
+    "engagement": {
+      "number": "01",
+      "title": "Engagemang",
+      "description": "Gamification förvandlar lärande till en daglig vana. Serier, rankningslistor och peer reviews bygger motivation och gemenskap.",
+      "tag": "Gamifierad upplevelse"
+    },
+    "personalisation": {
+      "number": "02",
+      "title": "Personalisering",
+      "description": "Inga två medborgare är likadana. Vår AI anpassar kontinuerligt svårigheten på utmaningarna till individuella prestationer.",
+      "tag": "Adaptiv AI"
+    },
+    "recognition": {
+      "number": "03",
+      "title": "Erkännande",
+      "description": "Kompetens behöver bevis. Elever tjänar digitala märken i linje med DigComp 2.2 — verifierbara mikroackrediteringar erkända i hela Europa.",
+      "tag": "Mikroackrediteringar"
     }
   },
-  "mission": {
-    "label": "Vårt uppdrag",
-    "heading": "Lärande som skapar",
-    "headingHighlight": "verklig förändring",
-    "description": "Play4Change förvandlar passiv kunskap till aktivt engagemang. Vår plattform gör hållbarhetsutbildning och digital kompetens tillgänglig, engagerande och verkningsfull — en daglig utmaning i taget.",
-    "features": {
-      "aiContent": {
-        "title": "AI-genererat innehåll",
-        "description": "Ämnen skapas av lärare och berikas av AI — genererar automatiskt quiz, utmaningar och dagliga uppgifter anpassade till ämnet."
-      },
-      "adaptiveLearning": {
-        "title": "Adaptivt lärande",
-        "description": "Plattformen anpassar sig till varje elevs tempo och prestationer och säkerställer att alla utmanas på rätt nivå."
-      },
-      "gamification": {
-        "title": "Gamification och peer review",
-        "description": "Dagliga serier, rankningslistor och märken håller elever motiverade. Peer review-uppgifter utvecklar kritiskt tänkande och gemenskapskunskap."
-      },
-      "sustainability": {
-        "title": "Hållbarhetsfokus",
-        "description": "Ämnen väljs ut kring FN:s hållbarhetsmål och digitalt medborgarskap — för nästa generation av ansvarsfulla förändringsskapare."
-      }
-    }
-  },
-  "stats": {
-    "label": "Live-statistik",
-    "heading": "Gå med i ett växande samfund",
-    "learnersWorldwide": "Elever världen över",
-    "activeTopics": "Aktiva ämnen",
-    "tasksCompleted": "Avklarade uppgifter"
+  "trust": {
+    "label": "Byggt på forskning",
+    "heading": "Grundat i det europeiska ramverket för digital kompetens",
+    "description": "Play4Change är byggt på DigComp 2.2, Europeiska kommissionens referensramverk för digital kompetens, utvecklat i partnerskap med ISEL och U!REKA.",
+    "digcompBadge": "DigComp 2.2",
+    "digcompSub": "21 kompetenser · 5 områden · Europeisk standard",
+    "partnersLabel": "Akademiska partners",
+    "researchCta": "Läs JRC-forskningen →"
   },
   "product": {
     "label": "Hur det fungerar",
-    "heading": "Från innehåll till kunskap på",
+    "heading": "Din läranderesa på",
     "headingHighlight": "4 steg",
-    "description": "Play4Change överbryggar klyftan mellan utbildningsinnehåll och verklig beteendeförändring — förvandlar alla resurser till en engagerande, adaptiv läranderesa.",
-    "cta": "Börja lära dig idag",
+    "description": "Från upptäckt till digital kompetens — Play4Change guidar varje medborgare längs en strukturerad, personaliserad väg.",
+    "cta": "Hämta appen",
     "steps": {
       "step1": {
-        "title": "Lärare skapar ämnen",
-        "description": "Administratörer laddar upp PDF-material eller anger URL:er. Vår AI bearbetar innehållet och genererar en strukturerad inlärningsväg med dagliga utmaningar."
+        "title": "Upptäck ett ämne som spelar roll",
+        "description": "Bläddra bland utmaningar byggda kring smarta stadsteman — digitala tjänster, hållbar mobilitet, dataintegritet och mer."
       },
       "step2": {
-        "title": "Elever registrerar sig och börjar",
-        "description": "Studenter upptäcker ämnen, registrerar sig på sekunder och börjar ta emot en utmaning per dag — kompakta uppgifter som passar alla scheman."
+        "title": "Ta dagliga mikroutmaningar",
+        "description": "En utmaning per dag, 5–10 minuter. Quiz, reflektioner och peer-uppgifter utformade för alla scheman."
       },
       "step3": {
-        "title": "Framsteg genom utmaningar",
-        "description": "Varje dag ger nya quiz, reflektionsfrågor och peer-uppgifter. AI:n anpassar svårigheten baserat på prestationer för att hålla eleverna i flödestillståndet."
+        "title": "AI anpassar sig till ditt tempo",
+        "description": "Plattformen justerar svårigheten baserat på dina prestationer — håller dig i din optimala lärandezon varje dag."
       },
       "step4": {
-        "title": "Tjäna prestationer och växa",
-        "description": "Avsluta serier, tjäna märken och klättra i rankningslistorna. Gemenskapens peer reviews bygger djupare förståelse och samarbetsinlärning."
+        "title": "Tjäna märken som bevisar dina kompetenser",
+        "description": "Slutför ett ämne och tjäna ett verifierbart märke i linje med DigComp 2.2. Dela det, visa upp det — dina färdigheter är nu synliga."
       }
     }
   },

@@ -11,85 +11,103 @@
     "urekaAlt": "U!REKA Europejski Uniwersytet"
   },
   "hero": {
-    "tagline": "Adaptacyjna nauka wspierana przez AI.",
-    "taglineStrong": "Grywalizowane codzienne wyzwania dla zrównoważonego rozwoju i umiejętności cyfrowych.",
-    "ctaDownload": "Pobierz",
-    "ctaLearnMore": "Dowiedz się więcej",
-    "features": {
-      "aiContent": {
-        "label": "Treści generowane przez AI",
-        "description": "Prześlij dowolny PDF lub URL, a nasza AI natychmiast tworzy ustrukturyzowane codzienne wyzwania dopasowane do Twojego tematu."
+    "heading": "Kompetencje dla miast",
+    "headingHighlight": "jutra",
+    "tagline": "Europejskie miasta się transformują. Play4Change przygotowuje obywateli z cyfrowymi kompetencjami, aby przewodzili tej zmianie.",
+    "ctaDownload": "Pobierz aplikację",
+    "ctaLearnMore": "Dowiedz się dlaczego",
+    "pillars": {
+      "engagement": {
+        "label": "Zaangażowanie",
+        "description": "Grywalizowane wyzwania, serie i oceny przez rówieśników utrzymują naukę aktywną i motywującą każdego dnia."
       },
-      "adaptiveLearning": {
-        "label": "Adaptacyjna nauka",
-        "description": "Poziom trudności dostosowuje się w czasie rzeczywistym do wyników, utrzymując każdego ucznia w optymalnej strefie nauki."
+      "personalisation": {
+        "label": "Personalizacja",
+        "description": "AI dostosowuje się w czasie rzeczywistym do tempa każdego obywatela — nigdy za łatwo, nigdy za trudno."
       },
-      "gamification": {
-        "label": "Grywalizacja i ocena przez rówieśników",
-        "description": "Serie, odznaki i rankingi motywują, a ocena przez rówieśników buduje głębsze wspólne zrozumienie."
+      "recognition": {
+        "label": "Uznanie",
+        "description": "Zdobądź weryfikowalne odznaki potwierdzające cyfrowe mikrokompetencje zgodne z europejskimi standardami."
+      }
+    }
+  },
+  "challenge": {
+    "label": "Wyzwanie",
+    "heading": "Inteligentne miasta potrzebują",
+    "headingHighlight": "inteligentnych obywateli",
+    "description": "Europejskie miasta przechodzą głęboką transformację cyfrową — od infrastruktury i energii po mobilność i zarządzanie. Sama technologia nie tworzy zmiany. Ludzie tak.",
+    "cards": {
+      "infrastructure": {
+        "title": "Złożoność infrastruktury",
+        "description": "Systemy inteligentnych miast wymagają obywateli, którzy pewnie korzystają z cyfrowych narzędzi i usług."
       },
-      "sustainability": {
-        "label": "Nacisk na zrównoważony rozwój",
-        "description": "Zaprojektowany dla zrównoważonego rozwoju i umiejętności cyfrowych — codzienne mikronauka prowadząca do trwałej zmiany zachowań."
+      "governance": {
+        "title": "Luki w zarządzaniu",
+        "description": "Znaczący udział w decyzjach inteligentnego miasta wymaga obywateli świadomych cyfrowo i dobrze poinformowanych."
+      },
+      "skills": {
+        "title": "Deficyt umiejętności",
+        "description": "W całej Europie miliony dorosłych brakuje kompetencji cyfrowych potrzebnych w coraz bardziej połączonym świecie."
       }
     },
-    "carousel": {
-      "goTo": "Przejdź do {{feature}}"
+    "digcomp": "Zgodny z DigComp 2.2 — Europejskimi Ramami Kompetencji Cyfrowych",
+    "researchLink": "Przeczytaj badania JRC →"
+  },
+  "pillars": {
+    "label": "Nasze podejście",
+    "heading": "Nauka oparta na",
+    "headingHighlight": "trzech filarach",
+    "description": "Każda funkcja Play4Change służy jednemu z trzech zasad opartych na dowodach, które prowadzą do trwałej zmiany zachowań.",
+    "engagement": {
+      "number": "01",
+      "title": "Zaangażowanie",
+      "description": "Grywalizacja zmienia naukę w codzienny nawyk. Serie, rankingi i oceny przez rówieśników budują motywację i społeczność.",
+      "tag": "Grywalizowane doświadczenie"
+    },
+    "personalisation": {
+      "number": "02",
+      "title": "Personalizacja",
+      "description": "Nie ma dwóch takich samych obywateli. Nasza AI stale dostosowuje poziom trudności wyzwań do indywidualnych wyników.",
+      "tag": "Adaptacyjna AI"
+    },
+    "recognition": {
+      "number": "03",
+      "title": "Uznanie",
+      "description": "Kompetencja potrzebuje dowodu. Uczniowie zdobywają cyfrowe odznaki zgodne z DigComp 2.2 — weryfikowalne mikrokredencjały uznawane w całej Europie.",
+      "tag": "Mikrokredencjały"
     }
   },
-  "mission": {
-    "label": "Nasza misja",
-    "heading": "Nauka, która tworzy",
-    "headingHighlight": "prawdziwą zmianę",
-    "description": "Play4Change przekształca bierną wiedzę w aktywne zaangażowanie. Nasza platforma sprawia, że edukacja na rzecz zrównoważonego rozwoju i umiejętności cyfrowych staje się dostępna, wciągająca i wpływowa — jedno codzienne wyzwanie na raz.",
-    "features": {
-      "aiContent": {
-        "title": "Treści generowane przez AI",
-        "description": "Tematy są tworzone przez nauczycieli i wzbogacane przez AI — automatyczne generowanie quizów, wyzwań i codziennych zadań dostosowanych do tematu."
-      },
-      "adaptiveLearning": {
-        "title": "Adaptacyjna nauka",
-        "description": "Platforma dostosowuje się do tempa i wyników każdego ucznia, zapewniając, że wszyscy są odpowiednio wyzwani."
-      },
-      "gamification": {
-        "title": "Grywalizacja i ocena przez rówieśników",
-        "description": "Codzienne serie, rankingi i odznaki utrzymują motywację uczniów. Zadania oceny przez rówieśników rozwijają myślenie krytyczne i wiedzę społeczności."
-      },
-      "sustainability": {
-        "title": "Nacisk na zrównoważony rozwój",
-        "description": "Tematy są dobierane wokół Celów Zrównoważonego Rozwoju ONZ i cyfrowego obywatelstwa — dla następnego pokolenia odpowiedzialnych liderów zmian."
-      }
-    }
-  },
-  "stats": {
-    "label": "Statystyki na żywo",
-    "heading": "Dołącz do rosnącej społeczności",
-    "learnersWorldwide": "Uczniów na całym świecie",
-    "activeTopics": "Aktywne tematy",
-    "tasksCompleted": "Ukończone zadania"
+  "trust": {
+    "label": "Oparte na dowodach",
+    "heading": "Zakorzenione w Europejskich Ramach Kompetencji Cyfrowych",
+    "description": "Play4Change zbudowany jest na DigComp 2.2, ramach odniesienia Komisji Europejskiej dla kompetencji cyfrowych, opracowanych we współpracy z ISEL i U!REKA.",
+    "digcompBadge": "DigComp 2.2",
+    "digcompSub": "21 kompetencji · 5 obszarów · Standard europejski",
+    "partnersLabel": "Partnerzy akademiccy",
+    "researchCta": "Przeczytaj badania JRC →"
   },
   "product": {
     "label": "Jak to działa",
-    "heading": "Od treści do wiedzy w",
+    "heading": "Twoja droga edukacyjna w",
     "headingHighlight": "4 krokach",
-    "description": "Play4Change wypełnia lukę między treściami edukacyjnymi a rzeczywistą zmianą zachowań — przekształcając każdy zasób w angażującą, adaptacyjną podróż edukacyjną.",
-    "cta": "Zacznij się uczyć już dziś",
+    "description": "Od odkrycia do kompetencji cyfrowych — Play4Change prowadzi każdego obywatela przez ustrukturyzowaną, spersonalizowaną ścieżkę.",
+    "cta": "Pobierz aplikację",
     "steps": {
       "step1": {
-        "title": "Nauczyciele tworzą tematy",
-        "description": "Administratorzy przesyłają materiały PDF lub podają adresy URL. Nasza AI przetwarza treści i generuje ustrukturyzowaną ścieżkę nauki z codziennymi wyzwaniami."
+        "title": "Odkryj temat, który ma znaczenie",
+        "description": "Przeglądaj wyzwania zbudowane wokół tematów inteligentnych miast — usługi cyfrowe, mobilność zrównoważona, prywatność danych i więcej."
       },
       "step2": {
-        "title": "Uczniowie zapisują się i zaczynają",
-        "description": "Studenci odkrywają tematy, zapisują się w kilka sekund i zaczynają otrzymywać jedno wyzwanie dziennie — kompaktowe zadania dopasowane do każdego planu zajęć."
+        "title": "Podejmuj codzienne mikrowyzwania",
+        "description": "Jedno wyzwanie dziennie, 5–10 minut. Quizy, refleksje i zadania grupowe dostosowane do każdego harmonogramu."
       },
       "step3": {
-        "title": "Postęp przez wyzwania",
-        "description": "Każdego dnia nowe quizy, refleksje i zadania grupowe. AI dostosowuje poziom trudności do wyników, aby utrzymać uczniów w stanie przepływu."
+        "title": "AI dostosowuje się do Twojego tempa",
+        "description": "Platforma dostosowuje poziom trudności na podstawie Twoich wyników — każdego dnia w optymalnej strefie nauki."
       },
       "step4": {
-        "title": "Zdobywanie osiągnięć i wzrost",
-        "description": "Kończenie serii, zdobywanie odznak i awansowanie w rankingach. Oceny przez rówieśników budują głębsze zrozumienie i wspólną naukę."
+        "title": "Zdobywaj odznaki potwierdzające kompetencje",
+        "description": "Ukończ temat i zdobądź weryfikowalną odznakę zgodną z DigComp 2.2. Udostępnij ją, pochwal się — Twoje umiejętności są teraz widoczne."
       }
     }
   },

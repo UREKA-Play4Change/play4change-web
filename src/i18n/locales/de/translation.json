@@ -11,85 +11,103 @@
     "urekaAlt": "U!REKA Europäische Universität"
   },
   "hero": {
-    "tagline": "KI-gesteuertes adaptives Lernen.",
-    "taglineStrong": "Gamifizierte tägliche Herausforderungen für Nachhaltigkeit und digitale Kompetenz.",
-    "ctaDownload": "Herunterladen",
+    "heading": "Kompetenzen für die Städte",
+    "headingHighlight": "von morgen",
+    "tagline": "Europas Städte verändern sich. Play4Change bereitet Bürgerinnen und Bürger mit den digitalen Kompetenzen vor, diesen Wandel anzuführen.",
+    "ctaDownload": "App herunterladen",
     "ctaLearnMore": "Mehr erfahren",
-    "features": {
-      "aiContent": {
-        "label": "KI-generierte Inhalte",
-        "description": "Laden Sie PDFs oder URLs hoch und unsere KI erstellt sofort strukturierte tägliche Aufgaben zu Ihrem Thema."
+    "pillars": {
+      "engagement": {
+        "label": "Engagement",
+        "description": "Gamifizierte Herausforderungen, Serien und Peer-Reviews halten das Lernen täglich aktiv und motivierend."
       },
-      "adaptiveLearning": {
-        "label": "Adaptives Lernen",
-        "description": "Der Schwierigkeitsgrad passt sich in Echtzeit der Leistung an und hält jeden Lernenden in seiner optimalen Lernzone."
+      "personalisation": {
+        "label": "Personalisierung",
+        "description": "Die KI passt sich in Echtzeit dem Tempo jedes Bürgers an — nie zu einfach, nie zu schwer."
       },
-      "gamification": {
-        "label": "Gamifizierung & Peer-Review",
-        "description": "Serien, Abzeichen und Bestenlisten motivieren, während Peer-Reviews tieferes gemeinsames Verständnis fördern."
+      "recognition": {
+        "label": "Anerkennung",
+        "description": "Verdienen Sie verifizierbare Abzeichen, die digitale Mikrokompetenzen nach europäischem Standard belegen."
+      }
+    }
+  },
+  "challenge": {
+    "label": "Die Herausforderung",
+    "heading": "Smarte Städte brauchen",
+    "headingHighlight": "smarte Bürger",
+    "description": "Europas Städte durchlaufen einen tiefgreifenden digitalen Wandel — von Infrastruktur und Energie bis zu Mobilität und Verwaltung. Technologie allein schafft keinen Wandel. Menschen schon.",
+    "cards": {
+      "infrastructure": {
+        "title": "Infrastrukturkomplexität",
+        "description": "Smart-City-Systeme erfordern Bürger, die sicher mit digitalen Werkzeugen und Diensten umgehen können."
       },
-      "sustainability": {
-        "label": "Nachhaltigkeitsfokus",
-        "description": "Eigens für Nachhaltigkeit und digitale Kompetenz entwickelt — tägliches Mikrolernen für dauerhaften Wandel."
+      "governance": {
+        "title": "Governance-Lücken",
+        "description": "Eine bedeutungsvolle Beteiligung an Smart-City-Entscheidungen erfordert digital kompetente, informierte Bürger."
+      },
+      "skills": {
+        "title": "Kompetenzdefizit",
+        "description": "In ganz Europa fehlt Millionen von Erwachsenen die digitale Kompetenz, die für eine zunehmend vernetzte Welt notwendig ist."
       }
     },
-    "carousel": {
-      "goTo": "Zu {{feature}} gehen"
+    "digcomp": "Ausgerichtet an DigComp 2.2 — dem Europäischen Rahmen für digitale Kompetenz",
+    "researchLink": "JRC-Forschung lesen →"
+  },
+  "pillars": {
+    "label": "Unser Ansatz",
+    "heading": "Lernen auf",
+    "headingHighlight": "drei Säulen",
+    "description": "Jede Funktion von Play4Change dient einem von drei evidenzbasierten Prinzipien, die nachweislich dauerhaften Verhaltenschange bewirken.",
+    "engagement": {
+      "number": "01",
+      "title": "Engagement",
+      "description": "Gamifizierung macht Lernen zur täglichen Gewohnheit. Serien, Bestenlisten und Peer-Reviews schaffen Motivation und Gemeinschaft.",
+      "tag": "Gamifizierte Erfahrung"
+    },
+    "personalisation": {
+      "number": "02",
+      "title": "Personalisierung",
+      "description": "Keine zwei Bürger sind gleich. Unsere KI passt die Schwierigkeit der Aufgaben kontinuierlich an die individuelle Leistung an.",
+      "tag": "Adaptive KI"
+    },
+    "recognition": {
+      "number": "03",
+      "title": "Anerkennung",
+      "description": "Kompetenz braucht Nachweis. Lernende erhalten digitale Abzeichen nach DigComp 2.2 — verifizierbare Mikrozertifikate, die in ganz Europa anerkannt werden.",
+      "tag": "Mikrozertifikate"
     }
   },
-  "mission": {
-    "label": "Unsere Mission",
-    "heading": "Lernen, das",
-    "headingHighlight": "echten Wandel schafft",
-    "description": "Play4Change wandelt passives Wissen in aktives Engagement um. Unsere Plattform macht Nachhaltigkeitsbildung und digitale Kompetenz zugänglich, motivierend und wirkungsvoll — eine tägliche Herausforderung nach der anderen.",
-    "features": {
-      "aiContent": {
-        "title": "KI-generierte Inhalte",
-        "description": "Themen werden von Lehrenden erstellt und durch KI angereichert — automatische Erstellung von Tests, Aufgaben und täglichen Challenges zum Thema."
-      },
-      "adaptiveLearning": {
-        "title": "Adaptives Lernen",
-        "description": "Die Plattform passt sich dem Tempo und den Leistungen jedes Lernenden an, sodass alle auf dem richtigen Niveau gefordert werden."
-      },
-      "gamification": {
-        "title": "Gamifizierung & Peer-Review",
-        "description": "Tägliche Serien, Bestenlisten und Abzeichen halten die Motivation aufrecht. Peer-Reviews fördern kritisches Denken und gemeinsames Wissen."
-      },
-      "sustainability": {
-        "title": "Nachhaltigkeitsfokus",
-        "description": "Themen orientieren sich an den UN-Nachhaltigkeitszielen und digitaler Bürgerschaft — für die nächste Generation verantwortungsvoller Gestalter."
-      }
-    }
-  },
-  "stats": {
-    "label": "Live-Statistiken",
-    "heading": "Einer wachsenden Gemeinschaft beitreten",
-    "learnersWorldwide": "Lernende weltweit",
-    "activeTopics": "Aktive Themen",
-    "tasksCompleted": "Abgeschlossene Aufgaben"
+  "trust": {
+    "label": "Evidenzbasiert",
+    "heading": "Verankert im Europäischen Rahmen für digitale Kompetenz",
+    "description": "Play4Change basiert auf DigComp 2.2, dem Referenzrahmen der Europäischen Kommission für digitale Kompetenz, entwickelt in Partnerschaft mit ISEL und U!REKA.",
+    "digcompBadge": "DigComp 2.2",
+    "digcompSub": "21 Kompetenzen · 5 Bereiche · Europäischer Standard",
+    "partnersLabel": "Akademische Partner",
+    "researchCta": "JRC-Forschung lesen →"
   },
   "product": {
     "label": "Wie es funktioniert",
-    "heading": "Vom Inhalt zum Wissen in",
+    "heading": "Ihre Lernreise in",
     "headingHighlight": "4 Schritten",
-    "description": "Play4Change überbrückt die Lücke zwischen Bildungsinhalten und realem Verhaltenschange — jede Ressource wird zu einer engagierten, adaptiven Lernreise.",
-    "cta": "Jetzt mit dem Lernen beginnen",
+    "description": "Von der Entdeckung zur digitalen Kompetenz — Play4Change begleitet jeden Bürger auf einem strukturierten, personalisierten Weg.",
+    "cta": "App herunterladen",
     "steps": {
       "step1": {
-        "title": "Lehrende erstellen Themen",
-        "description": "Admins laden PDF-Materialien hoch oder geben URLs an. Unsere KI verarbeitet die Inhalte und erstellt einen strukturierten Lernpfad mit täglichen Aufgaben."
+        "title": "Entdecken Sie ein relevantes Thema",
+        "description": "Stöbern Sie in Herausforderungen rund um Smart-City-Themen — digitale Dienste, nachhaltige Mobilität, Datenschutz und mehr."
       },
       "step2": {
-        "title": "Lernende schreiben sich ein",
-        "description": "Studierende entdecken Themen, schreiben sich in Sekunden ein und erhalten täglich eine Aufgabe — kompakte Tasks für jeden Zeitplan."
+        "title": "Tägliche Mikro-Herausforderungen",
+        "description": "Eine Aufgabe pro Tag, 5–10 Minuten. Tests, Reflexionen und Peer-Tasks, die in jeden Zeitplan passen."
       },
       "step3": {
-        "title": "Durch Herausforderungen wachsen",
-        "description": "Jeden Tag neue Tests, Reflexionsaufgaben und Peer-Tasks. Die KI passt den Schwierigkeitsgrad an, um Lernende im Flow-Zustand zu halten."
+        "title": "Die KI passt sich Ihrem Tempo an",
+        "description": "Die Plattform passt die Schwierigkeit laufend an Ihre Leistung an — jeden Tag in Ihrer optimalen Lernzone."
       },
       "step4": {
-        "title": "Erfolge sammeln & wachsen",
-        "description": "Serien abschließen, Abzeichen verdienen und Bestenlisten erklimmen. Community-Peer-Reviews fördern tieferes Verständnis und kollaboratives Lernen."
+        "title": "Abzeichen als Kompetenznachweise",
+        "description": "Schließen Sie ein Thema ab und erhalten Sie ein verifizierbares Abzeichen nach DigComp 2.2. Teilen Sie es, zeigen Sie es — Ihre Kompetenzen sind jetzt sichtbar."
       }
     }
   },

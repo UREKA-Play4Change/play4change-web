@@ -11,85 +11,103 @@
     "urekaAlt": "U!REKA European University"
   },
   "hero": {
-    "tagline": "Adaptive learning powered by AI.",
-    "taglineStrong": "Gamified daily challenges for sustainability and digital literacy.",
-    "ctaDownload": "Download",
-    "ctaLearnMore": "Learn more",
-    "features": {
-      "aiContent": {
-        "label": "AI-Generated Content",
-        "description": "Upload any PDF or URL and our AI instantly builds structured daily challenges tailored to your topic."
+    "heading": "Skills for the cities",
+    "headingHighlight": "of tomorrow",
+    "tagline": "Europe's cities are transforming. Play4Change prepares citizens with the digital competences to lead that change.",
+    "ctaDownload": "Get the app",
+    "ctaLearnMore": "Discover why",
+    "pillars": {
+      "engagement": {
+        "label": "Engagement",
+        "description": "Gamified challenges, streaks, and peer review keep learning active and motivating every day."
       },
-      "adaptiveLearning": {
-        "label": "Adaptive Learning",
-        "description": "Difficulty adjusts in real-time based on performance, keeping every learner in their optimal learning zone."
+      "personalisation": {
+        "label": "Personalisation",
+        "description": "AI adapts in real-time to each citizen's pace — never too easy, never too hard."
       },
-      "gamification": {
-        "label": "Gamification & Peer Review",
-        "description": "Streaks, badges, and leaderboards drive motivation while peer review builds deeper collaborative understanding."
+      "recognition": {
+        "label": "Recognition",
+        "description": "Earn verifiable badges proving digital micro-competences aligned to European standards."
+      }
+    }
+  },
+  "challenge": {
+    "label": "The challenge",
+    "heading": "Smart cities need",
+    "headingHighlight": "smart citizens",
+    "description": "Cities across Europe are undergoing profound digital transformation — from infrastructure and energy to mobility and governance. Technology alone doesn't create change. People do.",
+    "cards": {
+      "infrastructure": {
+        "title": "Infrastructure complexity",
+        "description": "Smart city systems demand citizens who can engage confidently with digital tools and services."
       },
-      "sustainability": {
-        "label": "Sustainability Focus",
-        "description": "Purpose-built for sustainability and digital literacy — turning daily micro-learning into lasting behavioural change."
+      "governance": {
+        "title": "Governance gaps",
+        "description": "Meaningful participation in smart city decisions requires digitally literate, informed citizens."
+      },
+      "skills": {
+        "title": "Skills deficit",
+        "description": "Across Europe, millions of adults lack the digital competences needed for an increasingly connected world."
       }
     },
-    "carousel": {
-      "goTo": "Go to {{feature}}"
+    "digcomp": "Aligned with DigComp 2.2 — the European Digital Competence Framework",
+    "researchLink": "Read the JRC research →"
+  },
+  "pillars": {
+    "label": "Our approach",
+    "heading": "Learning built on",
+    "headingHighlight": "three pillars",
+    "description": "Every feature in Play4Change serves one of three evidence-based principles proven to drive lasting behavioural change.",
+    "engagement": {
+      "number": "01",
+      "title": "Engagement",
+      "description": "Gamification turns learning into a daily habit. Streaks, leaderboards, and peer review build motivation and community — every challenge feels like progress.",
+      "tag": "Gamified experience"
+    },
+    "personalisation": {
+      "number": "02",
+      "title": "Personalisation",
+      "description": "No two citizens are the same. Our AI continuously adapts challenge difficulty to individual performance, keeping every learner in their optimal zone.",
+      "tag": "Adaptive AI"
+    },
+    "recognition": {
+      "number": "03",
+      "title": "Recognition",
+      "description": "Competence needs proof. Learners earn digital badges aligned to DigComp 2.2 — verifiable micro-credentials that can be shared and recognised across Europe.",
+      "tag": "Micro-credentials"
     }
   },
-  "mission": {
-    "label": "Our Mission",
-    "heading": "Learning that creates",
-    "headingHighlight": "real change",
-    "description": "Play4Change transforms passive knowledge into active engagement. Our platform makes sustainability education and digital literacy accessible, addictive, and impactful — one daily challenge at a time.",
-    "features": {
-      "aiContent": {
-        "title": "AI-Generated Content",
-        "description": "Topics are created by educators and enriched by AI — automatically generating quizzes, challenges, and daily tasks tailored to the subject."
-      },
-      "adaptiveLearning": {
-        "title": "Adaptive Learning",
-        "description": "The platform adapts to each learner's pace and performance, ensuring everyone is challenged at the right level — no more one-size-fits-all courses."
-      },
-      "gamification": {
-        "title": "Gamification & Peer Review",
-        "description": "Daily streaks, leaderboards, and achievement badges keep learners motivated. Peer review tasks develop critical thinking and community knowledge."
-      },
-      "sustainability": {
-        "title": "Sustainability Focus",
-        "description": "Topics are curated around the UN Sustainable Development Goals and digital citizenship — empowering the next generation of responsible changemakers."
-      }
-    }
-  },
-  "stats": {
-    "label": "Live Stats",
-    "heading": "Join a growing community",
-    "learnersWorldwide": "Learners worldwide",
-    "activeTopics": "Active topics",
-    "tasksCompleted": "Tasks completed"
+  "trust": {
+    "label": "Built on evidence",
+    "heading": "Grounded in the European Digital Competence Framework",
+    "description": "Play4Change is built on DigComp 2.2, the European Commission's reference framework for digital competence, developed in partnership with ISEL and U!REKA.",
+    "digcompBadge": "DigComp 2.2",
+    "digcompSub": "21 competences · 5 areas · European standard",
+    "partnersLabel": "Academic partners",
+    "researchCta": "Read the JRC research →"
   },
   "product": {
     "label": "How it works",
-    "heading": "From content to knowledge in",
+    "heading": "Your learning journey in",
     "headingHighlight": "4 steps",
-    "description": "Play4Change bridges the gap between educational content and real behavioral change — turning any resource into an engaging, adaptive learning journey.",
-    "cta": "Start learning today",
+    "description": "From discovery to digital competence — Play4Change guides every citizen through a structured, personalised path.",
+    "cta": "Get the app",
     "steps": {
       "step1": {
-        "title": "Educators create topics",
-        "description": "Admins upload PDF materials or provide URLs. Our AI processes the content and generates a structured learning path with daily challenges."
+        "title": "Discover a topic that matters",
+        "description": "Browse challenges built around smart city themes — digital services, sustainable mobility, data privacy, and more. Enroll in seconds."
       },
       "step2": {
-        "title": "Learners enroll & start",
-        "description": "Students discover topics, enroll in seconds, and begin receiving one challenge per day — bite-sized tasks that fit any schedule."
+        "title": "Take daily micro-challenges",
+        "description": "One challenge per day, 5–10 minutes. Quizzes, reflections, and peer tasks designed to fit any schedule."
       },
       "step3": {
-        "title": "Progress through challenges",
-        "description": "Each day brings new quizzes, reflection prompts, and peer tasks. The AI adapts difficulty based on performance to keep learners in the flow state."
+        "title": "AI adapts to your pace",
+        "description": "The platform adjusts challenge difficulty based on your performance — keeping you in the optimal learning zone every day."
       },
       "step4": {
-        "title": "Earn achievements & grow",
-        "description": "Complete streaks, earn badges, and climb leaderboards. Community peer reviews build deeper understanding and collaborative learning."
+        "title": "Earn badges that prove your competences",
+        "description": "Complete a topic and earn a verifiable badge aligned to DigComp 2.2. Share it, showcase it — your skills are now visible."
       }
     }
   },
