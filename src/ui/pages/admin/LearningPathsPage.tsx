@@ -5,7 +5,13 @@ import LearningPathDagView from '@/ui/components/LearningPathDagView'
 
 export default function LearningPathsPage() {
   const { t } = useTranslation()
-  const { data: topics = [], isLoading: topicsLoading, isError: topicsError, refetch } = useTopics()
+  const {
+    data: topicsData,
+    isLoading: topicsLoading,
+    isError: topicsError,
+    refetch,
+  } = useTopics(undefined, 0, 500)
+  const topics = topicsData?.content ?? []
   const { data: graph, isLoading: graphLoading, isError: graphError } = useLearningGraph()
 
   const isLoading = topicsLoading || graphLoading
