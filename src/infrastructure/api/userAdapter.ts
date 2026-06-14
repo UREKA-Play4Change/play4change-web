@@ -29,15 +29,19 @@ export class UserAdapter implements IUserService {
   }
 
   async getUserEnrollments(userId: string): Promise<AdminUserEnrollment[]> {
-    const { data } = await apiClient.get<AdminUserEnrollment[]>(
+    const { data } = await apiClient.get<{ content: AdminUserEnrollment[] }>(
       `/admin/users/${userId}/enrollments`,
+      { params: { size: 100 } },
     )
-    return data
+    return data.content
   }
 
   async getUserBadges(userId: string): Promise<AdminUserBadge[]> {
-    const { data } = await apiClient.get<AdminUserBadge[]>(`/admin/users/${userId}/badges`)
-    return data
+    const { data } = await apiClient.get<{ content: AdminUserBadge[] }>(
+      `/admin/users/${userId}/badges`,
+      { params: { size: 100 } },
+    )
+    return data.content
   }
 
   async getUserEnrollmentRoadmap(
@@ -54,9 +58,10 @@ export class UserAdapter implements IUserService {
     userId: string,
     enrollmentId: string,
   ): Promise<AdminExplanationSession[]> {
-    const { data } = await apiClient.get<AdminExplanationSession[]>(
+    const { data } = await apiClient.get<{ content: AdminExplanationSession[] }>(
       `/admin/users/${userId}/enrollments/${enrollmentId}/explanations`,
+      { params: { size: 50 } },
     )
-    return data
+    return data.content
   }
 }
