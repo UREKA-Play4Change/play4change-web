@@ -4,7 +4,7 @@ import { useTopics } from '@/application/hooks/useTopics'
 import { useAllTopicBadgeStats } from '@/application/hooks/useTopics'
 import type { Topic } from '@/domain/models/Topic'
 
-const PAGE_SIZE = 20
+const PAGE_SIZE = 5
 
 export default function BadgeOverviewPage() {
   const { t } = useTranslation()
