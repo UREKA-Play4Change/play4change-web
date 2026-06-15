@@ -1,9 +1,3 @@
-export interface AdminUser {
-  id: string
-  email: string
-  name: string
-}
-
 export interface AdminUserFull {
   id: string
   email: string
