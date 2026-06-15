@@ -5,7 +5,7 @@ import { toast } from 'sonner'
 import { useUsers, usePromoteUser } from '@/application/hooks/useUsers'
 import type { AdminUserFull } from '@/domain/models/User'
 
-const PAGE_SIZE = 20
+const PAGE_SIZE = 5
 
 export default function UserListPage() {
   const { t } = useTranslation()
