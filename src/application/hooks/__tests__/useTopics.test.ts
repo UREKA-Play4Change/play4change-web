@@ -30,20 +30,25 @@ describe('useTopics', () => {
     vi.clearAllMocks()
   })
 
-  it('returns an array when the API resolves with an array', async () => {
+  it('returns topics from content when the API resolves with a TopicPage', async () => {
     const topics = [{ id: '1', title: 'Test', status: 'ACTIVE' }]
-    mockListMyTopics.mockResolvedValue(topics)
+    mockListMyTopics.mockResolvedValue({
+      content: topics,
+      page: 0,
+      size: 20,
+      totalElements: 1,
+      totalPages: 1,
+    })
 
     const { result } = renderHook(() => useTopics(), { wrapper: makeWrapper() })
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
-    expect(Array.isArray(result.current.data)).toBe(true)
-    expect(result.current.data).toEqual(topics)
+    expect(result.current.data?.content).toEqual(topics)
   })
 
-  it('returns an empty array when the API resolves with null', async () => {
+  it('returns empty content when the API resolves with null', async () => {
     mockListMyTopics.mockResolvedValue(null)
 
     const { result } = renderHook(() => useTopics(), { wrapper: makeWrapper() })
@@ -51,10 +56,10 @@ describe('useTopics', () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toEqual([])
+    expect(result.current.data?.content).toEqual([])
   })
 
-  it('returns an empty array when the API resolves with a number (unexpected type)', async () => {
+  it('returns empty content when the API resolves with a number (unexpected type)', async () => {
     // Simulates a scenario where the adapter returns a non-array scalar
     mockListMyTopics.mockResolvedValue(42 as unknown as never)
 
@@ -63,10 +68,10 @@ describe('useTopics', () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toEqual([])
+    expect(result.current.data?.content).toEqual([])
   })
 
-  it('returns an empty array when the API resolves with a plain object', async () => {
+  it('returns empty content when the API resolves with a plain object without a content array', async () => {
     mockListMyTopics.mockResolvedValue({ data: [{ id: '1' }], total: 1 })
 
     const { result } = renderHook(() => useTopics(), { wrapper: makeWrapper() })
@@ -74,10 +79,10 @@ describe('useTopics', () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toEqual([])
+    expect(result.current.data?.content).toEqual([])
   })
 
-  it('returns an empty array when the API resolves with an empty array', async () => {
+  it('returns empty content when the API resolves with an empty array', async () => {
     mockListMyTopics.mockResolvedValue([])
 
     const { result } = renderHook(() => useTopics(), { wrapper: makeWrapper() })
@@ -85,6 +90,6 @@ describe('useTopics', () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true)
     })
-    expect(result.current.data).toEqual([])
+    expect(result.current.data?.content).toEqual([])
   })
 })
