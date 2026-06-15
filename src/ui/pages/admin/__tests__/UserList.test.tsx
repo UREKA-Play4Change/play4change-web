@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { render, screen, within, fireEvent } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { MemoryRouter } from 'react-router-dom'
@@ -62,11 +62,16 @@ function wrapper({ children }: { children: React.ReactNode }) {
   )
 }
 
+async function revealEmails() {
+  fireEvent.click(await screen.findByRole('button', { name: 'admin.users.showEmails' }))
+}
+
 describe('UserListPage', () => {
   it('renders user rows', async () => {
     mockListUsers.mockResolvedValue(MOCK_PAGE)
     render(<UserListPage />, { wrapper })
 
+    await revealEmails()
     expect(await screen.findByText('alice@example.com')).toBeInTheDocument()
     expect(screen.getByText('bob@example.com')).toBeInTheDocument()
   })
@@ -75,6 +80,7 @@ describe('UserListPage', () => {
     mockListUsers.mockResolvedValue(MOCK_PAGE)
     render(<UserListPage />, { wrapper })
 
+    await revealEmails()
     const aliceCell = await screen.findByText('alice@example.com')
     const aliceRow = aliceCell.closest('tr')
     expect(aliceRow).not.toBeNull()
@@ -85,6 +91,7 @@ describe('UserListPage', () => {
     mockListUsers.mockResolvedValue(MOCK_PAGE)
     render(<UserListPage />, { wrapper })
 
+    await revealEmails()
     await screen.findByText('alice@example.com')
 
     const buttons = screen.getAllByRole('button', { name: 'admin.users.promoteButton' })
@@ -95,6 +102,7 @@ describe('UserListPage', () => {
     mockListUsers.mockResolvedValue(MOCK_PAGE)
     render(<UserListPage />, { wrapper })
 
+    await revealEmails()
     await screen.findByText('alice@example.com')
 
     expect(screen.queryByRole('navigation')).not.toBeInTheDocument()
@@ -104,6 +112,7 @@ describe('UserListPage', () => {
     mockListUsers.mockResolvedValue({ ...MOCK_PAGE, totalPages: 3 })
     render(<UserListPage />, { wrapper })
 
+    await revealEmails()
     await screen.findByText('alice@example.com')
 
     expect(screen.getByRole('navigation')).toBeInTheDocument()
