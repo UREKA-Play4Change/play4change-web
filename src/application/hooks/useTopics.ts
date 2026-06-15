@@ -2,16 +2,28 @@ import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tansta
 import { container } from '@/infrastructure/di/container'
 import type {
   CreateTopicFromUrlRequest,
+  TopicPage,
   TopicStatus,
   UpdateTaskRequest,
 } from '@/domain/models/Topic'
 
 const topicService = container.topicService
 
+const EMPTY_PAGE: TopicPage = { content: [], page: 0, size: 0, totalElements: 0, totalPages: 0 }
+
 export function useTopics(status?: TopicStatus, page = 0, size = 20) {
   return useQuery({
     queryKey: ['topics', status, page, size],
     queryFn: () => topicService.listMyTopics(status, page, size),
+    select: (raw): TopicPage => {
+      const data = raw as unknown
+      return data != null &&
+        typeof data === 'object' &&
+        !Array.isArray(data) &&
+        Array.isArray((data as TopicPage).content)
+        ? (data as TopicPage)
+        : EMPTY_PAGE
+    },
     staleTime: 0,
     refetchInterval: 30_000,
     placeholderData: keepPreviousData,

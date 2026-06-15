@@ -4,6 +4,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import BadgeOverviewPage from '../BadgeOverviewPage'
 import type { Topic } from '@/domain/models/Topic'
 
+function makePage(topics: Topic[]) {
+  return { content: topics, page: 0, size: 20, totalElements: topics.length, totalPages: 1 }
+}
+
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
 }))
@@ -56,7 +60,7 @@ function wrapper({ children }: { children: React.ReactNode }) {
 
 describe('BadgeOverviewPage', () => {
   it('renders topic list with earned percentage', async () => {
-    mockListMyTopics.mockResolvedValue(MOCK_TOPICS)
+    mockListMyTopics.mockResolvedValue(makePage(MOCK_TOPICS))
     mockGetTopicBadgeStats.mockImplementation((id: string) =>
       Promise.resolve({
         totalIssued: id === 'topic-001' ? 30 : 0,
@@ -80,7 +84,7 @@ describe('BadgeOverviewPage', () => {
   })
 
   it('renders "No earners yet" for topics with 0% earned', async () => {
-    mockListMyTopics.mockResolvedValue(MOCK_TOPICS)
+    mockListMyTopics.mockResolvedValue(makePage(MOCK_TOPICS))
     mockGetTopicBadgeStats.mockResolvedValue({
       totalIssued: 0,
       enrolledCount: 50,
@@ -97,7 +101,7 @@ describe('BadgeOverviewPage', () => {
   })
 
   it('clicking a topic row opens the detail panel', async () => {
-    mockListMyTopics.mockResolvedValue([MOCK_TOPICS[0]])
+    mockListMyTopics.mockResolvedValue(makePage([MOCK_TOPICS[0]]))
     mockGetTopicBadgeStats.mockResolvedValue({
       totalIssued: 10,
       enrolledCount: 100,
@@ -118,7 +122,7 @@ describe('BadgeOverviewPage', () => {
   })
 
   it('detail panel shows earners in the order returned by the API', async () => {
-    mockListMyTopics.mockResolvedValue([MOCK_TOPICS[0]])
+    mockListMyTopics.mockResolvedValue(makePage([MOCK_TOPICS[0]]))
     mockGetTopicBadgeStats.mockResolvedValue({
       totalIssued: 2,
       enrolledCount: 100,
