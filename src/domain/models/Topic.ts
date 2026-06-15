@@ -1,4 +1,12 @@
 export type TopicStatus = 'PENDING' | 'GENERATING' | 'ACTIVE' | 'FAILED'
+
+export interface TopicPage {
+  content: Topic[]
+  page: number
+  size: number
+  totalElements: number
+  totalPages: number
+}
 export type TopicDifficulty = 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED'
 
 export interface TopicStats {

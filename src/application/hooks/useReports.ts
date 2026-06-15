@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { container } from '@/infrastructure/di/container'
 import type { CorrectReportRequest } from '@/domain/models/Report'
 
@@ -9,6 +9,7 @@ export function usePendingReports(page = 0, size = 20) {
     queryKey: ['reports', 'pending', page, size],
     queryFn: () => reportService.listPendingReports(page, size),
     staleTime: 30 * 1000,
+    placeholderData: keepPreviousData,
   })
 }
 

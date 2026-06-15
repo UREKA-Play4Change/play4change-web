@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { container } from '@/infrastructure/di/container'
 
 const userService = container.userService
@@ -8,6 +8,7 @@ export function useUsers(page = 0, size = 20) {
     queryKey: ['users', page, size],
     queryFn: () => userService.listUsers(page, size),
     staleTime: 30 * 1000,
+    placeholderData: keepPreviousData,
   })
 }
 

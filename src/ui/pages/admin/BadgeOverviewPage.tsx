@@ -4,13 +4,23 @@ import { useTopics } from '@/application/hooks/useTopics'
 import { useAllTopicBadgeStats } from '@/application/hooks/useTopics'
 import type { Topic } from '@/domain/models/Topic'
 
+const PAGE_SIZE = 5
+
 export default function BadgeOverviewPage() {
   const { t } = useTranslation()
   const [selectedTopicId, setSelectedTopicId] = useState<string | null>(null)
+  const [topicPage, setTopicPage] = useState(0)
 
-  const { data: topics, isPending: topicsPending, isError: topicsError } = useTopics()
+  const {
+    data: topicsData,
+    isPending: topicsPending,
+    isError: topicsError,
+  } = useTopics(undefined, topicPage, PAGE_SIZE)
 
-  const topicIds = topics?.map(t => t.id) ?? []
+  const topics = topicsData?.content ?? []
+  const totalPages = topicsData?.totalPages ?? 0
+
+  const topicIds = topics.map((t: Topic) => t.id)
   const { data: badgeStats, isPending: statsPending } = useAllTopicBadgeStats(topicIds)
 
   if (topicsPending || (topicIds.length > 0 && statsPending)) {
@@ -117,6 +127,36 @@ export default function BadgeOverviewPage() {
           </div>
         )}
       </div>
+
+      {totalPages > 1 && (
+        <div
+          className="flex items-center justify-between"
+          role="navigation"
+          aria-label={t('admin.badges.paginationAriaLabel')}
+        >
+          <button
+            onClick={() => {
+              setTopicPage(p => Math.max(0, p - 1))
+            }}
+            disabled={topicPage === 0}
+            className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-40"
+          >
+            {t('admin.users.prevPage')}
+          </button>
+          <span className="text-sm text-gray-500">
+            {t('admin.users.pageOf', { current: topicPage + 1, total: totalPages })}
+          </span>
+          <button
+            onClick={() => {
+              setTopicPage(p => Math.min(totalPages - 1, p + 1))
+            }}
+            disabled={topicPage >= totalPages - 1}
+            className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-40"
+          >
+            {t('admin.users.nextPage')}
+          </button>
+        </div>
+      )}
     </div>
   )
 }

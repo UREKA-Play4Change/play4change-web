@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { container } from '@/infrastructure/di/container'
 import type {
   CreateTopicFromUrlRequest,
@@ -8,13 +8,13 @@ import type {
 
 const topicService = container.topicService
 
-export function useTopics(status?: TopicStatus) {
+export function useTopics(status?: TopicStatus, page = 0, size = 20) {
   return useQuery({
-    queryKey: ['topics', status],
-    queryFn: () => topicService.listMyTopics(status),
+    queryKey: ['topics', status, page, size],
+    queryFn: () => topicService.listMyTopics(status, page, size),
     staleTime: 0,
     refetchInterval: 30_000,
-    select: data => (Array.isArray(data) ? data : []),
+    placeholderData: keepPreviousData,
   })
 }
 

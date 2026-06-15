@@ -8,6 +8,7 @@ import type {
   Topic,
   TopicBadgeStats,
   TopicExplanationSession,
+  TopicPage,
   TopicStatus,
   UpdateTaskRequest,
 } from '../models/Topic'
@@ -15,7 +16,7 @@ import type {
 export interface ITopicService {
   createFromUrl(request: CreateTopicFromUrlRequest): Promise<Topic>
   createFromPdf(formData: FormData): Promise<Topic>
-  listMyTopics(status?: TopicStatus): Promise<Topic[]>
+  listMyTopics(status?: TopicStatus, page?: number, size?: number): Promise<TopicPage>
   getTopicById(id: string): Promise<Topic>
   regenerateTopic(id: string): Promise<Topic>
   getTopicTasks(topicId: string): Promise<TaskTemplate[]>

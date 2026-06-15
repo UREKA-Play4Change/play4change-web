@@ -8,6 +8,7 @@ import type {
   Topic,
   TopicBadgeStats,
   TopicExplanationSession,
+  TopicPage,
   TopicStatus,
   UpdateTaskRequest,
 } from '@/domain/models/Topic'
@@ -349,12 +350,17 @@ export class MockTopicAdapter implements ITopicService {
     return newTopic
   }
 
-  async listMyTopics(status?: TopicStatus): Promise<Topic[]> {
+  async listMyTopics(status?: TopicStatus, page = 0, size = 20): Promise<TopicPage> {
     await delay()
-    if (status) {
-      return topicsStore.filter(t => t.status === status)
+    const filtered = status ? topicsStore.filter(t => t.status === status) : topicsStore
+    const start = page * size
+    return {
+      content: filtered.slice(start, start + size),
+      page,
+      size,
+      totalElements: filtered.length,
+      totalPages: Math.ceil(filtered.length / size),
     }
-    return topicsStore
   }
 
   async getTopicById(id: string): Promise<Topic> {

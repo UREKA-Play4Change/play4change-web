@@ -7,6 +7,8 @@ import TopicCard from '@/ui/components/TopicCard'
 import ErrorState from '@/ui/components/ErrorState'
 import { ROUTES } from '@/lib/constants'
 
+const PAGE_SIZE = 5
+
 const STATUS_FILTER_VALUES: { labelKey: string; value: TopicStatus | 'ALL' }[] = [
   { labelKey: 'admin.topicList.filters.all', value: 'ALL' },
   { labelKey: 'admin.topicList.filters.active', value: 'ACTIVE' },
@@ -15,24 +17,19 @@ const STATUS_FILTER_VALUES: { labelKey: string; value: TopicStatus | 'ALL' }[] =
   { labelKey: 'admin.topicList.filters.failed', value: 'FAILED' },
 ]
 
-const STATUS_CHIP_COLOR: Record<TopicStatus | 'ALL', string> = {
-  ALL: 'bg-gray-100 text-gray-600',
-  ACTIVE: 'bg-green-100 text-green-700',
-  GENERATING: 'bg-blue-100 text-blue-700',
-  PENDING: 'bg-yellow-100 text-yellow-700',
-  FAILED: 'bg-red-100 text-red-700',
-}
-
 export default function TopicListPage() {
   const { t } = useTranslation()
   const [statusFilter, setStatusFilter] = useState<TopicStatus | 'ALL'>('ALL')
-  const { data: rawTopics, isLoading, isError, refetch } = useTopics()
-  const allTopics = Array.isArray(rawTopics) ? rawTopics : []
+  const [page, setPage] = useState(0)
+
+  const serverStatus = statusFilter === 'ALL' ? undefined : statusFilter
+  const { data, isLoading, isError, refetch } = useTopics(serverStatus, page, PAGE_SIZE)
+
+  const topics = data?.content ?? []
+  const totalPages = data?.totalPages ?? 0
+  const totalElements = data?.totalElements ?? 0
 
   if (isError) return <ErrorState onRetry={() => void refetch()} />
-
-  const topics =
-    statusFilter === 'ALL' ? allTopics : allTopics.filter(topic => topic.status === statusFilter)
 
   return (
     <div className="space-y-6">
@@ -42,7 +39,7 @@ export default function TopicListPage() {
             {t('admin.topicList.heading')}
           </h1>
           <p className="mt-1 text-sm text-gray-500">
-            {t('admin.topicList.topicsTotal', { count: allTopics.length })}
+            {t('admin.topicList.topicsTotal', { count: totalElements })}
           </p>
         </div>
         <Link
@@ -69,32 +66,22 @@ export default function TopicListPage() {
         aria-label={t('admin.topicList.filterAriaLabel')}
       >
         {STATUS_FILTER_VALUES.map(f => {
-          const count =
-            f.value === 'ALL'
-              ? allTopics.length
-              : allTopics.filter(t => t.status === f.value).length
           const active = statusFilter === f.value
           return (
             <button
               key={f.value}
               onClick={() => {
                 setStatusFilter(f.value)
+                setPage(0)
               }}
               aria-pressed={active}
-              className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+              className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                 active
                   ? 'bg-blue-600 text-white shadow-sm'
                   : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
               }`}
             >
               {t(f.labelKey)}
-              <span
-                className={`rounded-full px-1.5 py-0.5 text-xs font-semibold leading-none ${
-                  active ? 'bg-white/20 text-white' : STATUS_CHIP_COLOR[f.value]
-                }`}
-              >
-                {count}
-              </span>
             </button>
           )
         })}
@@ -127,6 +114,36 @@ export default function TopicListPage() {
           {topics.map(topic => (
             <TopicCard key={topic.id} topic={topic} />
           ))}
+        </div>
+      )}
+
+      {totalPages > 1 && (
+        <div
+          className="flex items-center justify-between"
+          role="navigation"
+          aria-label={t('admin.topicList.paginationAriaLabel')}
+        >
+          <button
+            onClick={() => {
+              setPage(p => Math.max(0, p - 1))
+            }}
+            disabled={page === 0}
+            className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-40"
+          >
+            {t('admin.users.prevPage')}
+          </button>
+          <span className="text-sm text-gray-500">
+            {t('admin.users.pageOf', { current: page + 1, total: totalPages })}
+          </span>
+          <button
+            onClick={() => {
+              setPage(p => Math.min(totalPages - 1, p + 1))
+            }}
+            disabled={page >= totalPages - 1}
+            className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-40"
+          >
+            {t('admin.users.nextPage')}
+          </button>
         </div>
       )}
     </div>

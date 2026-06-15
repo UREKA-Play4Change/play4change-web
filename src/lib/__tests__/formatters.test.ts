@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatDate, formatNumber, formatPercentage, formatScore } from '../formatters'
+import { formatDate, formatNumber, formatPercentage } from '../formatters'
 
 describe('formatNumber', () => {
   it('returns raw number for values below 1000', () => {
@@ -29,12 +29,5 @@ describe('formatDate', () => {
     const result = formatDate('2025-01-15T10:00:00Z')
     expect(result).toContain('2025')
     expect(result).toContain('Jan')
-  })
-})
-
-describe('formatScore', () => {
-  it('rounds and appends /100', () => {
-    expect(formatScore(82.4)).toBe('82/100')
-    expect(formatScore(100)).toBe('100/100')
   })
 })

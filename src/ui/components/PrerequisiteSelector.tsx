@@ -14,10 +14,11 @@ interface Props {
 
 export default function PrerequisiteSelector({ topicId }: Props) {
   const { t } = useTranslation()
-  const { data: allTopics = [] } = useTopics()
+  const { data: topicsData } = useTopics(undefined, 0, 500)
   const { data: currentPrereqs = [], isLoading } = useTopicPrerequisites(topicId)
   const setPrereqs = useSetPrerequisites(topicId)
 
+  const allTopics = topicsData?.content ?? []
   const [selected, setSelected] = useState<string[] | null>(null)
   const workingSelection = selected ?? currentPrereqs.map(p => p.id)
 

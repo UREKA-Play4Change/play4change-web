@@ -189,7 +189,8 @@
         "generating": "Genererar",
         "pending": "Väntande",
         "failed": "Misslyckad"
-      }
+      },
+      "paginationAriaLabel": "Pagination"
     },
     "topicDetail": {
       "breadcrumbTopics": "Ämnen",
@@ -251,7 +252,8 @@
       "graphHeading": "Prerequisite graph",
       "noEdges": "No prerequisite relationships defined yet. Open a topic and set its prerequisites from the Prerequisites tab.",
       "requires": "requires",
-      "hint": "To edit prerequisites, open any topic and use the Prerequisites tab."
+      "hint": "To edit prerequisites, open any topic and use the Prerequisites tab.",
+      "paginationAriaLabel": "Pagination"
     },
     "badges": {
       "heading": "Badges",
@@ -263,7 +265,8 @@
       "noEarners": "No earners yet",
       "recentEarnersHeading": "Recent earners",
       "noRecentEarners": "No recent earners yet.",
-      "loadError": "Failed to load badge data."
+      "loadError": "Failed to load badge data.",
+      "paginationAriaLabel": "Pagination"
     },
     "users": {
       "heading": "Users",
@@ -285,7 +288,9 @@
       "prevPage": "Previous",
       "nextPage": "Next",
       "pageOf": "Page {{current}} of {{total}}",
-      "paginationAriaLabel": "Pagination"
+      "paginationAriaLabel": "Pagination",
+      "showEmails": "Show emails",
+      "hideEmails": "Hide emails"
     }
   },
   "components": {

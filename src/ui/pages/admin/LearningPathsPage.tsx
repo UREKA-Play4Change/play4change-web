@@ -1,11 +1,22 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useTopics, useLearningGraph } from '@/application/hooks/useTopics'
 import ErrorState from '@/ui/components/ErrorState'
 import LearningPathDagView from '@/ui/components/LearningPathDagView'
 
+const PAGE_SIZE = 5
+
 export default function LearningPathsPage() {
   const { t } = useTranslation()
-  const { data: topics = [], isLoading: topicsLoading, isError: topicsError, refetch } = useTopics()
+  const [page, setPage] = useState(0)
+  const {
+    data: topicsData,
+    isLoading: topicsLoading,
+    isError: topicsError,
+    refetch,
+  } = useTopics(undefined, page, PAGE_SIZE)
+  const topics = topicsData?.content ?? []
+  const totalPages = topicsData?.totalPages ?? 0
   const { data: graph, isLoading: graphLoading, isError: graphError } = useLearningGraph()
 
   const isLoading = topicsLoading || graphLoading
@@ -26,7 +37,7 @@ export default function LearningPathsPage() {
     return <ErrorState onRetry={() => void refetch()} />
   }
 
-  const totalTopics = topics.length
+  const totalTopics = topicsData?.totalElements ?? 0
   const topicsWithPrereqs = graph ? new Set(graph.edges.map(e => e.topicId)).size : 0
   const totalEdges = graph?.edges.length ?? 0
 
@@ -75,6 +86,36 @@ export default function LearningPathsPage() {
           </div>
         )}
       </div>
+
+      {totalPages > 1 && (
+        <div
+          className="flex items-center justify-between"
+          role="navigation"
+          aria-label={t('admin.learningPaths.paginationAriaLabel')}
+        >
+          <button
+            onClick={() => {
+              setPage(p => Math.max(0, p - 1))
+            }}
+            disabled={page === 0}
+            className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-40"
+          >
+            {t('admin.users.prevPage')}
+          </button>
+          <span className="text-sm text-gray-500">
+            {t('admin.users.pageOf', { current: page + 1, total: totalPages })}
+          </span>
+          <button
+            onClick={() => {
+              setPage(p => Math.min(totalPages - 1, p + 1))
+            }}
+            disabled={page >= totalPages - 1}
+            className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 disabled:opacity-40"
+          >
+            {t('admin.users.nextPage')}
+          </button>
+        </div>
+      )}
 
       <p className="text-xs text-gray-400">{t('admin.learningPaths.hint')}</p>
     </div>

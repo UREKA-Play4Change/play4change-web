@@ -8,6 +8,7 @@ import type {
   Topic,
   TopicBadgeStats,
   TopicExplanationSession,
+  TopicPage,
   TopicStatus,
   UpdateTaskRequest,
 } from '@/domain/models/Topic'
@@ -27,20 +28,11 @@ export class TopicAdapter implements ITopicService {
     return response.data
   }
 
-  async listMyTopics(status?: TopicStatus): Promise<Topic[]> {
-    const params = status ? { status } : {}
-    const response = await apiClient.get<unknown>('/admin/topics', { params })
-    const raw = response.data
-    if (Array.isArray(raw)) return raw as Topic[]
-    if (
-      raw !== null &&
-      typeof raw === 'object' &&
-      'content' in raw &&
-      Array.isArray((raw as { content: unknown }).content)
-    ) {
-      return (raw as { content: Topic[] }).content
-    }
-    return []
+  async listMyTopics(status?: TopicStatus, page = 0, size = 20): Promise<TopicPage> {
+    const params: Record<string, unknown> = { page, size }
+    if (status) params.status = status
+    const response = await apiClient.get<TopicPage>('/admin/topics', { params })
+    return response.data
   }
 
   async getTopicById(id: string): Promise<Topic> {
@@ -113,9 +105,10 @@ export class TopicAdapter implements ITopicService {
   }
 
   async getTopicExplanations(topicId: string): Promise<TopicExplanationSession[]> {
-    const response = await apiClient.get<TopicExplanationSession[]>(
+    const response = await apiClient.get<{ content: TopicExplanationSession[] }>(
       `/admin/topics/${topicId}/explanations`,
+      { params: { size: 50 } },
     )
-    return response.data
+    return response.data.content
   }
 }
