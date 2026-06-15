@@ -37,12 +37,12 @@ function OverviewCard({
 export default function DashboardPage() {
   const { t } = useTranslation()
   const { data: user } = useCurrentUser()
-  const { data: rawTopics, isLoading, isError, refetch } = useTopics()
-  const topics = Array.isArray(rawTopics) ? rawTopics : []
+  const { data: topicsData, isLoading, isError, refetch } = useTopics(undefined, 0, 500)
+  const topics = topicsData?.content ?? []
 
   if (isError) return <ErrorState onRetry={() => void refetch()} />
 
-  const totalTopics = topics.length
+  const totalTopics = topicsData?.totalElements ?? 0
   const activeTopics = topics.filter(topic => topic.status === 'ACTIVE').length
   const totalEnrolled = topics.reduce((sum, topic) => sum + (topic.stats?.enrolledUsers ?? 0), 0)
 
