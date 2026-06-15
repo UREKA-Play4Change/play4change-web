@@ -7,7 +7,7 @@ import TopicCard from '@/ui/components/TopicCard'
 import ErrorState from '@/ui/components/ErrorState'
 import { ROUTES } from '@/lib/constants'
 
-const PAGE_SIZE = 20
+const PAGE_SIZE = 5
 
 const STATUS_FILTER_VALUES: { labelKey: string; value: TopicStatus | 'ALL' }[] = [
   { labelKey: 'admin.topicList.filters.all', value: 'ALL' },
