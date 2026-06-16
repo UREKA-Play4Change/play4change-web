@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useIntersectionObserver } from '@/ui/hooks/useIntersectionObserver'
 
-const ANDROID_APK_URL = '/play4change-1.5.2.apk'
+const ANDROID_APK_URL = '/play4change.apk'
 
 const AndroidIcon = () => (
   <svg className="h-10 w-10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
